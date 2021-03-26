@@ -1,0 +1,102 @@
+version: "3.7"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ${NETWORK_NAME}-app
+    restart: unless-stopped
+    tty: true
+    working_dir: ${APP_PATH_CONTAINER}
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    ports:
+      - ${PHP_PORT_HOST}:${PHP_PORT_CONTAINER}
+    volumes:
+      - ${APP_PATH_HOST}:${APP_PATH_CONTAINER}
+      - ${PHP_PATH_INI}:${PHP_PATH_INI_CONTAINER}
+    networks:
+      - laratest
+
+  webserver:
+    image: nginx:alpine
+    container_name: ${NETWORK_NAME}-nginx
+    restart: unless-stopped
+    tty: true
+    ports:
+      - ${NGINX_PORT_HOST}:${NGINX_PORT_CONTAINER}
+    volumes:
+      - ${APP_PATH_HOST}:${APP_PATH_CONTAINER}
+      - ${NGINX_CONFIG_PATH_HOST}:${NGINX_CONFIG_PATH_CONTAINER}
+    networks:
+      - laratest
+    depends_on:
+      - app
+      - db
+
+  db:
+    image: postgres:latest
+    container_name: ${NETWORK_NAME}-db
+    restart: always
+    tty: true
+    ports:
+      - ${DB_PORT_HOST}:${DB_PORT_CONTAINER}
+    environment:
+      - POSTGRES_DB=${DB_DATABASE}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+    volumes:
+      - ${DB_PATH_HOST}:${DB_PATH_HOST_CONTAINER}
+    networks:
+      - laratest
+
+  npm:
+    image: node:14.7
+    container_name: ${NETWORK_NAME}-npm
+    working_dir: ${APP_PATH_CONTAINER}
+    command: install
+    volumes:
+      - ${APP_PATH_HOST}:${APP_PATH_CONTAINER}
+    networks:
+      - laratest
+
+  composer:
+    image: composer:2.0
+    container_name: ${NETWORK_NAME}-composer
+    working_dir: ${APP_PATH_CONTAINER}
+    command: require laravel/ui
+    depends_on:
+      - app
+    volumes:
+      - ${APP_PATH_HOST}:${APP_PATH_CONTAINER}
+    networks:
+      - laratest
+
+  artisan:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ${NETWORK_NAME}-artisan
+    volumes:
+      - ${APP_PATH_HOST}:${APP_PATH_CONTAINER}
+    depends_on:
+      - db
+    working_dir: ${APP_PATH_CONTAINER}
+    networks:
+      - laratest
+
+  adminer:
+    image: adminer:4.7.7-standalone
+    restart: always
+    ports:
+      - ${ADMINER_PORT_HOST}:${ADMINER_PORT_CONTAINER}
+    container_name: ${NETWORK_NAME}-adminer
+    networks:
+      - laratest
+
+networks:
+  laratest:
+    driver: bridge
