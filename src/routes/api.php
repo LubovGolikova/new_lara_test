@@ -26,3 +26,5 @@ Route::group([
     Route::post('register', 'App\Http\Controllers\AuthController@register');
     Route::post('logout', 'App\Http\Controllers\AuthController@logout');
 });
+
+//Route::get('/questions', [App\Http\Controllers\QuestionController::class, 'index']);
