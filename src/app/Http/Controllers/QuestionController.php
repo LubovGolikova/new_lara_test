@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\QuestionRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\User;
@@ -20,6 +21,11 @@ class QuestionController extends Controller
         //        return response()->json('xvxcvxcv');
         $questions = $this->questionService->getAll();
         return response()->json($questions);
+    }
+
+    public function store(QuestionRequest $request)
+    {
+        $validated = $request->validated();
 
     }
 
