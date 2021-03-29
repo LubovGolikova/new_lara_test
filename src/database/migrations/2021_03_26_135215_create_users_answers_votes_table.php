@@ -16,7 +16,6 @@ class CreateUsersAnswersVotesTable extends Migration
         Schema::create('users_answers_votes', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('answer_id');
-            $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('answer_id')->references('id')->on('answers');

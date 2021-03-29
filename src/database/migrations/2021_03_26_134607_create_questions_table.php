@@ -17,7 +17,7 @@ class CreateQuestionsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('title');
-            $table->text('body');
+            $table->text('body')->nullable();
             $table->integer('votes')->default(0);
             $table->timestamps();
 
