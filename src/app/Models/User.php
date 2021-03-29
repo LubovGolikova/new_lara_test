@@ -55,6 +55,15 @@ class User extends Authenticatable
         return $this->belongsToMany(Answer::class);
     }
 
+    public function users_questions_votes()
+    {
+        return $this->belongsTo(UserQuestionVote::class);
+    }
+
+    public function users_answers_votes()
+    {
+        return $this->belongsTo(UserAnswerVote::class);
+    }
     /**
      * @inheritDoc
      */

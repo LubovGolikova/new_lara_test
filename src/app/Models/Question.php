@@ -31,8 +31,18 @@ class Question extends Model
         'updated_at',
     ];
 
-    public function user()
+    public function users()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
+    }
+
+    public function answers()
+    {
+        return $this->belongsToMany(Answer::class);
+    }
+
+    public function users_questions_votes()
+    {
+        return $this->belongsToMany(UserQuestionVote::class, 'question_id');
     }
 }

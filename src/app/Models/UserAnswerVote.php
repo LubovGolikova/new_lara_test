@@ -10,9 +10,9 @@ class UserAnswerVote extends Model
     use HasFactory;
 
     public function users(){
-        return $this->belongsTo('App\Models\User', 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
     public function answers(){
-        return $this->belongsTo('App\Models\Answer', 'answer_id');
+        return $this->belongsTo(Answer::class, 'answer_id');
     }
 }
