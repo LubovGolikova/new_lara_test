@@ -13,7 +13,7 @@ class QuestionRepository implements QuestionRepositoryInterface
 
     public function getByUser(User $user)
     {
-        return Question::where('user_id'.$user->id)->get();
+       return Question::where('user_id'.$user->id)->get();
 //        return Question::query()
     }
 
