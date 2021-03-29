@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use Validator;
+use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Validator;
+
+//use Validator;
 class AuthController extends Controller
 {
     /**
@@ -17,35 +21,38 @@ class AuthController extends Controller
         $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
 
-    /**
-     * Get a JWT via given credentials.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function login(Request $request){
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'password' => 'required|string|min:6',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        }
-
-        if (! $token = auth()->attempt($validator->validated())) {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
-
-        return $this->createNewToken($token);
-    }
+//    /**
+//     * Get a JWT via given credentials.
+//     *
+//     * @return \Illuminate\Http\JsonResponse
+//     */
+//    public function login(Request $request){
+//        $validator = Validator::make($request->all(), [
+//            'email' => 'required|email',
+//            'password' => 'required|string|min:6',
+//        ]);
+//
+//        if ($validator->fails()) {
+//            return response()->json($validator->errors(), 422);
+//        }
+//
+//        if (! $token = auth()->attempt($validator->validated())) {
+//            return response()->json(['error' => 'Unauthorized'], 401);
+//        }
+//
+//        return $this->createNewToken($token);
+//    }
     /**
      * Register a User.
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function register(Request $request) {
+//   public function register(UserRequest $request) {
+   public function register(Request $request) {
 
-//        return response()->json('xvxcvxcv');
+//       $requestValidated = Request::createFrom($request, new UserRequest());
+
+
         $validator = Validator::make($request->all(), [
             'username' => 'required|string|between:2,100',
             'email' => 'required|string|email|max:100|unique:users',
@@ -66,6 +73,8 @@ class AuthController extends Controller
             'message' => 'User successfully registered',
             'user' => $user
         ], 201);
+
+
     }
 
 }

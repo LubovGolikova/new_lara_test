@@ -16,4 +16,5 @@ class QuestionRepository implements QuestionRepositoryInterface
         return Question::where('user_id'.$user->id)->get();
 //        return Question::query()
     }
+
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\Support\Facades\Auth;
 class UserRequest extends FormRequest
 {
     /**
@@ -13,7 +13,9 @@ class UserRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+//        return false;
+//       return Auth::check();
+      return true;
     }
 
     /**
@@ -29,6 +31,9 @@ class UserRequest extends FormRequest
             'email' => 'required|string|email|max:100|unique:users',
             'password'=>'required|string|confirmed|min:8'
         ];
+//        if ($this->getMethod() == 'PUT') {
+//            $rules['password'] = 'required|min:6';
+//        }
     }
 
     public function messages()
