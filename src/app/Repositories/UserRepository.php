@@ -13,13 +13,13 @@ class UserRepository implements UserRepositoryInterface
         return User::all();
     }
 
-    public function create(UserRequest $data)
+    public function create(array $data)
     {
         $user = new User;
 
-        $user->username    = $data['username'];
+        $user->username = $data['username'];
         $user->email = $data['email'];
-        $user->avatar_path =isset($data['avatar_path']) ? $data['avatar_path'] : null;
+        $user->avatar_path = isset($data['avatar_path']) ? $data['avatar_path'] : null;
         $user->password = Hash::make($data['password']);
 
         $user->save();

@@ -51,11 +51,12 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-//   public function register(UserRequest $request) {
+   public function register(UserRequest $request) {
+       //return response()->json('xvxcvxcv!@!!@');
 
-   public function register(Request $request) {
+   //public function register(Request $request) {
 
-       $requestValidated = Request::createFrom($request, new UserRequest());
+  //     $requestValidated = Request::createFrom($request, new UserRequest());
 
 //       return response()->json('xvxcvxcv');
 
@@ -82,17 +83,14 @@ class AuthController extends Controller
 //        ], 201);
 
 /////////////////
-       if ($requestValidated){
+///
+       $validated = $request->validated();
 
-            $user = $this->userService->create($requestValidated );
-            return response()->json([
+        $user = $this->userService->create($validated);
+        return response()->json([
             'message' => 'User successfully registered',
             'user' => $user
-             ], 201);
-        }
-        else {
-            return response()->json('User not registered');
-        }
+        ], 201);
 
   }
 

@@ -5,5 +5,5 @@ use App\Http\Requests\UserRequest;
 interface UserRepositoryInterface
 {
     public function all();
-    public function create(UserRequest $data);
+    public function create(array $data);
 }
