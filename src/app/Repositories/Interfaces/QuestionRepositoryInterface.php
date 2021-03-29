@@ -5,4 +5,5 @@ interface QuestionRepositoryInterface
 {
     public function all();
     public function getByUser(User $user);
+    public function getById($id);
 }

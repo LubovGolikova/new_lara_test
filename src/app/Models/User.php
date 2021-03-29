@@ -47,22 +47,22 @@ class User extends Authenticatable
 
     public function questions()
     {
-        return $this->belongsToMany(Question::class);
+        return $this->hasMany(Question::class);
     }
 
     public function answers()
     {
-        return $this->belongsToMany(Answer::class);
+        return $this->hasMany(Answer::class);
     }
 
     public function users_questions_votes()
     {
-        return $this->belongsTo(UserQuestionVote::class);
+        return $this->belongsToMany(UserQuestionVote::class);
     }
 
     public function users_answers_votes()
     {
-        return $this->belongsTo(UserAnswerVote::class);
+        return $this->belongsToMany(UserAnswerVote::class);
     }
     /**
      * @inheritDoc

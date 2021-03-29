@@ -31,14 +31,14 @@ class Question extends Model
         'updated_at',
     ];
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
 
     public function answers()
     {
-        return $this->belongsToMany(Answer::class);
+        return $this->hasMany(Answer::class);
     }
 
     public function users_questions_votes()
