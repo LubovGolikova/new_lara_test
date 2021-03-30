@@ -22,12 +22,6 @@ class UserRepository implements UserRepositoryInterface
         $user->email = $data['email'];
         $user->avatar_path = isset($data['avatar_path']) ? $data['avatar_path'] : null;
         $user->password = Hash::make($data['password']);
-
-        $creds = array();
-        $creds["email"] =$user->email;
-        $creds["password"] =$user->password;
-
-        $user->remember_token = JWTAuth::attempt($creds);
         $user->save();
 
         return $user;
