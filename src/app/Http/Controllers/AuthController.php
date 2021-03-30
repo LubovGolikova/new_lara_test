@@ -10,6 +10,7 @@ use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Validator;
 use App\Services\UserService;
 //use Validator;
+
 class AuthController extends Controller
 {
     private $userService;
@@ -25,11 +26,15 @@ class AuthController extends Controller
         $this->userService = $userService;
     }
 
-//    /**
-//     * Get a JWT via given credentials.
-//     *
-//     * @return \Illuminate\Http\JsonResponse
-//     */
+    /**
+     * Get a JWT via given credentials.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function login(Request $request)
+    {
+//    return response()->json('xvxcvxcv!@!!@');
+
 //    public function login(Request $request){
 //        $validator = Validator::make($request->all(), [
 //            'email' => 'required|email',
@@ -45,13 +50,28 @@ class AuthController extends Controller
 //        }
 //
 //        return $this->createNewToken($token);
-//    }
+
+
+        ////
+        ///my realisation
+        $user = $this->userService->login($request->email, $request->password);
+        return response()->json(  $user);
+
+
+//     if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+//         return response()->json('authorized');
+//     }
+//        $validated = $request->validated();
+//        $token = auth()->attempt($validated);
+//        return $this->createNewToken($token);
+    }
     /**
      * Register a User.
      *
      * @return \Illuminate\Http\JsonResponse
      */
-   public function register(UserRequest $request) {
+    public function register(UserRequest $request)
+    {
        //return response()->json('xvxcvxcv!@!!@');
 
    //public function register(Request $request) {
@@ -82,16 +102,38 @@ class AuthController extends Controller
 //            'user' => $user
 //        ], 201);
 
-/////////////////
-///
-       $validated = $request->validated();
-
+        /////////////////
+        ///my realisation
+        $validated = $request->validated();
         $user = $this->userService->create($validated);
+        $accessToken = $this ->createNewToken($user->getRememberToken());
         return response()->json([
             'message' => 'User successfully registered',
-            'user' => $user
+            'user' => $user,
+            'accessToken' => $accessToken
         ], 201);
 
-  }
+    }
+    /**
+     * Log the user out (Invalidate the token).
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function logout()
+    {
+//       return response()->json('xvxcvxcv');
 
+//        auth()->logout();
+       return response()->json(['message' => 'User successfully signed out']);
+    }
+
+    public function createNewToken($token)
+    {
+       return response()->json([
+           'access_token' => $token,
+           'token_type' => 'bearer',
+           'expires_in' => 60,
+           'user' => auth()->user()
+       ]);
+    }
 }

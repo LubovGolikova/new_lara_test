@@ -22,4 +22,9 @@ class UserService
     {
         return $this->userRepository->create($data);
     }
+
+    public function login($email, $password)
+    {
+        return $this->userRepository->login($email, $password);
+    }
 }
