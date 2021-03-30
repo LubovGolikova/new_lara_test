@@ -18,7 +18,6 @@ class QuestionController extends Controller
 
     public function index()
     {
-        //return response()->json('xvxcvxcv');
         $questions = $this->questionService->getAll();
         return response()->json($questions);
     }
