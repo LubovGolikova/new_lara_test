@@ -1,6 +1,7 @@
 <?php
 namespace  App\Repositories;
 
+use App\Models\Answer;
 use App\Models\Question;
 use App\Models\User;
 use App\Repositories\Interfaces\QuestionRepositoryInterface;
@@ -13,11 +14,10 @@ class QuestionRepository implements QuestionRepositoryInterface
 
     public function getByUser(User $user)
     {
-       return Question::where('user_id'.$user->id)->get();
-//        return Question::query()
+        return Question::query()->where('user_id'.$user->id)->get();
     }
     public function getById($id)
     {
-        return Question::findOrFail($id);
+        return Question::query()->findOrFail($id);
     }
 }

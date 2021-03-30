@@ -55,7 +55,15 @@ class AuthController extends Controller
         ////
         ///my realisation
         $user = $this->userService->login($request->email, $request->password);
-        return response()->json(  $user);
+        $email = $user->email;
+        $password = $user->password;
+        $token = auth()->attempt(['email' => $email, 'password' => $password]);
+        $accessToken = $this->createNewToken($token);
+        return response()->json([
+            'message' => 'User successfully login',
+            'user' => $user,
+            'accessToken' => $accessToken
+        ]);
 
 
 //     if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
