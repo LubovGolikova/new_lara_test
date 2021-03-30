@@ -9,8 +9,7 @@ use App\Models\User;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Validator;
 use App\Services\UserService;
-//use Validator;
-
+use Tymon\JWTAuth\Facades\JWTAuth;
 class AuthController extends Controller
 {
     private $userService;
@@ -33,35 +32,19 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-//    return response()->json('xvxcvxcv!@!!@');
+        $credentials = $request->only('email', 'password');
+        try {
+            if (! $token = JWTAuth::attempt($credentials)) {
+                return response()->json(['error' => 'invalid_credentials'], 400);
+            }
+        } catch (JWTException $e) {
+            return response()->json(['error' => 'could_not_create_token'], 500);
+        }
 
-//    public function login(Request $request){
-//        $validator = Validator::make($request->all(), [
-//            'email' => 'required|email',
-//            'password' => 'required|string|min:6',
-//        ]);
-//
-//        if ($validator->fails()) {
-//            return response()->json($validator->errors(), 422);
-//        }
-//
-//        if (! $token = auth()->attempt($validator->validated())) {
-//            return response()->json(['error' => 'Unauthorized'], 401);
-//        }
-//
-//        return $this->createNewToken($token);
-
-        ///my realisation
-        $user = $this->userService->login($request->email, $request->password);
-        $email = $user->email;
-        $password = $user->password;
-        $token = auth()->attempt(['email' => $email, 'password' => $password]);
-        $accessToken = $this->createNewToken($token);
         return response()->json([
             'message' => 'User successfully login',
-            'user' => $user,
-            'accessToken' => $accessToken
-        ]);
+            'token' => $token
+        ], 201);
     }
     /**
      * Register a User.
@@ -70,64 +53,22 @@ class AuthController extends Controller
      */
     public function register(UserRequest $request)
     {
-       //return response()->json('xvxcvxcv!@!!@');
-
-   //public function register(Request $request) {
-
-  //     $requestValidated = Request::createFrom($request, new UserRequest());
-
-
-//        $validator = Validator::make($request->all(), [
-//            'username' => 'required|string|between:2,100',
-//            'email' => 'required|string|email|max:100|unique:users',
-//            'avatar_path' =>['required','mimes:jpeg,bmp,png'],
-//            'password' => 'required|string|confirmed|min:6',
-//        ]);
-//
-//        if($validator->fails()){
-//            return response()->json($validator->errors()->toJson(), 400);
-//        }
-//
-//        $user = User::create(array_merge(
-//            $validator->validated(),
-//            ['password' => bcrypt($request->password)]
-//        ));
-//
-//        return response()->json([
-//            'message' => 'User successfully registered',
-//            'user' => $user
-//        ], 201);
-
-        ///my realisation
         $validated = $request->validated();
         $user = $this->userService->create($validated);
-        $accessToken = $this ->createNewToken($user->getRememberToken());
+        $token = JWTAuth::fromUser($user);
         return response()->json([
             'message' => 'User successfully registered',
             'user' => $user,
-            'accessToken' => $accessToken
+            'token' => $token
         ], 201);
 
     }
-    /**
-     * Log the user out (Invalidate the token).
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function logout()
-    {
-//       return response()->json('xvxcvxcv');
-//        auth()->logout();
-       return response()->json(['message' => 'User successfully signed out']);
+    public function logout (Request $request) {
+        $token = $request->user()->token();
+        $token->revoke();
+        return response()-json([
+                'message' => 'You have been successfully logged out!'
+                ], 200);
     }
 
-    public function createNewToken($token)
-    {
-       return response()->json([
-           'access_token' => $token,
-           'token_type' => 'bearer',
-           'expires_in' => 60,
-           'user' => auth()->user()
-       ]);
-    }
 }
