@@ -51,8 +51,6 @@ class AuthController extends Controller
 //
 //        return $this->createNewToken($token);
 
-
-        ////
         ///my realisation
         $user = $this->userService->login($request->email, $request->password);
         $email = $user->email;
@@ -64,14 +62,6 @@ class AuthController extends Controller
             'user' => $user,
             'accessToken' => $accessToken
         ]);
-
-
-//     if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-//         return response()->json('authorized');
-//     }
-//        $validated = $request->validated();
-//        $token = auth()->attempt($validated);
-//        return $this->createNewToken($token);
     }
     /**
      * Register a User.
@@ -85,8 +75,6 @@ class AuthController extends Controller
    //public function register(Request $request) {
 
   //     $requestValidated = Request::createFrom($request, new UserRequest());
-
-//       return response()->json('xvxcvxcv');
 
 
 //        $validator = Validator::make($request->all(), [
@@ -110,7 +98,6 @@ class AuthController extends Controller
 //            'user' => $user
 //        ], 201);
 
-        /////////////////
         ///my realisation
         $validated = $request->validated();
         $user = $this->userService->create($validated);
@@ -130,7 +117,6 @@ class AuthController extends Controller
     public function logout()
     {
 //       return response()->json('xvxcvxcv');
-
 //        auth()->logout();
        return response()->json(['message' => 'User successfully signed out']);
     }
