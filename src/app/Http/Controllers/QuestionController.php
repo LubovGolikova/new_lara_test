@@ -27,4 +27,34 @@ class QuestionController extends Controller
         $validated = $request->validated();
     }
 
+    public function search(Request $request)
+    {
+        $searchStr = $request->str;
+        $questions = $this->questionService->searchAll($searchStr);
+        return response()->json($questions);
+    }
+
+    public function sortDataDESC()
+    {
+        $questions = $this->questionService->sortData($param=1);
+        return response()->json($questions);
+    }
+
+    public function sortDataASC()
+    {
+        $questions = $this->questionService->sortData($param=0);
+        return response()->json($questions);
+    }
+
+    public function sortVotesDESC()
+    {
+        $questions = $this->questionService->sortVotes($param=1);
+        return response()->json($questions);
+    }
+
+    public function sortVotesASC()
+    {
+        $questions = $this->questionService->sortVotes($param=0);
+        return response()->json($questions);
+    }
 }

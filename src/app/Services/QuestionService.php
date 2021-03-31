@@ -17,4 +17,19 @@ class QuestionService
     {
         return $this->questionRepository->all();
     }
+
+    public function searchAll($str)
+    {
+        return $this->questionRepository->search($str);
+    }
+
+    public function sortData($param)
+    {
+        return $this->questionRepository->sortData($param);
+    }
+
+    public function sortVotes($param)
+    {
+        return $this->questionRepository->sortVotes($param);
+    }
 }
