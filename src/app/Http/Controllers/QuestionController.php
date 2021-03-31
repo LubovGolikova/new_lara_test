@@ -25,7 +25,6 @@ class QuestionController extends Controller
     public function store(QuestionRequest $request)
     {
         $validated = $request->validated();
-
     }
 
 }

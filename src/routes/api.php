@@ -28,3 +28,4 @@ Route::group([
 });
 
 //Route::get('/questions', [App\Http\Controllers\QuestionController::class, 'index']);
+Route::post('/answers/create', [App\Http\Controllers\AnswerController::class, 'create']);
