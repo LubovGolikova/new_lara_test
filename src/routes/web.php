@@ -19,4 +19,4 @@ Route::get('/', function () {
 
 Route::get('/questions', [App\Http\Controllers\QuestionController::class, 'index']);
 Route::get('/answers', [App\Http\Controllers\AnswerController::class, 'index']);
-//Route::post('/answers/create', [App\Http\Controllers\AnswerController::class, 'create']);
+

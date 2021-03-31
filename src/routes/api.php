@@ -25,7 +25,9 @@ Route::group([
     Route::post('login', 'App\Http\Controllers\AuthController@login');
     Route::post('register', 'App\Http\Controllers\AuthController@register');
     Route::post('logout', 'App\Http\Controllers\AuthController@logout');
+
+    Route::post('/answers/create', [App\Http\Controllers\AnswerController::class, 'create']);
+    Route::post('/questions/create', [App\Http\Controllers\AnswerController::class, 'create']);
 });
 
-//Route::get('/questions', [App\Http\Controllers\QuestionController::class, 'index']);
-Route::post('/answers/create', [App\Http\Controllers\AnswerController::class, 'create']);
+

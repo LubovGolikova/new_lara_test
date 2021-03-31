@@ -3,11 +3,14 @@
 namespace App\Repositories;
 
 use App\Models\Answer;
-use Orkhanahmadov\EloquentRepository\EloquentRepository;
 use Illuminate\Support\Facades\Auth;
-class AnswerRepository extends EloquentRepository
+class AnswerRepository
 {
-    protected $entity = Answer::class;
+
+    public function all()
+    {
+        return Answer::all();
+    }
 
     public function create($data)
     {
