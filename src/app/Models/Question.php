@@ -9,7 +9,6 @@ class Question extends Model
 {
     use HasFactory;
 
-    private $votes;
     /**
      * The attributes that are mass assignable.
      *
