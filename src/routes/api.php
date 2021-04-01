@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([
     'middleware' => 'api'
-], function ($router) {
+], function () {
 
     Route::group([
         'prefix' => 'auth'
@@ -44,8 +44,9 @@ Route::group([
         'middleware' => 'jwt.verify'
     ], function() {
         Route::get('user','App\Http\Controllers\AuthController@getAuthenticatedUser');
-//    Route::resource('answers', 'App\Http\Controllers\AnswerController');
-        Route::post('/answers/create', [App\Http\Controllers\AnswerController::class, 'create']);
+        Route::resource('answers', 'App\Http\Controllers\AnswerController');
+        Route::post('/questions/create', [App\Http\Controllers\QuestionController::class, 'create']);
+//        Route::post('/answers/create', [App\Http\Controllers\AnswerController::class, 'create']);
     });
 });
 
