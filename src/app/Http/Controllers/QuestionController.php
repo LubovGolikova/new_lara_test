@@ -62,8 +62,21 @@ class QuestionController extends Controller
         return response()->json($questions);
     }
 
-    public function createVote($id){
+    public function createVote($id)
+    {
         $question = $this->questionService->addVote($id);
         return response()->json($question);
+    }
+
+    public  function isAnswer()
+    {
+        $questions = $this->questionService->isAnswer();
+        return response()->json($questions);
+    }
+
+    public function isVoteAnswer()
+    {
+        $questions = $this->questionService->isVoteAnswer();
+        return response()->json($questions);
     }
 }

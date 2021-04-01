@@ -36,4 +36,11 @@ class AnswerRepository
             return $answer;
         }
     }
+    public function isAnswer()
+    {
+        $answers = Answer::query()
+            ->leftJoin('questions','answers.id', '=', 'questions.id' )
+            ->get();
+        return $answers;
+    }
 }

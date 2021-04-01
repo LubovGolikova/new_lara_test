@@ -30,4 +30,10 @@ class AnswerController extends Controller
         $answer = $this->answerService->addVote($id);
         return response()->json($answer);
     }
+
+    public  function isAnswer()
+    {
+        $answer = $this->answerService->isAnswer();
+        return response()->json($answer);
+    }
 }

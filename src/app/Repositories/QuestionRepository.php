@@ -69,4 +69,23 @@ class QuestionRepository implements QuestionRepositoryInterface
             return $question;
         }
     }
+
+    public function isAnswer()
+    {
+        $questions = Question::query()
+            ->select()
+            ->leftJoin('answers','questions.id', '=', 'answers.id' )
+//            ->whereNotIn('answers.id')
+            ->get();
+        return $questions;
+    }
+
+    public function isVoteAnswer()
+    {
+        $questions = Question::query()
+            ->leftJoin('answers','questions.id', '=', 'answers.id' )
+            ->where('answers.votes','=',0 )
+            ->get();
+        return $questions;
+    }
 }

@@ -27,4 +27,9 @@ class AnswerService
     {
         return $this->answerRepository->addVote($id);
     }
+
+    public function isAnswer()
+    {
+        return $this->answerRepository->isAnswer();
+    }
 }

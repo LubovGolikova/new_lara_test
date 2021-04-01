@@ -39,6 +39,10 @@ Route::group([
     Route::get('/questions/sort/votes/desc', [App\Http\Controllers\QuestionController::class, 'sortVotesDESC']);
     Route::get('/questions/sort/votes/asc', [App\Http\Controllers\QuestionController::class, 'sortVotesASC']);
 
+    Route::get('/questions/answers/vote', [App\Http\Controllers\QuestionController::class, 'isVoteAnswer']);
+    Route::get('/questions/answers', [App\Http\Controllers\AnswerController::class, 'isAnswer']);
+    Route::get('/answers/questions', [App\Http\Controllers\QuestionController::class, 'isAnswer']);
+
     Route::group([
         'middleware' => ['jwt.verify']
     ], function($routes) {

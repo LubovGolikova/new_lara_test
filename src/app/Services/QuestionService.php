@@ -42,4 +42,13 @@ class QuestionService
         return $this->questionRepository->addVote($id);
     }
 
+    public function isAnswer()
+    {
+        return $this->questionRepository->isAnswer();
+    }
+
+    public function isVoteAnswer()
+    {
+        return $this->questionRepository->isVoteAnswer();
+    }
 }
