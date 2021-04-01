@@ -20,12 +20,11 @@ class AnswerController extends Controller
         return response()->json($answers);
     }
 
-    public function create(Request $request)
+    public function create(AnswerRequest $request)
     {
-        return response()->json('dfdfdfd!!!');
-//        $validated = $request->validated();
-//        $answer = $this->answerRepository->create($validated);
-//        return response()->json($answer);
+        $validated = $request->validated();
+        $answer = $this->answerService->create($validated);
+        return response()->json($answer);
     }
 
 }

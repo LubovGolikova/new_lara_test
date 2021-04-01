@@ -4,6 +4,8 @@ namespace App\Repositories;
 
 use App\Models\Answer;
 use Illuminate\Support\Facades\Auth;
+use Tymon\JWTAuth\Facades\JWTAuth;
+
 class AnswerRepository
 {
 
@@ -15,8 +17,8 @@ class AnswerRepository
     public function create($data)
     {
         $answer = new Answer;
-//        $answer->user_id = Auth::user()->getAuthIdentifier();
-        $answer->user_id = $data['user_id'];
+        $user = JWTAuth::parseToken()->authenticate();
+        $answer->user_id = $user->id;
         $answer->question_id = $data['question_id'];
         $answer->body = $data['body'];
         $answer->votes = $data['votes'];
