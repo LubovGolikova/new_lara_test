@@ -58,4 +58,15 @@ class QuestionRepository implements QuestionRepositoryInterface
 
         return $question;
     }
+
+    public function addVote($id)
+    {
+         $questions = Question::query()->where('id' ,'=', $id)->get();
+        foreach($questions as $question)
+        {
+            $question->setVotes($question->getVotes()+1);
+            $question->save();
+            return $question;
+        }
+    }
 }

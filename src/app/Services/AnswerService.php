@@ -22,4 +22,9 @@ class AnswerService
     {
         return $this->answerRepository->create($data);
     }
+
+    public function addVote($id)
+    {
+        return $this->answerRepository->addVote($id);
+    }
 }

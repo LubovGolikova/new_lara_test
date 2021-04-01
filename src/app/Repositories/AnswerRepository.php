@@ -26,5 +26,14 @@ class AnswerRepository
         return $answer;
     }
 
-
+    public function addVote($id)
+    {
+        $answers = Answer::query()->where('id' ,'=', $id)->get();
+        foreach($answers as $answer)
+        {
+            $answer->setVotes($answer->getVotes()+1);
+            $answer->save();
+            return $answer;
+        }
+    }
 }

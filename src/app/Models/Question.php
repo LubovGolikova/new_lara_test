@@ -9,6 +9,7 @@ class Question extends Model
 {
     use HasFactory;
 
+    private $votes;
     /**
      * The attributes that are mass assignable.
      *
@@ -44,5 +45,16 @@ class Question extends Model
     public function users_questions_votes()
     {
         return $this->belongsToMany(UserQuestionVote::class, 'question_id');
+    }
+
+    public function setVotes($votes)
+    {
+        $this->votes = $votes;
+        return $this;
+    }
+
+    public function getVotes()
+    {
+        return $this->votes;
     }
 }

@@ -24,10 +24,9 @@ Route::group([
 
     Route::group([
         'prefix' => 'auth'
-    ], function() {
-        Route::post('login', 'App\Http\Controllers\AuthController@login');
-        Route::post('register', 'App\Http\Controllers\AuthController@register');
-        Route::post('logout', 'App\Http\Controllers\AuthController@logout');
+    ], function($routes) {
+        Route::post('login',  [App\Http\Controllers\AuthController::class, 'login']);
+        Route::post('register', [App\Http\Controllers\AuthController::class, 'register']);
     });
 
     Route::get('/answers', [App\Http\Controllers\AnswerController::class, 'index']);
@@ -43,10 +42,11 @@ Route::group([
     Route::group([
         'middleware' => ['jwt.verify']
     ], function($routes) {
-        Route::get('user','App\Http\Controllers\AuthController@getAuthenticatedUser');
-//        Route::resource('answers', 'App\Http\Controllers\AnswerController');
-        Route::post('/questions/create', 'App\Http\Controllers\QuestionController@store');
+        Route::get('user',[App\Http\Controllers\AuthController::class,'getAuthenticatedUser']);
+        Route::post('/questions/create', [App\Http\Controllers\QuestionController::class,'store']);
         Route::post('/answers/create', [App\Http\Controllers\AnswerController::class, 'create']);
+        Route::post('questions/{question}/vote',[App\Http\Controllers\QuestionController::class, 'createVote']);
+        Route::post('answers/{answer}/vote',[App\Http\Controllers\AnswerController::class, 'createVote']);
     });
 });
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\QuestionRequest;
+use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\User;
@@ -59,5 +60,10 @@ class QuestionController extends Controller
     {
         $questions = $this->questionService->sortVotes($param=0);
         return response()->json($questions);
+    }
+
+    public function createVote($id){
+        $question = $this->questionService->addVote($id);
+        return response()->json($question);
     }
 }

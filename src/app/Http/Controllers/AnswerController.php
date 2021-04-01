@@ -26,5 +26,8 @@ class AnswerController extends Controller
         $answer = $this->answerService->create($validated);
         return response()->json($answer);
     }
-
+    public function createVote($id){
+        $answer = $this->answerService->addVote($id);
+        return response()->json($answer);
+    }
 }

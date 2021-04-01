@@ -45,4 +45,14 @@ class Answer extends Model
     {
         return $this->belongsToMany(UserAnswerVote::class, 'answer_id');
     }
+    public function setVotes($votes)
+    {
+        $this->votes = $votes;
+        return $this;
+    }
+
+    public function getVotes()
+    {
+        return $this->votes;
+    }
 }

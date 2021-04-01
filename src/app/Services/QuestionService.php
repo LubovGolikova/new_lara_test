@@ -36,4 +36,10 @@ class QuestionService
     {
         return $this->questionRepository->create($data);
     }
+
+    public function addVote($id)
+    {
+        return $this->questionRepository->addVote($id);
+    }
+
 }
