@@ -13,7 +13,8 @@ class AnswerRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+//        return false;
+        return true;
     }
 
     /**
@@ -25,6 +26,7 @@ class AnswerRequest extends FormRequest
     {
         return [
             'body' => 'required|max:255',
+            'votes' => 'max:1000'
         ];
     }
 }

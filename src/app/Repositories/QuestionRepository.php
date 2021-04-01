@@ -5,6 +5,7 @@ use App\Models\Answer;
 use App\Models\Question;
 use App\Models\User;
 use App\Repositories\Interfaces\QuestionRepositoryInterface;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class QuestionRepository implements QuestionRepositoryInterface
 {
@@ -47,7 +48,8 @@ class QuestionRepository implements QuestionRepositoryInterface
     public function create(array $data)
     {
         $question = new Question;
-        $question->user_id = $data['user_id'];
+        $user = JWTAuth::parseToken()->authenticate();
+        $question->user_id = $user->id;
         $question->title = $data['title'];
         $question->body = $data['body'];
         $question->votes = $data['votes'];

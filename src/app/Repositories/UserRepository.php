@@ -19,7 +19,6 @@ class UserRepository implements UserRepositoryInterface
     public function create(array $data)
     {
         $user = new User;
-
         $user->username = $data['username'];
         $user->email = $data['email'];
         $user->avatar_path = isset($data['avatar_path']) ? $data['avatar_path'] : null;
