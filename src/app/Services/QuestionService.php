@@ -32,4 +32,8 @@ class QuestionService
     {
         return $this->questionRepository->sortVotes($param);
     }
+    public function create(array $data)
+    {
+        return $this->questionRepository->create($data);
+    }
 }

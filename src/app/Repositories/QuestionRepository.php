@@ -44,4 +44,16 @@ class QuestionRepository implements QuestionRepositoryInterface
             return Question::query()->orderBy('votes','ASC')->get();
     }
 
+    public function create(array $data)
+    {
+        $question = new Question;
+        $question->user_id = $data['user_id'];
+        $question->title = $data['title'];
+        $question->body = $data['body'];
+        $question->votes = $data['votes'];
+
+        $question->save();
+
+        return $question;
+    }
 }

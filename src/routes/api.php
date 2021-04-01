@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([
     'middleware' => 'api'
-], function () {
+], function ($routes) {
 
     Route::group([
         'prefix' => 'auth'
@@ -41,12 +41,12 @@ Route::group([
     Route::get('/questions/sort/votes/asc', [App\Http\Controllers\QuestionController::class, 'sortVotesASC']);
 
     Route::group([
-        'middleware' => 'jwt.verify'
-    ], function() {
+        'middleware' => ['jwt.verify']
+    ], function($routes) {
         Route::get('user','App\Http\Controllers\AuthController@getAuthenticatedUser');
-        Route::resource('answers', 'App\Http\Controllers\AnswerController');
-        Route::post('/questions/create', [App\Http\Controllers\QuestionController::class, 'create']);
-//        Route::post('/answers/create', [App\Http\Controllers\AnswerController::class, 'create']);
+//        Route::resource('answers', 'App\Http\Controllers\AnswerController');
+        Route::post('/questions/create', 'App\Http\Controllers\QuestionController@store');
+        Route::post('/answers/create', [App\Http\Controllers\AnswerController::class, 'create']);
     });
 });
 

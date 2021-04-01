@@ -25,6 +25,8 @@ class QuestionController extends Controller
     public function store(QuestionRequest $request)
     {
         $validated = $request->validated();
+        $questions = $this->questionService->create($validated);
+        return response()->json($questions);
     }
 
     public function search(Request $request)
