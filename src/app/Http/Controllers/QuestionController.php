@@ -22,11 +22,12 @@ class QuestionController extends Controller
         return response()->json($questions);
     }
 
-    public function store(QuestionRequest $request)
+    public function store(Request $request)
     {
-        $validated = $request->validated();
-        $questions = $this->questionService->create($validated);
-        return response()->json($questions);
+        return response()->json('dfdfdfd!!!');
+//        $validated = $request->validated();
+//        $questions = $this->questionService->create($validated);
+//        return response()->json($questions);
     }
 
     public function search(Request $request)
