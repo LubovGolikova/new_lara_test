@@ -17,17 +17,38 @@ use Illuminate\Support\Facades\Route;
 //Route::middleware('auth:api')->get('/user', function (Request $request) {
 //    return $request->user();
 //});
+
 Route::group([
-    'middleware' => 'api',
-    'prefix' => 'auth'
-
+    'middleware' => 'api'
 ], function ($router) {
-    Route::post('login', 'App\Http\Controllers\AuthController@login');
-    Route::post('register', 'App\Http\Controllers\AuthController@register');
-    Route::post('logout', 'App\Http\Controllers\AuthController@logout');
 
-    Route::post('/answers/create', [App\Http\Controllers\AnswerController::class, 'create']);
-    Route::post('/questions/create', [App\Http\Controllers\AnswerController::class, 'create']);
+    Route::group([
+        'prefix' => 'auth'
+    ], function() {
+        Route::post('login', 'App\Http\Controllers\AuthController@login');
+        Route::post('register', 'App\Http\Controllers\AuthController@register');
+        Route::post('logout', 'App\Http\Controllers\AuthController@logout');
+    });
+
+    Route::get('/answers', [App\Http\Controllers\AnswerController::class, 'index']);
+    Route::get('/answers/search', [App\Http\Controllers\AnswerController::class, 'search']);
+
+    Route::get('/questions', [App\Http\Controllers\QuestionController::class, 'index']);
+    Route::get('/questions/search', [App\Http\Controllers\QuestionController::class, 'search']);
+    Route::get('/questions/sort/data/desc', [App\Http\Controllers\QuestionController::class, 'sortDataDESC']);
+    Route::get('/questions/sort/data/asc', [App\Http\Controllers\QuestionController::class, 'sortDataASC']);
+    Route::get('/questions/sort/votes/desc', [App\Http\Controllers\QuestionController::class, 'sortVotesDESC']);
+    Route::get('/questions/sort/votes/asc', [App\Http\Controllers\QuestionController::class, 'sortVotesASC']);
+
+    Route::group([
+        'middleware' => 'jwt.verify'
+    ], function() {
+        Route::get('user','App\Http\Controllers\AuthController@getAuthenticatedUser');
+//    Route::resource('answers', 'App\Http\Controllers\AnswerController');
+        Route::post('/answers/create', [App\Http\Controllers\AnswerController::class, 'create']);
+    });
 });
+
+
 
 

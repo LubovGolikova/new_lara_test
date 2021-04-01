@@ -13,15 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
-Route::get('/questions', [App\Http\Controllers\QuestionController::class, 'index']);
-Route::get('/answers', [App\Http\Controllers\AnswerController::class, 'index']);
-Route::get('/questions/search', [App\Http\Controllers\QuestionController::class, 'search']);
-Route::get('/answers/search', [App\Http\Controllers\AnswerController::class, 'search']);
-Route::get('/questions/sort/data/desc', [App\Http\Controllers\QuestionController::class, 'sortDataDESC']);
-Route::get('/questions/sort/data/asc', [App\Http\Controllers\QuestionController::class, 'sortDataASC']);
-Route::get('/questions/sort/votes/desc', [App\Http\Controllers\QuestionController::class, 'sortVotesDESC']);
-Route::get('/questions/sort/votes/asc', [App\Http\Controllers\QuestionController::class, 'sortVotesASC']);
+
