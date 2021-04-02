@@ -47,8 +47,18 @@ class QuestionService
         return $this->questionRepository->isAnswer();
     }
 
+    public function isNotAnswer()
+    {
+        return $this->questionRepository->isNotAnswer();
+    }
+
     public function isVoteAnswer()
     {
         return $this->questionRepository->isVoteAnswer();
+    }
+
+    public function isNotVoteAnswer()
+    {
+        return $this->questionRepository->isNotVoteAnswer();
     }
 }

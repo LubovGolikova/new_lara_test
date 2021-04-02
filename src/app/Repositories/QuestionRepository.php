@@ -74,6 +74,12 @@ class QuestionRepository implements QuestionRepositoryInterface
 
     public function isAnswer()
     {
+        $questions = Question::has('answers')->get();
+        return  $questions;
+    }
+
+    public function isNotAnswer()
+    {
         $questions = Question::query()
             ->whereDoesntHave('answers')
             ->get();
@@ -81,6 +87,14 @@ class QuestionRepository implements QuestionRepositoryInterface
     }
 
     public function isVoteAnswer()
+    {
+        $questions = Question::whereHas('answers', function($query) {
+            $query->where('votes','!=', 0);
+        })->get();
+        return $questions;
+    }
+
+    public function isNotVoteAnswer()
     {
         $questions = Question::query()
             ->leftJoin('answers','questions.id', '=', 'answers.id' )

@@ -74,9 +74,21 @@ class QuestionController extends Controller
         return response()->json($questions);
     }
 
+    public  function isNotAnswer()
+    {
+        $questions = $this->questionService->isNotAnswer();
+        return response()->json($questions);
+    }
+
     public function isVoteAnswer()
     {
         $questions = $this->questionService->isVoteAnswer();
+        return response()->json($questions);
+    }
+
+    public function isNotVoteAnswer()
+    {
+        $questions = $this->questionService->isNotVoteAnswer();
         return response()->json($questions);
     }
 }
