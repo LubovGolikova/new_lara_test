@@ -11,7 +11,9 @@ class QuestionRepository implements QuestionRepositoryInterface
 {
     public function all()
     {
-        return Question::all();
+//        return Question::all();
+        //receive questions with answers
+        return Question::query()->with('answers')->get();
     }
 
     public function getByUser(User $user)
@@ -73,11 +75,9 @@ class QuestionRepository implements QuestionRepositoryInterface
     public function isAnswer()
     {
         $questions = Question::query()
-            ->select()
-            ->leftJoin('answers','questions.id', '=', 'answers.id' )
-//            ->whereNotIn('answers.id')
+            ->whereDoesntHave('answers')
             ->get();
-        return $questions;
+        return  $questions;
     }
 
     public function isVoteAnswer()
