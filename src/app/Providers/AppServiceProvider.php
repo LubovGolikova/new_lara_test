@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use App\Services\UserService;
+use App\Services\QuestionService;
+use App\Services\AnswerService;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -13,7 +15,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind('UserService',UserService::class);
+        $this->app->bind('QuestionService',QuestionService::class);
+        $this->app->bind('AnswerService',AnswerService::class);
+
     }
 
     /**

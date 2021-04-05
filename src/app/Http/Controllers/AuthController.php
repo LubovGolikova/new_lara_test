@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Validator;
-use App\Services\UserService;
 use Tymon\JWTAuth\Facades\JWTAuth;
 class AuthController extends Controller
 {
@@ -19,10 +18,10 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public function __construct(UserService $userService)
+    public function __construct()
     {
         $this->middleware('auth:api', ['except' => ['login', 'register']]);
-        $this->userService = $userService;
+
     }
 
     /**
@@ -54,7 +53,7 @@ class AuthController extends Controller
     public function register(UserRequest $request)
     {
         $validated = $request->validated();
-        $user = $this->userService->create($validated);
+        $user = app()->make('UserService')->create($validated);
         $token = JWTAuth::fromUser($user);
         return response()->json([
             'message' => 'User successfully registered',

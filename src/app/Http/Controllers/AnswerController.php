@@ -7,27 +7,22 @@ use Illuminate\Http\Request;
 use App\Services\AnswerService;
 class AnswerController extends Controller
 {
-    private $answerService;
 
-    public function __construct(AnswerService $answerService)
-    {
-        $this->answerService = $answerService;
-    }
 
     public function index()
     {
-        $answers = $this->answerService->getAll();
+        $answers = app()->make('AnswerService')->getAll();
         return response()->json($answers);
     }
 
     public function create(AnswerRequest $request)
     {
         $validated = $request->validated();
-        $answer = $this->answerService->create($validated);
+        $answer = app()->make('AnswerService')->create($validated);
         return response()->json($answer);
     }
     public function createVote($id){
-        $answer = $this->answerService->addVote($id);
+        $answer = app()->make('AnswerService')->addVote($id);
         return response()->json($answer);
     }
 }

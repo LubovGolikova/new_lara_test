@@ -10,16 +10,9 @@ use App\Models\User;
 use App\Services\QuestionService;
 class QuestionController extends Controller
 {
-    private $questionService;
-
-    public  function __construct(QuestionService $questionService)
-    {
-        $this->questionService = $questionService;
-    }
-
     public function index()
     {
-        $questions = $this->questionService->getAll();
+        $questions = app()->make('QuestionService')->getAll();
         return response()->json($questions);
     }
 
@@ -27,68 +20,68 @@ class QuestionController extends Controller
     {
 
         $validated = $request->validated();
-        $questions = $this->questionService->create($validated);
+        $questions = app()->make('QuestionService')->create($validated);
         return response()->json($questions);
     }
 
     public function search(Request $request)
     {
         $searchStr = $request->str;
-        $questions = $this->questionService->searchAll($searchStr);
+        $questions = app()->make('QuestionService')->searchAll($searchStr);
         return response()->json($questions);
     }
 
     public function sortDataDESC()
     {
-        $questions = $this->questionService->sortData($param=1);
+        $questions = app()->make('QuestionService')->sortData($param=1);
         return response()->json($questions);
     }
 
     public function sortDataASC()
     {
-        $questions = $this->questionService->sortData($param=0);
+        $questions = app()->make('QuestionService')->sortData($param=0);
         return response()->json($questions);
     }
 
     public function sortVotesDESC()
     {
-        $questions = $this->questionService->sortVotes($param=1);
+        $questions = app()->make('QuestionService')->sortVotes($param=1);
         return response()->json($questions);
     }
 
     public function sortVotesASC()
     {
-        $questions = $this->questionService->sortVotes($param=0);
+        $questions = app()->make('QuestionService')->sortVotes($param=0);
         return response()->json($questions);
     }
 
     public function createVote($id)
     {
-        $question = $this->questionService->addVote($id);
+        $question = app()->make('QuestionService')->addVote($id);
         return response()->json($question);
     }
 
     public  function isAnswer()
     {
-        $questions = $this->questionService->isAnswer();
+        $questions = app()->make('QuestionService')->isAnswer();
         return response()->json($questions);
     }
 
     public  function isNotAnswer()
     {
-        $questions = $this->questionService->isNotAnswer();
+        $questions = app()->make('QuestionService')->isNotAnswer();
         return response()->json($questions);
     }
 
     public function isVoteAnswer()
     {
-        $questions = $this->questionService->isVoteAnswer();
+        $questions = app()->make('QuestionService')->isVoteAnswer();
         return response()->json($questions);
     }
 
     public function isNotVoteAnswer()
     {
-        $questions = $this->questionService->isNotVoteAnswer();
+        $questions = app()->make('QuestionService')->isNotVoteAnswer();
         return response()->json($questions);
     }
 }

@@ -34,6 +34,7 @@ Route::group([
 
     Route::get('/questions', [App\Http\Controllers\QuestionController::class, 'index']);
     Route::get('/questions/search', [App\Http\Controllers\QuestionController::class, 'search']);
+
     Route::get('/questions/sort/data/desc', [App\Http\Controllers\QuestionController::class, 'sortDataDESC']);
     Route::get('/questions/sort/data/asc', [App\Http\Controllers\QuestionController::class, 'sortDataASC']);
     Route::get('/questions/sort/votes/desc', [App\Http\Controllers\QuestionController::class, 'sortVotesDESC']);
