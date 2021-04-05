@@ -26,8 +26,15 @@ class QuestionRequest extends FormRequest
     {
         return [
             'title' => 'required|max:255',
-            'body' => 'max:255',
-            'votes' =>'max:1000'
+            'body' => 'max:255'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'The title is Required.',
+             'body.max'=> 'The question  should be Maximum of 255 Character'
         ];
     }
 }

@@ -26,8 +26,15 @@ class AnswerRequest extends FormRequest
     {
         return [
             'body' => 'required|max:255',
-            'votes' => 'max:1000',
             'question_id' => 'max:1000'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'body.required' => 'The answer is Required.',
+            'body.max'=> 'The answer  should be Maximum of 255 Character'
         ];
     }
 }
