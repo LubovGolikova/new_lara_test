@@ -19,20 +19,6 @@ class QuestionService
         return $this->questionRepository->all();
     }
 
-    public function searchAll($str)
-    {
-        return $this->questionRepository->search($str);
-    }
-
-    public function sortData($param)
-    {
-        return $this->questionRepository->sortData($param);
-    }
-
-    public function sortVotes($param)
-    {
-        return $this->questionRepository->sortVotes($param);
-    }
     public function create(array $data)
     {
         $arrElc = [];
@@ -43,28 +29,13 @@ class QuestionService
         return $this->questionRepository->create($arrElc);
     }
 
-    public function addVote($id)
+    public function search($str)
     {
-        return $this->questionRepository->addVote($id);
+        return $this->questionRepository->search($str);
     }
 
-    public function isAnswer()
+    public function sortData($str)
     {
-        return $this->questionRepository->isAnswer();
-    }
-
-    public function isNotAnswer()
-    {
-        return $this->questionRepository->isNotAnswer();
-    }
-
-    public function isVoteAnswer()
-    {
-        return $this->questionRepository->isVoteAnswer();
-    }
-
-    public function isNotVoteAnswer()
-    {
-        return $this->questionRepository->isNotVoteAnswer();
+        return $this->questionRepository->sortData($str);
     }
 }

@@ -24,27 +24,6 @@ class QuestionRepository implements QuestionRepositoryInterface
         return Question::query()->findOrFail($id)->get();
     }
 
-    public function search($str)
-    {
-        return Question::query()->where('title','LIKE', '%'.$str.'%')->get();
-    }
-
-    public function sortData($param)
-    {
-        if($param==1)
-            return Question::query()->orderBy('created_at','DESC')->get();
-        else if($param==0)
-            return Question::query()->orderBy('created_at','ASC')->get();
-    }
-
-    public function sortVotes($param)
-    {
-        if($param==1)
-            return Question::query()->orderBy('votes','DESC')->get();
-        else if($param==0)
-            return Question::query()->orderBy('votes','ASC')->get();
-    }
-
     public function create(array $data)
     {
         return Question::create($data);
@@ -52,7 +31,7 @@ class QuestionRepository implements QuestionRepositoryInterface
 
     public function addVote($id)
     {
-         $questions = Question::query()->where('id' ,'=', $id)->get();
+        $questions = Question::query()->where('id' ,'=', $id)->get();
         foreach($questions as $question)
         {
             $question->setVotes($question->getVotes()+1);
@@ -61,34 +40,37 @@ class QuestionRepository implements QuestionRepositoryInterface
         }
     }
 
-    public function isAnswer()
+    public function search($str)
     {
-        $questions = Question::has('answers')->get();
-        return  $questions;
+        if($str['s'] == 's'){
+            return Question::query()->where('title','LIKE', '%'.$str.'%')
+                ->orderBy($str['sortOrder'],$str['sortDir'])
+                ->get();
+        }else if($str['s'] == 'all'){
+            return Question::query()
+                ->orderBy($str['sortOrder'],$str['sortDir'])
+                ->get();
+        }
     }
 
-    public function isNotAnswer()
+    public function sortData($str)
     {
-        $questions = Question::query()
-            ->whereDoesntHave('answers')
-            ->get();
-        return  $questions;
-    }
+        if($str['sortBy']=='isAnswer'){
+            return Question::has('answers')
+                ->orderBy($str['sortOrder'],$str['sortDir'])
+                ->get();
+        }else if($str['sortBy']=='isNotAnswer'){
+            return Question::query()
+                ->whereDoesntHave('answers')
+                ->orderBy($str['sortOrder'],$str['sortDir'])
+                ->get();
+        }else if($str['sortBy']=='isNotVoteAnswer'){
+            return Question::query()
+                ->leftJoin('answers','questions.id', '=', 'answers.id' )
+                ->where('answers.votes','=',0 )
+                ->orderBy($str['sortOrder'],$str['sortDir'])
+                ->get();
+        }
 
-    public function isVoteAnswer()
-    {
-        $questions = Question::whereHas('answers', function($query) {
-            $query->where('votes','!=', 0);
-        })->get();
-        return $questions;
-    }
-
-    public function isNotVoteAnswer()
-    {
-        $questions = Question::query()
-            ->leftJoin('answers','questions.id', '=', 'answers.id' )
-            ->where('answers.votes','=',0 )
-            ->get();
-        return $questions;
     }
 }

@@ -18,40 +18,8 @@ class QuestionController extends Controller
 
     public function store(QuestionRequest $request)
     {
-
         $validated = $request->validated();
         $questions = app()->make('QuestionService')->create($validated);
-        return response()->json($questions);
-    }
-
-    public function search(Request $request)
-    {
-        $searchStr = $request->str;
-        $questions = app()->make('QuestionService')->searchAll($searchStr);
-        return response()->json($questions);
-    }
-
-    public function sortDataDESC()
-    {
-        $questions = app()->make('QuestionService')->sortData($param=1);
-        return response()->json($questions);
-    }
-
-    public function sortDataASC()
-    {
-        $questions = app()->make('QuestionService')->sortData($param=0);
-        return response()->json($questions);
-    }
-
-    public function sortVotesDESC()
-    {
-        $questions = app()->make('QuestionService')->sortVotes($param=1);
-        return response()->json($questions);
-    }
-
-    public function sortVotesASC()
-    {
-        $questions = app()->make('QuestionService')->sortVotes($param=0);
         return response()->json($questions);
     }
 
@@ -61,27 +29,38 @@ class QuestionController extends Controller
         return response()->json($question);
     }
 
-    public  function isAnswer()
+    public function search(Request $request)
     {
-        $questions = app()->make('QuestionService')->isAnswer();
+        $questions = app()->make('QuestionService')->search($this->helperData( $request, 's', 'all'));
         return response()->json($questions);
     }
 
-    public  function isNotAnswer()
+    public function sortData(Request $request)
     {
-        $questions = app()->make('QuestionService')->isNotAnswer();
+        $questions = app()->make('QuestionService')->sortData($this->helperData( $request, 'sortBy', 'isAnswer'));
         return response()->json($questions);
     }
 
-    public function isVoteAnswer()
-    {
-        $questions = app()->make('QuestionService')->isVoteAnswer();
-        return response()->json($questions);
-    }
-
-    public function isNotVoteAnswer()
-    {
-        $questions = app()->make('QuestionService')->isNotVoteAnswer();
-        return response()->json($questions);
+    public function helperData(Request $request, $sortKindVal, $defaultKind){
+        if($request->has($sortKindVal)){
+            $sortKind = $request->input($sortKindVal);
+        }else{
+            $sortKind = $defaultKind;
+        }
+        if($request->has('sortOrder')){
+            $sortOrder=$request->input('sortOrder');
+        }else{
+            $sortOrder='created_at';
+        }
+        if($request->has('sortDir')){
+            $sortDir=$request->input('sortDir');
+        }else{
+            $sortDir='asc';
+        }
+        $arrStr = [];
+        $arrStr[$sortKindVal] = $sortKind;
+        $arrStr['sortOrder'] = $sortOrder;
+        $arrStr['sortDir'] = $sortDir;
+        return $arrStr;
     }
 }
