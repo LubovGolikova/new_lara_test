@@ -21,6 +21,7 @@ class AnswerController extends Controller
         $answer = app()->make('AnswerService')->create($validated);
         return response()->json($answer);
     }
+
     public function createVote($id){
         $answer = app()->make('AnswerService')->addVote($id);
         return response()->json($answer);

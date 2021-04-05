@@ -25,6 +25,7 @@ Route::group([
     Route::group([
         'prefix' => 'auth'
     ], function($routes) {
+
         Route::post('login',  [App\Http\Controllers\AuthController::class, 'login']);
         Route::post('register', [App\Http\Controllers\AuthController::class, 'register']);
     });
@@ -49,6 +50,7 @@ Route::group([
     Route::group([
         'middleware' => ['jwt.verify']
     ], function($routes) {
+
         Route::get('user',[App\Http\Controllers\AuthController::class,'getAuthenticatedUser']);
         Route::post('/questions/create', [App\Http\Controllers\QuestionController::class,'store']);
         Route::post('/answers/create', [App\Http\Controllers\AnswerController::class, 'create']);
