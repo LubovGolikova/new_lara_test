@@ -3,6 +3,7 @@
 namespace  App\Services;
 use App\Models\Question;
 use App\Repositories\QuestionRepository;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class QuestionService
 {
@@ -34,7 +35,12 @@ class QuestionService
     }
     public function create(array $data)
     {
-        return $this->questionRepository->create($data);
+        $arrElc = [];
+        $user = JWTAuth::parseToken()->authenticate();
+        $arrElc['user_id'] = $user->id;
+        $arrElc['title'] = $data['title'];
+        $arrElc['body'] = $data['body'];
+        return $this->questionRepository->create($arrElc);
     }
 
     public function addVote($id)

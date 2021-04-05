@@ -11,8 +11,6 @@ class QuestionRepository implements QuestionRepositoryInterface
 {
     public function all()
     {
-//        return Question::all();
-        //receive questions with answers
         return Question::query()->with('answers')->get();
     }
 
@@ -49,17 +47,7 @@ class QuestionRepository implements QuestionRepositoryInterface
 
     public function create(array $data)
     {
-        $question = new Question;
-        $user = JWTAuth::parseToken()->authenticate();
-        $question->user_id = $user->id;
-        $question->title = $data['title'];
-        $question->body = $data['body'];
-        $question->votes = $data['votes'];
-
-        $question->save();
-
-        return $question;
-//        Question::create($data);
+        return Question::create($data);
     }
 
     public function addVote($id)
