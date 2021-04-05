@@ -25,8 +25,7 @@ class QuestionFactory extends Factory
         return [
             'user_id' => User::factory()->create()->id,
             'title' => $this->faker->sentence,
-            'body' => $this->faker->paragraph,
-            'votes' => $this->faker->randomDigit
+            'body' => $this->faker->paragraph
         ];
     }
 }
