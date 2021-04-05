@@ -59,6 +59,7 @@ class QuestionRepository implements QuestionRepositoryInterface
         $question->save();
 
         return $question;
+//        Question::create($data);
     }
 
     public function addVote($id)

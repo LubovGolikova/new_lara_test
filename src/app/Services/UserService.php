@@ -4,6 +4,10 @@ namespace  App\Services;
 use App\Models\User;
 use App\Repositories\UserRepository;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Hash;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Tymon\JWTAuth\Facades\JWTFactory;
+use Tymon\JWTAuth\Facades\PayloadFactory;
 class UserService
 {
     protected $userRepository;
@@ -20,6 +24,19 @@ class UserService
 
     public function create(array $data)
     {
-        return $this->userRepository->create($data);
+        $arrElc = [];
+        $arrElc['username'] = $data['username'];
+        $arrElc['email'] = $data['email'];
+        $arrElc['avatar_path'] = isset($data['avatar_path']) ? $data['avatar_path'] : null;
+        $arrElc['password']= Hash::make($data['password']);
+
+        $factory = JWTFactory::customClaims([
+            'sub'   => env('JWT_SECRET'),
+        ]);
+        $payload = $factory->make();
+
+        $arrElc['remember_token'] = JWTAuth::encode($payload);
+
+        return $this->userRepository->create($arrElc);
     }
 }
