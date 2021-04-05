@@ -59,18 +59,26 @@ class QuestionRepository implements QuestionRepositoryInterface
             return Question::has('answers')
                 ->orderBy($str['sortOrder'],$str['sortDir'])
                 ->get();
-        }else if($str['sortBy']=='isNotAnswer'){
+        }else if($str['sortBy']=='isNotAnswer') {
             return Question::query()
                 ->whereDoesntHave('answers')
-                ->orderBy($str['sortOrder'],$str['sortDir'])
-                ->get();
-        }else if($str['sortBy']=='isNotVoteAnswer'){
-            return Question::query()
-                ->leftJoin('answers','questions.id', '=', 'answers.id' )
-                ->where('answers.votes','=',0 )
-                ->orderBy($str['sortOrder'],$str['sortDir'])
+                ->orderBy($str['sortOrder'], $str['sortDir'])
                 ->get();
         }
-
+        //TODO
+//        }else if($str['sortBy']=='isNotVoteAnswer'){
+//            return Question::query()
+//                ->leftJoin('answers','questions.id', '=', 'answers.id' )
+//                ->where('answers.votes','=',0 )
+//                ->orderBy($str['sortOrder'],$str['sortDir'])
+//                ->get();
+//        }else if($str['sortBy']=='isVoteAnswer'){
+//            return Question::query()
+//                ->whereHas('answers', function($query) {
+//                    $query->where('votes','!=', 0);
+//                })
+//                ->orderBy($str['sortOrder'],$str['sortDir'])
+//                ->get();
+//        }
     }
 }
