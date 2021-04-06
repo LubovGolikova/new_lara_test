@@ -14,8 +14,8 @@ class CreateUsersAnswersVotesTable extends Migration
     public function up()
     {
         Schema::create('users_answers_votes', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('answer_id');
+            $table->unsignedBigInteger('user_id')->unsigned();
+            $table->unsignedBigInteger('answer_id')->unsigned();
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('answer_id')->references('id')->on('answers');

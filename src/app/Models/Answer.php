@@ -41,9 +41,9 @@ class Answer extends Model
         return $this->belongsTo(Question::class);
     }
 
-    public function users_answers_votes()
+    public function users()
     {
-        return $this->belongsToMany(UserAnswerVote::class, 'answer_id');
+        return $this->belongsToMany(User::class,'users_answers_votes');
     }
 
     public function setVotes($votes)
