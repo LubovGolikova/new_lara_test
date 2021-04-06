@@ -42,23 +42,28 @@ class QuestionRepository implements QuestionRepositoryInterface
 
     public function search($str)
     {
-        if($str['s'] == 's'){
-            return Question::query()->where('title','LIKE', '%'.$str.'%')
-                ->orderBy($str['sortOrder'],$str['sortDir'])
-                ->get();
-        }else if($str['s'] == 'all'){
+        if($str['s'] == 'all'){
             return Question::query()
                 ->orderBy($str['sortOrder'],$str['sortDir'])
                 ->get();
+
+        }else{
+            $searchStr=$str['s'];
+            return Question::query()->where('title','LIKE', '%'.$searchStr.'%')
+                ->orderBy($str['sortOrder'],$str['sortDir'])
+                ->get();
+
         }
     }
 
     public function sortData($str)
     {
+//        return($str);
         if($str['sortBy']=='isAnswer'){
             return Question::has('answers')
                 ->orderBy($str['sortOrder'],$str['sortDir'])
                 ->get();
+
         }else if($str['sortBy']=='isNotAnswer') {
             return Question::query()
                 ->whereDoesntHave('answers')

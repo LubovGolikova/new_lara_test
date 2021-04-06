@@ -31,6 +31,7 @@ class QuestionService
 
     public function search($str)
     {
+
         return $this->questionRepository->search($str);
     }
 
