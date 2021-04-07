@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
-    public function create()
+    public function create(Request $request)
     {
-        $roles = app()->make('RoleService')->create();
+        $userId = $request->input('user_id');
+        $roleId = $request->input('role_id');
+        $roles = app()->make('RoleService')->create($userId, $roleId);
         return response()->json($roles);
     }
 }

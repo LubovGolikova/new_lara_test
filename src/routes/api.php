@@ -42,7 +42,16 @@ Route::group([
     ], function($routes) {
 
         Route::get('user',[App\Http\Controllers\AuthController::class,'getAuthenticatedUser']);
+
+
+
+    Route::group([
+        'middleware' => 'role:admin'
+        ],function() {
+
         Route::post('/admin/role/create',[App\Http\Controllers\RoleController::class,'create']);
+    });
+
 
         Route::post('/questions/create', [App\Http\Controllers\QuestionController::class,'create']);
         Route::post('/answers/create', [App\Http\Controllers\AnswerController::class, 'create']);
