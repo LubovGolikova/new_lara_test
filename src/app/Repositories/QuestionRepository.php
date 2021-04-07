@@ -32,18 +32,10 @@ class QuestionRepository implements QuestionRepositoryInterface
 
     public function createVote($arrElc)
     {
-//        $questions = Question::query()->where('id' ,'=', $id)->get();
-//        foreach($questions as $question)
-//        {
-//            return $questions->users()->attach($user->id);
-//            return  $questions->users_questions_votes()->attach($user->id);
-           return UserQuestionVote::create([
-//               'user_id' => (int)$arrElc['user_id'],
-//               'question_id' => (int)$arrElc['question_id']
-                     'user_id' => 1,
-               'question_id' => 1
-               ]);
-//        }
+       return UserQuestionVote::create([
+           'user_id' => (int)$arrElc['user_id'],
+           'question_id' => (int)$arrElc['question_id']
+           ]);
     }
 
     public function search($str)
