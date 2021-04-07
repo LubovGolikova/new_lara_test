@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-
+use DB;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -13,6 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+//        \DB::table('roles')->insert(['name' => 'user']);
+//        \DB::table('roles')->insert(['name' => 'admin']);
 //        \App\Models\User::factory(10)->create();
 //        \App\Models\Question::factory(10)->create();
 //        \App\Models\Answer::factory(10)->create();
