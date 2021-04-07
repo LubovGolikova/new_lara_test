@@ -26,11 +26,15 @@ class AnswerService
         $arrElc['user_id'] = $user->id;
         $arrElc['question_id'] = $data['question_id'];
         $arrElc['body'] = $data['body'];
-        return $this->answerRepository->create($data);
+        return $this->answerRepository->create($arrElc);
     }
 
-    public function addVote($id)
+    public function createVote($id)
     {
-        return $this->answerRepository->addVote($id);
+        $arrElc = [];
+        $user = JWTAuth::parseToken()->authenticate();
+        $arrElc['user_id'] = $user->id;
+        $arrElc['answer_id'] = $id;
+        return $this->answerRepository->createVote($arrElc);
     }
 }

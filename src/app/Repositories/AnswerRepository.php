@@ -3,9 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Answer;
-use Illuminate\Support\Facades\Auth;
-use Tymon\JWTAuth\Facades\JWTAuth;
-
+use App\Models\UserAnswerVote;
 class AnswerRepository
 {
 
@@ -19,15 +17,12 @@ class AnswerRepository
         return Answer::create($data);
     }
 
-    public function addVote($id)
+    public function createVote($arrElc)
     {
-        $answers = Answer::query()->where('id' ,'=', $id)->get();
-        foreach($answers as $answer)
-        {
-            $answer->setVotes($answer->getVotes()+1);
-            $answer->save();
-            return $answer;
-        }
+        return UserAnswerVote::create([
+            'user_id' => (int)$arrElc['user_id'],
+            'answer_id' => (int)$arrElc['answer_id']
+        ]);
     }
 
 }

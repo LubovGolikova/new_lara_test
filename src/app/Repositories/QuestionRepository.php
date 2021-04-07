@@ -1,12 +1,11 @@
 <?php
 namespace  App\Repositories;
 
-use App\Models\Answer;
 use App\Models\Question;
 use App\Models\User;
 use App\Models\UserQuestionVote;
 use App\Repositories\Interfaces\QuestionRepositoryInterface;
-use Tymon\JWTAuth\Facades\JWTAuth;
+
 
 class QuestionRepository implements QuestionRepositoryInterface
 {

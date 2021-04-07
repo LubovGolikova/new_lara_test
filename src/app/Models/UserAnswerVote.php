@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class UserAnswerVote extends Model
 {
     use HasFactory;
+
+    public $timestamps = false;
+    protected $primaryKey = 'user_id';
+
+    protected $fillable = [
+        'user_id',
+        'answer_id',
+    ];
 }

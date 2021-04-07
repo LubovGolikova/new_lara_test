@@ -44,10 +44,10 @@ Route::group([
         Route::get('user',[App\Http\Controllers\AuthController::class,'getAuthenticatedUser']);
         Route::post('/admin/role/create',[App\Http\Controllers\RoleController::class,'create']);
 
-        Route::post('/questions/create', [App\Http\Controllers\QuestionController::class,'store']);
+        Route::post('/questions/create', [App\Http\Controllers\QuestionController::class,'create']);
         Route::post('/answers/create', [App\Http\Controllers\AnswerController::class, 'create']);
         Route::post('questions/{question}/vote',[App\Http\Controllers\QuestionController::class, 'createVote']);
-        Route::post('answers/{answer}/vote',[App\Http\Controllers\AnswerController::class, 'createVote']);
+        Route::post('answers/{answers}/vote',[App\Http\Controllers\AnswerController::class, 'createVote']);
     });
 });
 

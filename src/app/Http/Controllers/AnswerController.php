@@ -23,7 +23,7 @@ class AnswerController extends Controller
     }
 
     public function createVote($id){
-        $answer = app()->make('AnswerService')->addVote($id);
+        $answer = app()->make('AnswerService')->createVote($id);
         return response()->json($answer);
     }
 }

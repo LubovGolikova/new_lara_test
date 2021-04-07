@@ -31,7 +31,6 @@ class QuestionService
 
     public function search($str)
     {
-
         return $this->questionRepository->search($str);
     }
 
@@ -45,11 +44,7 @@ class QuestionService
         $arrElc = [];
         $user = JWTAuth::parseToken()->authenticate();
         $arrElc['user_id'] = $user->id;
-        $questions = Question::query()->where('id' ,'=', $id)->get();
-        foreach($questions as $question)
-        {
-            $arrElc['question_id']   = $question->id;
-        }
+        $arrElc['question_id'] = $id;
         return $this->questionRepository->createVote($arrElc);
     }
 }
