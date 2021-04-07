@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Role;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -55,9 +56,14 @@ class AuthController extends Controller
         $validated = $request->validated();
         $user = app()->make('UserService')->create($validated);
         $token = JWTAuth::fromUser($user);
+        $userId = $user->id;
+        $roleId = 1;
+        $addrRole = app()->make('RoleService')->create($userId, $roleId);
         return response()->json([
             'message' => 'User successfully registered',
             'user' => $user,
+            'user_id'=>$user->id,
+            'role' => $addrRole,
             'token' => $token
         ], 201);
 

@@ -6,11 +6,11 @@ namespace App\Repositories;
 use App\Models\UserRole;
 class RoleRepository
 {
-    public function create()
+    public function create($arrElc)
     {
         return UserRole::create([
-            'user_id' => 1,
-            'role_id' => 1
+            'user_id' => $arrElc['user_id'],
+            'role_id' => $arrElc['role_id']
         ]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace  App\Services;
 use App\Repositories\RoleRepository;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class RoleService
 {
@@ -12,9 +13,12 @@ class RoleService
         $this->roleRepository = $roleRepository;
     }
 
-    public function create()
+    public function create($userId, $roleId)
     {
-        return $this->roleRepository->create();
+        $arrElc = [];
+        $arrElc['user_id'] = $userId;
+        $arrElc['role_id'] = $roleId;
+        return $this->roleRepository->create($arrElc);
     }
 
 }
