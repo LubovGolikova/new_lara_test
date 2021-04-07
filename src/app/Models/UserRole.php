@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UserQuestionVote extends Model
+class UserRole extends Model
 {
     use HasFactory;
 
@@ -14,6 +14,6 @@ class UserQuestionVote extends Model
 
     protected $fillable = [
         'user_id',
-        'question_id',
+        'role_id',
     ];
 }

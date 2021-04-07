@@ -17,8 +17,7 @@ class Question extends Model
     protected $fillable = [
         'title',
         'body',
-        'user_id',
-        'votes'
+        'user_id'
     ];
 
     /**
@@ -44,16 +43,5 @@ class Question extends Model
     public function users()
     {
         return $this->belongsToMany(User::class,'users_questions_votes');
-    }
-
-    public function setVotes($votes)
-    {
-        $this->votes = $votes;
-        return $this;
-    }
-
-    public function getVotes()
-    {
-        return $this->votes;
     }
 }

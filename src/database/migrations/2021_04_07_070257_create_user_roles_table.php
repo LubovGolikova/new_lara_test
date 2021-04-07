@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersQuestionsVotesTable extends Migration
+class CreateUserRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateUsersQuestionsVotesTable extends Migration
      */
     public function up()
     {
-        Schema::create('users_questions_votes', function (Blueprint $table) {
+        Schema::create('user_roles', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id')->unsigned();
-            $table->unsignedBigInteger('question_id')->unsigned();
+            $table->unsignedBigInteger('role_id')->unsigned();
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('question_id')->references('id')->on('questions');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
         });
     }
 
@@ -29,6 +29,6 @@ class CreateUsersQuestionsVotesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_questions_votes');
+        Schema::dropIfExists('user_roles');
     }
 }

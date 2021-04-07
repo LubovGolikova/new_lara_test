@@ -39,4 +39,17 @@ class QuestionService
     {
         return $this->questionRepository->sortData($str);
     }
+
+    public function createVote($id)
+    {
+        $arrElc = [];
+        $user = JWTAuth::parseToken()->authenticate();
+        $arrElc['user_id'] = $user->id;
+        $questions = Question::query()->where('id' ,'=', $id)->get();
+        foreach($questions as $question)
+        {
+            $arrElc['question_id']   = $question->id;
+        }
+        return $this->questionRepository->createVote($arrElc);
+    }
 }

@@ -25,7 +25,7 @@ class QuestionController extends Controller
 
     public function createVote($id)
     {
-        $question = app()->make('QuestionService')->addVote($id);
+        $question = app()->make('QuestionService')->createVote($id);
         return response()->json($question);
     }
 

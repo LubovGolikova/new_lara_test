@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersAnswersVotesTable extends Migration
+class CreateUserAnswerVotesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateUsersAnswersVotesTable extends Migration
      */
     public function up()
     {
-        Schema::create('users_answers_votes', function (Blueprint $table) {
+        Schema::create('user_answer_votes', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id')->unsigned();
             $table->unsignedBigInteger('answer_id')->unsigned();
 
@@ -29,6 +29,6 @@ class CreateUsersAnswersVotesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_answers_votes');
+        Schema::dropIfExists('user_answer_votes');
     }
 }

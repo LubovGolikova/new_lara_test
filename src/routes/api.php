@@ -42,6 +42,8 @@ Route::group([
     ], function($routes) {
 
         Route::get('user',[App\Http\Controllers\AuthController::class,'getAuthenticatedUser']);
+        Route::post('/admin/role/create',[App\Http\Controllers\RoleController::class,'create']);
+
         Route::post('/questions/create', [App\Http\Controllers\QuestionController::class,'store']);
         Route::post('/answers/create', [App\Http\Controllers\AnswerController::class, 'create']);
         Route::post('questions/{question}/vote',[App\Http\Controllers\QuestionController::class, 'createVote']);

@@ -4,6 +4,7 @@ namespace  App\Repositories;
 use App\Models\Answer;
 use App\Models\Question;
 use App\Models\User;
+use App\Models\UserQuestionVote;
 use App\Repositories\Interfaces\QuestionRepositoryInterface;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -29,15 +30,20 @@ class QuestionRepository implements QuestionRepositoryInterface
         return Question::create($data);
     }
 
-    public function addVote($id)
+    public function createVote($arrElc)
     {
-        $questions = Question::query()->where('id' ,'=', $id)->get();
-        foreach($questions as $question)
-        {
-            $question->setVotes($question->getVotes()+1);
-            $question->save();
-            return $question;
-        }
+//        $questions = Question::query()->where('id' ,'=', $id)->get();
+//        foreach($questions as $question)
+//        {
+//            return $questions->users()->attach($user->id);
+//            return  $questions->users_questions_votes()->attach($user->id);
+           return UserQuestionVote::create([
+//               'user_id' => (int)$arrElc['user_id'],
+//               'question_id' => (int)$arrElc['question_id']
+                     'user_id' => 1,
+               'question_id' => 1
+               ]);
+//        }
     }
 
     public function search($str)
