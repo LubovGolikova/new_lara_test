@@ -56,20 +56,21 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Answer::class);
     }
 
-    public function users_answers_votes()
+    public function user_answer_votes()
     {
-        return $this->belongsToMany(Answer::class, 'users_answers_votes','user_id','answer_id');
+        return $this->belongsToMany(Answer::class, 'user_answer_votes','user_id','answer_id');
     }
 
-    public function users_questions_votes()
+    public function user_question_votes()
     {
-        return $this->belongsToMany(Question::class,'users_questions_votes','user_id','question_id');
+        return $this->belongsToMany(Question::class,'user_question_votes','user_id','question_id');
     }
 
     public function roles()
     {
-        return $this->belongsToMany(Role::class, 'user_role','user_id', 'role_id');
+        return $this->belongsToMany(Role::class, 'user_roles','user_id', 'role_id');
     }
+
     /**
      * @inheritDoc
      */

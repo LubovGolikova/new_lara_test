@@ -42,6 +42,6 @@ class Answer extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class,'users_answers_votes');
+        return $this->belongsToMany(User::class,'user_answer_votes');
     }
 }
