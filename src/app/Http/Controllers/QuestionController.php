@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\User;
 use App\Services\QuestionService;
+
 class QuestionController extends Controller
 {
     /**
@@ -50,7 +51,7 @@ class QuestionController extends Controller
      */
     public function search(Request $request)
     {
-        $questions = app()->make('QuestionService')->search($this->helperData( $request, 's', 'all'));
+        $questions = app()->make('QuestionService')->search($this->helperData($request, 's', 'all'));
         return response()->json($questions);
     }
 
@@ -61,7 +62,7 @@ class QuestionController extends Controller
      */
     public function sortData(Request $request)
     {
-        $questions = app()->make('QuestionService')->sortData($this->helperData( $request, 'sortBy', 'isAnswer'));
+        $questions = app()->make('QuestionService')->sortData($this->helperData($request, 'sortBy', 'isAnswer'));
         return response()->json($questions);
     }
 
@@ -81,16 +82,16 @@ class QuestionController extends Controller
 
         }
         if ($request->has('sortOrder')) {
-            $sortOrder=$request->input('sortOrder');
+            $sortOrder = $request->input('sortOrder');
 
         } else {
-            $sortOrder='created_at';
+            $sortOrder = 'created_at';
         }
         if ($request->has('sortDir')) {
-            $sortDir=$request->input('sortDir');
+            $sortDir = $request->input('sortDir');
 
         } else {
-            $sortDir='asc';
+            $sortDir = 'asc';
         }
         $arrStr = [];
         $arrStr[$sortKindVal] = $sortKind;

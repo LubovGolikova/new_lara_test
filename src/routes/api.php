@@ -24,9 +24,9 @@ Route::group([
 
     Route::group([
         'prefix' => 'auth'
-    ], function($routes) {
+    ], function ($routes) {
 
-        Route::post('login',  [App\Http\Controllers\AuthController::class, 'login']);
+        Route::post('login', [App\Http\Controllers\AuthController::class, 'login']);
         Route::post('register', [App\Http\Controllers\AuthController::class, 'register']);
     });
 
@@ -39,25 +39,24 @@ Route::group([
 
     Route::group([
         'middleware' => ['jwt.verify']
-    ], function($routes) {
+    ], function ($routes) {
 
-        Route::get('user',[App\Http\Controllers\AuthController::class,'getAuthenticatedUser']);
-
-
-
-    Route::group([
-        'middleware' => 'role:admin'
-        ],function() {
-
-        Route::post('/admin/role/create',[App\Http\Controllers\RoleController::class,'create']);
-        Route::post('/admin/role/edit',[App\Http\Controllers\RoleController::class,'edit']);
-    });
+        Route::get('user', [App\Http\Controllers\AuthController::class, 'getAuthenticatedUser']);
 
 
-        Route::post('/questions/create', [App\Http\Controllers\QuestionController::class,'create']);
+        Route::group([
+            'middleware' => 'role:admin'
+        ], function () {
+
+            Route::post('/admin/role/create', [App\Http\Controllers\RoleController::class, 'create']);
+            Route::post('/admin/role/edit', [App\Http\Controllers\RoleController::class, 'edit']);
+        });
+
+
+        Route::post('/questions/create', [App\Http\Controllers\QuestionController::class, 'create']);
         Route::post('/answers/create', [App\Http\Controllers\AnswerController::class, 'create']);
-        Route::post('questions/{question}/vote',[App\Http\Controllers\QuestionController::class, 'createVote']);
-        Route::post('answers/{answers}/vote',[App\Http\Controllers\AnswerController::class, 'createVote']);
+        Route::post('questions/{question}/vote', [App\Http\Controllers\QuestionController::class, 'createVote']);
+        Route::post('answers/{answers}/vote', [App\Http\Controllers\AnswerController::class, 'createVote']);
     });
 });
 

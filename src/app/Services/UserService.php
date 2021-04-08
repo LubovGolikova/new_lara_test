@@ -1,6 +1,7 @@
 <?php
 
-namespace  App\Services;
+namespace App\Services;
+
 use App\Models\User;
 use App\Repositories\UserRepository;
 use App\Http\Requests\UserRequest;
@@ -8,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Facades\JWTFactory;
 use Tymon\JWTAuth\Facades\PayloadFactory;
+
 class UserService
 {
     protected $userRepository;
@@ -39,10 +41,10 @@ class UserService
         $arrElc['username'] = $data['username'];
         $arrElc['email'] = $data['email'];
         $arrElc['avatar_path'] = isset($data['avatar_path']) ? $data['avatar_path'] : null;
-        $arrElc['password']= Hash::make($data['password']);
+        $arrElc['password'] = Hash::make($data['password']);
 
         $factory = JWTFactory::customClaims([
-            'sub'   => env('JWT_SECRET'),
+            'sub' => env('JWT_SECRET'),
         ]);
         $payload = $factory->make();
 

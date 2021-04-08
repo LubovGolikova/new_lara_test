@@ -1,5 +1,6 @@
 <?php
-namespace  App\Repositories;
+
+namespace App\Repositories;
 
 use App\Models\Question;
 use App\Models\User;
@@ -23,7 +24,7 @@ class QuestionRepository implements QuestionRepositoryInterface
      */
     public function getByUser(User $user)
     {
-        return Question::query()->where('user_id'.$user->id)->get();
+        return Question::query()->where('user_id' . $user->id)->get();
     }
 
     /**
@@ -51,10 +52,10 @@ class QuestionRepository implements QuestionRepositoryInterface
      */
     public function createVote($arrElc)
     {
-       return UserQuestionVote::create([
-           'user_id' => (int)$arrElc['user_id'],
-           'question_id' => (int)$arrElc['question_id']
-           ]);
+        return UserQuestionVote::create([
+            'user_id' => (int)$arrElc['user_id'],
+            'question_id' => (int)$arrElc['question_id']
+        ]);
     }
 
     /**
@@ -96,7 +97,7 @@ class QuestionRepository implements QuestionRepositoryInterface
      */
     public function sortData($str)
     {
-        if ($str['sortBy']=='isAnswer') {
+        if ($str['sortBy'] == 'isAnswer') {
 
             if ($str['sortOrder'] == 'votes_count') {
                 return Question::withCount('users')
@@ -110,7 +111,7 @@ class QuestionRepository implements QuestionRepositoryInterface
                     ->get();
             }
 
-        } else if ($str['sortBy']=='isNotAnswer') {
+        } else if ($str['sortBy'] == 'isNotAnswer') {
 
             if ($str['sortOrder'] == 'votes_count') {
                 return Question::withCount('users')
@@ -125,11 +126,11 @@ class QuestionRepository implements QuestionRepositoryInterface
                     ->get();
             }
 
-        } else if ($str['sortBy']=='isVoteAnswer') {
+        } else if ($str['sortBy'] == 'isVoteAnswer') {
 
             if ($str['sortOrder'] == 'votes_count') {
                 return Question::withCount('users')
-                    ->orderBy('users_count',$str['sortDir'])
+                    ->orderBy('users_count', $str['sortDir'])
                     ->get();
 
             } else {
@@ -140,11 +141,11 @@ class QuestionRepository implements QuestionRepositoryInterface
 
             }
 
-        } else if ($str['sortBy']=='isNotVoteAnswer') {
+        } else if ($str['sortBy'] == 'isNotVoteAnswer') {
 
             if ($str['sortOrder'] == 'votes_count') {
                 return Question::withCount('users')
-                    ->orderBy('users_count',$str['sortDir'])
+                    ->orderBy('users_count', $str['sortDir'])
                     ->get();
 
             } else {

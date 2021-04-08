@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AnswerRequest;
 use Illuminate\Http\Request;
 use App\Services\AnswerService;
+
 class AnswerController extends Controller
 {
 
@@ -36,7 +37,8 @@ class AnswerController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function createVote($id){
+    public function createVote($id)
+    {
         $answer = app()->make('AnswerService')->createVote($id);
         return response()->json($answer);
     }

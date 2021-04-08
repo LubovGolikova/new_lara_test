@@ -10,6 +10,7 @@ use App\Models\Role;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Facades\JWTAuth;
+
 class AuthController extends Controller
 {
     private $userService;
@@ -31,7 +32,7 @@ class AuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
         try {
-            if (! $token = JWTAuth::attempt($credentials)) {
+            if (!$token = JWTAuth::attempt($credentials)) {
                 return response()->json(['error' => 'invalid_credentials'], 400);
             }
         } catch (JWTException $e) {
@@ -73,7 +74,7 @@ class AuthController extends Controller
     {
         try {
 
-            if (! $user = JWTAuth::parseToken()->authenticate()) {
+            if (!$user = JWTAuth::parseToken()->authenticate()) {
                 return response()->json(['user_not_found'], 404);
             }
 

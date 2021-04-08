@@ -4,6 +4,7 @@
 namespace App\Repositories;
 
 use App\Models\UserRole;
+
 class RoleRepository
 {
     /**

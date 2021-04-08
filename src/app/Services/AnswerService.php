@@ -1,6 +1,7 @@
 <?php
 
-namespace  App\Services;
+namespace App\Services;
+
 use App\Models\Answer;
 use App\Repositories\AnswerRepository;
 use Tymon\JWTAuth\Facades\JWTAuth;

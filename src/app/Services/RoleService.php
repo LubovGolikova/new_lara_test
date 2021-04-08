@@ -1,6 +1,7 @@
 <?php
 
-namespace  App\Services;
+namespace App\Services;
+
 use App\Repositories\RoleRepository;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
