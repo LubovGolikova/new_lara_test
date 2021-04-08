@@ -5,17 +5,51 @@ namespace App\Repositories;
 use App\Models\Question;
 use App\Models\User;
 use App\Models\UserQuestionVote;
-use App\Repositories\Interfaces\QuestionRepositoryInterface;
 
 
-class QuestionRepository implements QuestionRepositoryInterface
+class QuestionRepository
 {
-    /**
-     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
-     */
-    public function all()
+
+
+
+    public function get(array $searchData)
     {
-        return Question::query()->with('answers')->get();
+
+        $questions = Question::query();
+
+        if (isset($searchData['search'])) {
+            $questions = $questions->where('title', 'LIKE', '%' . $searchData['search'] . '%');
+
+        }
+        if (!$searchData['has_answer']) {
+            $questions = $questions->whereDoesntHave('answers');
+
+        } else if ($searchData['has_answer']) {
+            $questions = $questions->has('answers');
+
+        }
+
+        if (!$searchData['has_voted_answer']) {
+            dd('has voted answer!!');
+
+        } else if ($searchData['has_voted_answer']) {
+
+            $questions = $questions
+                ->getRelation('answers')
+                ->withCount('votes_answers');
+//                ->where('votes_answers_count','!=',0);
+
+//            $questions = $questions
+//                ->getRelation('answers')
+//                ->withCount(['votes_answers' => function($query) {
+//                    $query->where('votes_answers_count','=',0)->get();
+//                }]);
+        }
+//        $questions = $questions->with(['answers', 'votes_questions'])->withCount('votes_questions');
+        $questions = $questions->orderBy($searchData['order_by'], $searchData['order_direction']);
+        $questions = $questions->get();
+
+        return $questions;
     }
 
     /**
@@ -56,106 +90,5 @@ class QuestionRepository implements QuestionRepositoryInterface
             'user_id' => (int)$arrElc['user_id'],
             'question_id' => (int)$arrElc['question_id']
         ]);
-    }
-
-    /**
-     * @param $str
-     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
-     */
-    public function search($str)
-    {
-        if ($str['s'] == 'all') {
-            if ($str['sortOrder'] == 'votes_count') {
-                return Question::withCount('users')
-                    ->orderBy('users_count', $str['sortDir'])
-                    ->get();
-            } else {
-                return Question::query()
-                    ->orderBy($str['sortOrder'], $str['sortDir'])
-                    ->get();
-            }
-
-        } else {
-            $searchStr = $str['s'];
-            if ($str['sortOrder'] == 'votes_count') {
-                return Question::withCount('users')
-                    ->where('title', 'LIKE', '%' . $searchStr . '%')
-                    ->orderBy('users_count', $str['sortDir'])
-                    ->get();
-            } else {
-                return Question::query()->where('title', 'LIKE', '%' . $searchStr . '%')
-                    ->orderBy($str['sortOrder'], $str['sortDir'])
-                    ->get();
-            }
-
-        }
-    }
-
-    /**
-     * @param $str
-     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
-     */
-    public function sortData($str)
-    {
-        if ($str['sortBy'] == 'isAnswer') {
-
-            if ($str['sortOrder'] == 'votes_count') {
-                return Question::withCount('users')
-                    ->has('answers')
-                    ->orderBy('users_count', $str['sortDir'])
-                    ->get();
-
-            } else {
-                return Question::has('answers')
-                    ->orderBy($str['sortOrder'], $str['sortDir'])
-                    ->get();
-            }
-
-        } else if ($str['sortBy'] == 'isNotAnswer') {
-
-            if ($str['sortOrder'] == 'votes_count') {
-                return Question::withCount('users')
-                    ->whereDoesntHave('answers')
-                    ->orderBy('users_count', $str['sortDir'])
-                    ->get();
-
-            } else {
-                return Question::query()
-                    ->whereDoesntHave('answers')
-                    ->orderBy($str['sortOrder'], $str['sortDir'])
-                    ->get();
-            }
-
-        } else if ($str['sortBy'] == 'isVoteAnswer') {
-
-            if ($str['sortOrder'] == 'votes_count') {
-                return Question::withCount('users')
-                    ->orderBy('users_count', $str['sortDir'])
-                    ->get();
-
-            } else {
-                return Question::query()
-                    ->getRelation('users')
-                    ->orderBy($str['sortOrder'], $str['sortDir'])
-                    ->get();
-
-            }
-
-        } else if ($str['sortBy'] == 'isNotVoteAnswer') {
-
-            if ($str['sortOrder'] == 'votes_count') {
-                return Question::withCount('users')
-                    ->orderBy('users_count', $str['sortDir'])
-                    ->get();
-
-            } else {
-                return Question::query()
-                    ->whereNotIn('id', function ($query) {
-                        $query->select('user_id')->from('users_questions_votes');
-                    })
-                    ->orderBy($str['sortOrder'], $str['sortDir'])
-                    ->get();
-            }
-        }
     }
 }

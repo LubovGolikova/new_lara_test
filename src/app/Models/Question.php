@@ -49,8 +49,15 @@ class Question extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function users()
+    public function votes_questions()
     {
         return $this->belongsToMany(User::class,'user_question_votes');
     }
+
+//    public function votesAnswerCount()
+//    {
+//        return $this->answers()
+//            ->
+//    }
+
 }

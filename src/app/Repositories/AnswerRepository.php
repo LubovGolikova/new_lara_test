@@ -8,12 +8,13 @@ use App\Models\UserAnswerVote;
 class AnswerRepository
 {
 
-    /**
-     * @return Answer[]|\Illuminate\Database\Eloquent\Collection
-     */
+
+
     public function all()
     {
-        return Answer::all();
+        return Answer::query()
+            ->withCount('votes_answers')
+            ->get();
     }
 
     /**

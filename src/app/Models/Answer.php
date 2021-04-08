@@ -49,7 +49,7 @@ class Answer extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function users()
+    public function votes_answers()
     {
         return $this->belongsToMany(User::class,'user_answer_votes');
     }
