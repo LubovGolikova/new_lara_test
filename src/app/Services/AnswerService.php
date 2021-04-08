@@ -9,16 +9,27 @@ class AnswerService
 {
     protected $answerRepository;
 
+    /**
+     * AnswerService constructor.
+     * @param AnswerRepository $answerRepository
+     */
     public function __construct(AnswerRepository $answerRepository)
     {
         $this->answerRepository = $answerRepository;
     }
 
+    /**
+     * @return Answer[]|\Illuminate\Database\Eloquent\Collection
+     */
     public function getAll()
     {
         return $this->answerRepository->all();
     }
 
+    /**
+     * @param $data
+     * @return mixed
+     */
     public function create($data)
     {
         $arrElc = [];
@@ -29,6 +40,10 @@ class AnswerService
         return $this->answerRepository->create($arrElc);
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function createVote($id)
     {
         $arrElc = [];

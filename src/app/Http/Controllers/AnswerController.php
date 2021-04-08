@@ -9,12 +9,21 @@ class AnswerController extends Controller
 {
 
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
     public function index()
     {
         $answers = app()->make('AnswerService')->getAll();
         return response()->json($answers);
     }
 
+    /**
+     * @param AnswerRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
     public function create(AnswerRequest $request)
     {
         $validated = $request->validated();
@@ -22,6 +31,11 @@ class AnswerController extends Controller
         return response()->json($answer);
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
     public function createVote($id){
         $answer = app()->make('AnswerService')->createVote($id);
         return response()->json($answer);

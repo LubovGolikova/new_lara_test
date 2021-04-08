@@ -13,7 +13,6 @@ class QuestionRequest extends FormRequest
      */
     public function authorize()
     {
-//        return false;
         return true;
     }
 
@@ -30,6 +29,9 @@ class QuestionRequest extends FormRequest
         ];
     }
 
+    /**
+     * @return array
+     */
     public function messages()
     {
         return [

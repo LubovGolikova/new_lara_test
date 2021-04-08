@@ -13,8 +13,6 @@ class UserRequest extends FormRequest
      */
     public function authorize()
     {
-//        return false;
-//       return Auth::check();
       return true;
     }
 
@@ -31,11 +29,11 @@ class UserRequest extends FormRequest
             'email' => 'required|string|email|max:100|unique:users',
             'password'=>'required|string|confirmed|min:8'
         ];
-//        if ($this->getMethod() == 'PUT') {
-//            $rules['password'] = 'required|min:6';
-//        }
     }
 
+    /**
+     * @return array
+     */
     public function messages()
     {
         return [

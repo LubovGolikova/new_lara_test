@@ -12,16 +12,27 @@ class UserService
 {
     protected $userRepository;
 
+    /**
+     * UserService constructor.
+     * @param UserRepository $userRepository
+     */
     public function __construct(UserRepository $userRepository)
     {
         $this->userRepository = $userRepository;
     }
 
+    /**
+     * @return User[]|\Illuminate\Database\Eloquent\Collection
+     */
     public function getAll()
     {
         return $this->userRepository->all();
     }
 
+    /**
+     * @param array $data
+     * @return mixed
+     */
     public function create(array $data)
     {
         $arrElc = [];

@@ -9,26 +9,46 @@ use App\Repositories\Interfaces\QuestionRepositoryInterface;
 
 class QuestionRepository implements QuestionRepositoryInterface
 {
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
     public function all()
     {
         return Question::query()->with('answers')->get();
     }
 
+    /**
+     * @param User $user
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
     public function getByUser(User $user)
     {
         return Question::query()->where('user_id'.$user->id)->get();
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Builder[][]|\Illuminate\Database\
+     * Eloquent\Collection|\Illuminate\Database\Eloquent\Collection[]|\Illuminate\Database\Eloquent\Model[]|mixed
+     */
     public function getById($id)
     {
         return Question::query()->findOrFail($id)->get();
     }
 
+    /**
+     * @param array $data
+     * @return mixed
+     */
     public function create(array $data)
     {
         return Question::create($data);
     }
 
+    /**
+     * @param $arrElc
+     * @return mixed
+     */
     public function createVote($arrElc)
     {
        return UserQuestionVote::create([
@@ -37,6 +57,10 @@ class QuestionRepository implements QuestionRepositoryInterface
            ]);
     }
 
+    /**
+     * @param $str
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
     public function search($str)
     {
         if ($str['s'] == 'all') {
@@ -66,6 +90,10 @@ class QuestionRepository implements QuestionRepositoryInterface
         }
     }
 
+    /**
+     * @param $str
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
     public function sortData($str)
     {
         if ($str['sortBy']=='isAnswer') {

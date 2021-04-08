@@ -15,9 +15,7 @@ class AuthController extends Controller
     private $userService;
 
     /**
-     * Create a new AuthController instance.
-     *
-     * @return void
+     * AuthController constructor.
      */
     public function __construct()
     {
@@ -26,8 +24,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Get a JWT via given credentials.
-     *
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function login(Request $request)
@@ -46,10 +43,11 @@ class AuthController extends Controller
             'token' => $token
         ], 201);
     }
+
     /**
-     * Register a User.
-     *
+     * @param UserRequest $request
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function register(UserRequest $request)
     {
@@ -68,6 +66,9 @@ class AuthController extends Controller
 
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getAuthenticatedUser()
     {
         try {

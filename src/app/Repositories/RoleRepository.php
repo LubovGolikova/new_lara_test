@@ -6,6 +6,10 @@ namespace App\Repositories;
 use App\Models\UserRole;
 class RoleRepository
 {
+    /**
+     * @param $arrElc
+     * @return mixed
+     */
     public function create($arrElc)
     {
         return UserRole::create([

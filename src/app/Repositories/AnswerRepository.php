@@ -7,16 +7,27 @@ use App\Models\UserAnswerVote;
 class AnswerRepository
 {
 
+    /**
+     * @return Answer[]|\Illuminate\Database\Eloquent\Collection
+     */
     public function all()
     {
         return Answer::all();
     }
 
+    /**
+     * @param $data
+     * @return mixed
+     */
     public function create($data)
     {
         return Answer::create($data);
     }
 
+    /**
+     * @param $arrElc
+     * @return mixed
+     */
     public function createVote($arrElc)
     {
         return UserAnswerVote::create([

@@ -7,6 +7,10 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 trait HasRolesPermissions
 {
+    /**
+     * @param $role
+     * @return bool
+     */
     public function hasRole($role ) {
 
         $user = JWTAuth::parseToken()->authenticate();

@@ -47,26 +47,41 @@ class User extends Authenticatable implements JWTSubject
     ];
 
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function questions()
     {
         return $this->hasMany(Question::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function answers()
     {
         return $this->hasMany(Answer::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function user_answer_votes()
     {
         return $this->belongsToMany(Answer::class, 'user_answer_votes','user_id','answer_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function user_question_votes()
     {
         return $this->belongsToMany(Question::class,'user_question_votes','user_id','question_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function roles()
     {
         return $this->belongsToMany(Role::class, 'user_roles','user_id', 'role_id');

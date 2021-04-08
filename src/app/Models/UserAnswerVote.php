@@ -12,6 +12,9 @@ class UserAnswerVote extends Model
     public $timestamps = false;
     protected $primaryKey = 'user_id';
 
+    /**
+     * @var array
+     */
     protected $fillable = [
         'user_id',
         'answer_id',
