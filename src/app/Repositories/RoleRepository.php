@@ -13,4 +13,10 @@ class RoleRepository
             'role_id' => $arrElc['role_id']
         ]);
     }
+
+    public function edit($arrElc)
+    {
+
+//        return null;
+    }
 }

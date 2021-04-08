@@ -50,6 +50,7 @@ Route::group([
         ],function() {
 
         Route::post('/admin/role/create',[App\Http\Controllers\RoleController::class,'create']);
+        Route::post('/admin/role/edit',[App\Http\Controllers\RoleController::class,'edit']);
     });
 
 

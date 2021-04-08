@@ -15,24 +15,22 @@ trait HasRolesPermissions
             ->where('user_id','=', $userId)
             ->get();
 
-        foreach($roleUsers as $roleUser)
+        foreach ($roleUsers as $roleUser)
         {
             $rolenames = Role::query()
                 ->where('id','=',$roleUser['role_id'] )
                 ->get();
 
-            foreach($rolenames as $rolename)
+            foreach ($rolenames as $rolename)
             {
-                if($rolename['name'] == $role){
+                if ($rolename['name'] == $role) {
                     return true;
 
-                } else{
+                } else {
                     return false;
 
                 }
             }
         }
-
-
     }
 }

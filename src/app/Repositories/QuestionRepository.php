@@ -39,7 +39,7 @@ class QuestionRepository implements QuestionRepositoryInterface
 
     public function search($str)
     {
-        if($str['s'] == 'all'){
+        if ($str['s'] == 'all') {
             if ($str['sortOrder'] == 'votes_count') {
                 return Question::withCount('users')
                     ->orderBy('users_count', $str['sortDir'])
@@ -50,7 +50,7 @@ class QuestionRepository implements QuestionRepositoryInterface
                     ->get();
             }
 
-        }else {
+        } else {
             $searchStr = $str['s'];
             if ($str['sortOrder'] == 'votes_count') {
                 return Question::withCount('users')
@@ -68,7 +68,8 @@ class QuestionRepository implements QuestionRepositoryInterface
 
     public function sortData($str)
     {
-        if($str['sortBy']=='isAnswer') {
+        if ($str['sortBy']=='isAnswer') {
+
             if ($str['sortOrder'] == 'votes_count') {
                 return Question::withCount('users')
                     ->has('answers')
@@ -80,8 +81,9 @@ class QuestionRepository implements QuestionRepositoryInterface
                     ->orderBy($str['sortOrder'], $str['sortDir'])
                     ->get();
             }
-        }
-        else if($str['sortBy']=='isNotAnswer') {
+
+        } else if ($str['sortBy']=='isNotAnswer') {
+
             if ($str['sortOrder'] == 'votes_count') {
                 return Question::withCount('users')
                     ->whereDoesntHave('answers')
@@ -95,7 +97,8 @@ class QuestionRepository implements QuestionRepositoryInterface
                     ->get();
             }
 
-        }else if($str['sortBy']=='isVoteAnswer'){
+        } else if ($str['sortBy']=='isVoteAnswer') {
+
             if ($str['sortOrder'] == 'votes_count') {
                 return Question::withCount('users')
                     ->orderBy('users_count',$str['sortDir'])
@@ -108,11 +111,14 @@ class QuestionRepository implements QuestionRepositoryInterface
                     ->get();
 
             }
-        }else if($str['sortBy']=='isNotVoteAnswer'){
+
+        } else if ($str['sortBy']=='isNotVoteAnswer') {
+
             if ($str['sortOrder'] == 'votes_count') {
                 return Question::withCount('users')
                     ->orderBy('users_count',$str['sortDir'])
                     ->get();
+
             } else {
                 return Question::query()
                     ->whereNotIn('id', function ($query) {
