@@ -29,16 +29,20 @@ class QuestionRepository
 
         }
 
-        if (!$searchData['has_voted_answer']) {
-            dd('has voted answer!!');
+//        if (!$searchData['has_voted_answer']) {
+//            dd('has voted answer!!');
+//
+//        } else if ($searchData['has_voted_answer']) {
+//
+//            $questions = $questions
+//                ->getRelation('answers')
+//                ->withCount('votes_answers');
+//        }
 
-        } else if ($searchData['has_voted_answer']) {
-
-            $questions = $questions
-                ->getRelation('answers')
-                ->withCount('votes_answers');
-        }
-//        $questions = $questions->with(['answers', 'votes_questions'])->withCount('votes_questions');
+        $questions = $questions->with('votes_questions')->withCount('votes_questions');
+        $questions = $questions->with('answers', function($query) {
+            $query->withCount('votes_answers');
+        });
         $questions = $questions->orderBy($searchData['order_by'], $searchData['order_direction']);
         $questions = $questions->get();
 
