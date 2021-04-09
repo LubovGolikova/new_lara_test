@@ -31,4 +31,5 @@ class QuestionSearchRequest extends FormRequest
             'has_voted_answer' => 'boolean|nullable'
         ];
     }
+
 }

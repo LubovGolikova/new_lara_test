@@ -37,19 +37,19 @@ class UserService
      */
     public function create(array $data)
     {
-        $arrElc = [];
-        $arrElc['username'] = $data['username'];
-        $arrElc['email'] = $data['email'];
-        $arrElc['avatar_path'] = isset($data['avatar_path']) ? $data['avatar_path'] : null;
-        $arrElc['password'] = Hash::make($data['password']);
+        $createData = [];
+        $createData['username'] = $data['username'];
+        $createData['email'] = $data['email'];
+        $createData['avatar_path'] = isset($data['avatar_path']) ? $data['avatar_path'] : null;
+        $createData['password'] = Hash::make($data['password']);
 
         $factory = JWTFactory::customClaims([
             'sub' => env('JWT_SECRET'),
         ]);
         $payload = $factory->make();
 
-        $arrElc['remember_token'] = JWTAuth::encode($payload);
+        $createData['remember_token'] = JWTAuth::encode($payload);
 
-        return $this->userRepository->create($arrElc);
+        return $this->userRepository->create($createData);
     }
 }

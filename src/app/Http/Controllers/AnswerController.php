@@ -8,15 +8,13 @@ use App\Services\AnswerService;
 
 class AnswerController extends Controller
 {
-
-
     /**
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function index()
     {
-        $answers = app()->make('AnswerService')->getAll();
+        $answers = app()->make('AnswerService')->get();
         return response()->json($answers);
     }
 

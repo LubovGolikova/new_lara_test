@@ -38,10 +38,10 @@ class UserRequest extends FormRequest
     {
         return [
             'username.required' => 'The username is Required.',
-            'username.min'=> 'The username  should be Minimum of 2 Character',
-            'username.max'=> 'The username  should be Maximum of 255 Character',
-            'email.required' => 'The email is Required',
-            'email.unique'    => 'The email is already used',
+            'username.min'=> 'The username  should be Minimum of 2 Character.',
+            'username.max'=> 'The username  should be Maximum of 255 Character.',
+            'email.required' => 'The email is Required.',
+            'email.unique'    => 'The email is already used.',
             'password.required'  => 'The password is Required.'
         ];
     }

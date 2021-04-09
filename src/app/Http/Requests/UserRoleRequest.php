@@ -13,7 +13,7 @@ class UserRoleRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,19 @@ class UserRoleRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'user_id' => 'required|exists:users,id',
+            'role_id' => 'required|exists:users,id'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'user_id.exist' => 'Given User does not exist.',
+            'role_id.exist' => 'Given Role does not exist.'
         ];
     }
 }

@@ -22,9 +22,9 @@ class AnswerService
     /**
      * @return Answer[]|\Illuminate\Database\Eloquent\Collection
      */
-    public function getAll()
+    public function get()
     {
-        return $this->answerRepository->all();
+        return $this->answerRepository->get();
     }
 
     /**
@@ -33,12 +33,12 @@ class AnswerService
      */
     public function create($data)
     {
-        $arrElc = [];
+        $createData= [];
         $user = JWTAuth::parseToken()->authenticate();
-        $arrElc['user_id'] = $user->id;
-        $arrElc['question_id'] = $data['question_id'];
-        $arrElc['body'] = $data['body'];
-        return $this->answerRepository->create($arrElc);
+        $createData['user_id'] = $user->id;
+        $createData['question_id'] = $data['question_id'];
+        $createData['body'] = $data['body'];
+        return $this->answerRepository->create($createData);
     }
 
     /**
@@ -47,10 +47,10 @@ class AnswerService
      */
     public function createVote($id)
     {
-        $arrElc = [];
+        $createVoteData = [];
         $user = JWTAuth::parseToken()->authenticate();
-        $arrElc['user_id'] = $user->id;
-        $arrElc['answer_id'] = $id;
-        return $this->answerRepository->createVote($arrElc);
+        $createVoteData['user_id'] = $user->id;
+        $createVoteData['answer_id'] = $id;
+        return $this->answerRepository->createVote($createVoteData);
     }
 }

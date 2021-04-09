@@ -59,5 +59,4 @@ class Question extends Model
         return $this->belongsToMany(User::class,'user_question_votes');
     }
 
-
 }

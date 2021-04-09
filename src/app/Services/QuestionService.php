@@ -35,30 +35,12 @@ class QuestionService
      */
     public function create(array $data)
     {
-        $arrElc = [];
+        $createData = [];
         $user = JWTAuth::parseToken()->authenticate();
-        $arrElc['user_id'] = $user->id;
-        $arrElc['title'] = $data['title'];
-        $arrElc['body'] = $data['body'];
-        return $this->questionRepository->create($arrElc);
-    }
-
-    /**
-     * @param $str
-     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
-     */
-    public function search($str)
-    {
-        return $this->questionRepository->search($str);
-    }
-
-    /**
-     * @param $str
-     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
-     */
-    public function sortData($str)
-    {
-        return $this->questionRepository->sortData($str);
+        $createData['user_id'] = $user->id;
+        $createData['title'] = $data['title'];
+        $createData['body'] = $data['body'];
+        return $this->questionRepository->create($createData);
     }
 
     /**
@@ -67,10 +49,10 @@ class QuestionService
      */
     public function createVote($id)
     {
-        $arrElc = [];
+        $createVoteData= [];
         $user = JWTAuth::parseToken()->authenticate();
-        $arrElc['user_id'] = $user->id;
-        $arrElc['question_id'] = $id;
-        return $this->questionRepository->createVote($arrElc);
+        $createVoteData['user_id'] = $user->id;
+        $createVoteData['question_id'] = $id;
+        return $this->questionRepository->createVote($createVoteData);
     }
 }
