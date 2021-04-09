@@ -40,16 +40,14 @@ Route::group([
 
         Route::get('user', [App\Http\Controllers\AuthController::class, 'getAuthenticatedUser']);
 
-
         Route::group([
             'middleware' => 'role:admin'
         ], function () {
 
-            Route::post('/admin/role/create', [App\Http\Controllers\RoleController::class, 'create']);
-            Route::put('/admin/role/edit', [App\Http\Controllers\RoleController::class, 'edit']);
-            Route::delete('/admin/role/delete', [App\Http\Controllers\RoleController::class, 'delete']);
-        });
+            Route::resource('/admin/role', 'App\Http\Controllers\RoleController::class');
+            Route::post('/admin/role/assign', [App\Http\Controllers\UserController::class, 'assign']);
 
+        });
 
         Route::post('/questions/create', [App\Http\Controllers\QuestionController::class, 'create']);
         Route::post('/answers/create', [App\Http\Controllers\AnswerController::class, 'create']);

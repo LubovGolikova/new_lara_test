@@ -27,13 +27,16 @@ class QuestionRepository
 
         } else if (isset($searchData['has_answer'])  &&  $searchData['has_answer']) {
             $questions = $questions->has('answers');
+
         }
 
         if (isset($searchData['has_voted_answer']) && !$searchData['has_voted_answer']) {
             $questions = $questions->whereDoesntHave('voted_answers');
 
         } else if (isset($searchData['has_voted_answer']) && $searchData['has_voted_answer']) {
-            $questions = $questions->whereHas('voted_answers');        }
+            $questions = $questions->whereHas('voted_answers');
+
+        }
 
         $questions = $questions->with('votes_questions')->withCount('votes_questions');
         $questions = $questions->with('answers', function($query) {
@@ -77,11 +80,11 @@ class QuestionRepository
      * @param $arrElc
      * @return mixed
      */
-    public function createVote($arrElc)
+    public function createVote(array $createVoteData)
     {
         return UserQuestionVote::create([
-            'user_id' => (int)$arrElc['user_id'],
-            'question_id' => (int)$arrElc['question_id']
+            'user_id' => (int)$createVoteData['user_id'],
+            'question_id' => (int)$createVoteData['question_id']
         ]);
     }
 }

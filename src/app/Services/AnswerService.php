@@ -22,9 +22,11 @@ class AnswerService
     /**
      * @return Answer[]|\Illuminate\Database\Eloquent\Collection
      */
-    public function get()
+    public function get(array $searchData)
     {
-        return $this->answerRepository->get();
+        $searchData['order_by'] = $searchData['order_by'] ?? 'created_at';
+        $searchData['order_direction'] = $searchData['order_direction'] ?? 'asc';
+        return $this->answerRepository->get($searchData);
     }
 
     /**

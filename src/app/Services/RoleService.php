@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\UserRole;
 use App\Repositories\RoleRepository;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -23,29 +24,20 @@ class RoleService
      * @param $roleId
      * @return mixed
      */
-    public function create($userId, $roleId)
+    public function create()
     {
-        $arrElc = [];
-        $arrElc['user_id'] = $userId;
-        $arrElc['role_id'] = $roleId;
-        return $this->roleRepository->create();
     }
 
     /**
      * @param $userId
      * @param $roleId
      */
-    public function edit($userId, $roleId)
+    public function edit()
     {
-        $arrElc = [];
-        $arrElc['user_id'] = $userId;
-        $arrElc['role_id'] = $roleId;
-        return $this->roleRepository->edit($arrElc);
+
     }
 
-    public function delete($deleteData)
+    public function delete()
     {
-
-        return $this->roleRepository->delete($deleteData);
     }
 }

@@ -10,7 +10,7 @@ class UserRepository implements UserRepositoryInterface
     /**
      * @return User[]|\Illuminate\Database\Eloquent\Collection
      */
-    public function all()
+    public function get()
     {
         return User::all();
     }
@@ -23,4 +23,5 @@ class UserRepository implements UserRepositoryInterface
     {
         return User::create($data);
     }
+
 }

@@ -7,14 +7,31 @@ use App\Models\UserAnswerVote;
 
 class AnswerRepository
 {
+
     /**
-     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     * @param array $searchData
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
-    public function all()
+    public function get(array $searchData)
     {
-        return Answer::query()
-            ->withCount('votes_answers')
-            ->get();
+        $answers = Answer::query();
+
+        if (isset($searchData['search'])) {
+            $answers = $answers->where('body', 'LIKE', '%' . $searchData['search'] . '%');
+
+        }
+        if (isset($searchData['has_voted']) && !$searchData['has_voted']) {
+            $answers = $answers->whereDoesntHave('votes_answers');
+
+        } else if (isset($searchData['has_voted']) && $searchData['has_voted']) {
+            $answers = $answers->whereHas('votes_answers');
+
+        }
+        $answers = $answers->with('votes_answers')->withCount('votes_answers');
+        $answers = $answers->orderBy($searchData['order_by'], $searchData['order_direction']);
+        $answers = $answers->get();
+
+        return $answers;
     }
 
     /**
@@ -30,11 +47,11 @@ class AnswerRepository
      * @param $arrElc
      * @return mixed
      */
-    public function createVote($arrElc)
+    public function createVote($createVoteData)
     {
         return UserAnswerVote::create([
-            'user_id' => (int)$arrElc['user_id'],
-            'answer_id' => (int)$arrElc['answer_id']
+            'user_id' => (int)$createVoteData['user_id'],
+            'answer_id' => (int)$createVoteData['answer_id']
         ]);
     }
 

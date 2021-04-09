@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\User;
+use App\Models\UserRole;
 use App\Repositories\UserRepository;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
@@ -26,9 +27,9 @@ class UserService
     /**
      * @return User[]|\Illuminate\Database\Eloquent\Collection
      */
-    public function getAll()
+    public function get()
     {
-        return $this->userRepository->all();
+        return $this->userRepository->get();
     }
 
     /**
@@ -51,5 +52,17 @@ class UserService
         $createData['remember_token'] = JWTAuth::encode($payload);
 
         return $this->userRepository->create($createData);
+    }
+
+    /**
+     * @param array $data
+     * @return mixed
+     */
+    public function assign(array $data)
+    {
+        return UserRole::create([
+            'user_id' => $data['user_id'],
+            'role_id' => $data['role_id']
+        ]);
     }
 }

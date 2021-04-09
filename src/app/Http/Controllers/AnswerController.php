@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AnswerRequest;
+use App\Http\Requests\AnswerSearchRequest;
 use Illuminate\Http\Request;
 use App\Services\AnswerService;
 
@@ -12,9 +13,10 @@ class AnswerController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function index()
+    public function index(AnswerSearchRequest $request)
     {
-        $answers = app()->make('AnswerService')->get();
+        $validated = $request->validated();
+        $answers = app()->make('AnswerService')->get($validated);
         return response()->json($answers);
     }
 
