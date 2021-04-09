@@ -28,7 +28,7 @@ class RoleService
         $arrElc = [];
         $arrElc['user_id'] = $userId;
         $arrElc['role_id'] = $roleId;
-        return $this->roleRepository->create($arrElc);
+        return $this->roleRepository->create();
     }
 
     /**
@@ -41,5 +41,11 @@ class RoleService
         $arrElc['user_id'] = $userId;
         $arrElc['role_id'] = $roleId;
         return $this->roleRepository->edit($arrElc);
+    }
+
+    public function delete($deleteData)
+    {
+
+        return $this->roleRepository->delete($deleteData);
     }
 }

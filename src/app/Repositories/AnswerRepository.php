@@ -7,9 +7,9 @@ use App\Models\UserAnswerVote;
 
 class AnswerRepository
 {
-
-
-
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
     public function all()
     {
         return Answer::query()

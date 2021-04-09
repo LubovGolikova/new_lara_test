@@ -17,7 +17,7 @@ class RoleMiddleware
      */
     public function handle(Request $request, Closure $next, $role)
     {
-        $user = JWTAuth::parseToken()->authenticate();
+        $user = \Auth::user();
 
         if (!$user->hasRole($role)) {
             return response()->json(['role' => 'Role has not permissions']);

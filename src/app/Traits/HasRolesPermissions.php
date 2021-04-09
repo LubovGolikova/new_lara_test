@@ -15,7 +15,7 @@ trait HasRolesPermissions
     public function hasRole($role)
     {
 
-        $user = JWTAuth::parseToken()->authenticate();
+        $user = \Auth::user();
         $userId = $user->id;
         $roleUsers = UserRole::query()
             ->where('user_id', '=', $userId)

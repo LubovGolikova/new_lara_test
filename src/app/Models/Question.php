@@ -46,6 +46,11 @@ class Question extends Model
         return $this->hasMany(Answer::class);
     }
 
+    public function voted_answers()
+    {
+        return $this->hasMany(Answer::class)->whereHas('votes_answers');
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */

@@ -9,9 +9,10 @@ use App\Models\UserQuestionVote;
 
 class QuestionRepository
 {
-
-
-
+    /**
+     * @param array $searchData
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function get(array $searchData)
     {
 
@@ -21,23 +22,18 @@ class QuestionRepository
             $questions = $questions->where('title', 'LIKE', '%' . $searchData['search'] . '%');
 
         }
-        if (!$searchData['has_answer']) {
+        if (isset($searchData['has_answer'])  && !$searchData['has_answer']) {
             $questions = $questions->whereDoesntHave('answers');
 
-        } else if ($searchData['has_answer']) {
+        } else if (isset($searchData['has_answer'])  &&  $searchData['has_answer']) {
             $questions = $questions->has('answers');
-
         }
 
-//        if (!$searchData['has_voted_answer']) {
-//            dd('has voted answer!!');
-//
-//        } else if ($searchData['has_voted_answer']) {
-//
-//            $questions = $questions
-//                ->getRelation('answers')
-//                ->withCount('votes_answers');
-//        }
+        if (isset($searchData['has_voted_answer']) && !$searchData['has_voted_answer']) {
+            $questions = $questions->whereDoesntHave('voted_answers');
+
+        } else if (isset($searchData['has_voted_answer']) && $searchData['has_voted_answer']) {
+            $questions = $questions->whereHas('voted_answers');        }
 
         $questions = $questions->with('votes_questions')->withCount('votes_questions');
         $questions = $questions->with('answers', function($query) {

@@ -24,4 +24,9 @@ class RoleRepository
 
 //        return null;
     }
+
+    public function delete(array $deleteData)
+    {
+
+    }
 }

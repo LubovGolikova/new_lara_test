@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class QuestionRequest extends FormRequest
+class RoleDeleteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class QuestionRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:255',
-            'body' => 'max:255'
+            'eloquent' => 'required|string||in:user,question,answer',
+            'id' => 'required|exists:users,id'
         ];
     }
 
@@ -35,9 +35,7 @@ class QuestionRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.required' => 'The title is Required.',
-             'body.max'=> 'The question  should be Maximum of 255 Character'
+            'id.exist' => 'Given User does not exist.'
         ];
     }
-
 }

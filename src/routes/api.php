@@ -33,7 +33,6 @@ Route::group([
     Route::get('/questions', [App\Http\Controllers\QuestionController::class, 'index']);
 
     Route::get('/answers', [App\Http\Controllers\AnswerController::class, 'index']);
-    Route::get('/answers/search', [App\Http\Controllers\AnswerController::class, 'search']);
 
     Route::group([
         'middleware' => ['jwt.verify']
@@ -47,7 +46,8 @@ Route::group([
         ], function () {
 
             Route::post('/admin/role/create', [App\Http\Controllers\RoleController::class, 'create']);
-            Route::post('/admin/role/edit', [App\Http\Controllers\RoleController::class, 'edit']);
+            Route::put('/admin/role/edit', [App\Http\Controllers\RoleController::class, 'edit']);
+            Route::delete('/admin/role/delete', [App\Http\Controllers\RoleController::class, 'delete']);
         });
 
 
