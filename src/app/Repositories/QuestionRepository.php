@@ -36,8 +36,7 @@ class QuestionRepository
 
             $questions = $questions
                 ->getRelation('answers')
-                ->withCount('votes_answers')
-                ->where('votes_answers_count','!=',0);
+                ->withCount('votes_answers');
         }
 //        $questions = $questions->with(['answers', 'votes_questions'])->withCount('votes_questions');
         $questions = $questions->orderBy($searchData['order_by'], $searchData['order_direction']);
