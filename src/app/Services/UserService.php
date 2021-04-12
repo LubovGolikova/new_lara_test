@@ -78,13 +78,13 @@ class UserService
     }
 
     /**
-     * @param int $id
+     * @param array $id
      * @return int
      */
-    public function destroy(int $id)
+    public function destroy(array $id)
     {
         try {
-            return User::destroy($id);
+            return User::destroy($id['id']);
 
         } catch(Exception $e) {
 

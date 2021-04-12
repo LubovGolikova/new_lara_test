@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserDeleteRequest;
-use Illuminate\Http\Request;
-
 use App\Http\Requests\UserRoleRequest;
+
 class UserController extends Controller
 {
     /**
@@ -28,7 +27,6 @@ class UserController extends Controller
     public function destroy(UserDeleteRequest $request)
     {
         $validated = $request->validated();
-        dd($validated);
         $deleteData = app()->make('UserService')->destroy($validated);
         return response()->json($deleteData);
     }

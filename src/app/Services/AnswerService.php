@@ -70,13 +70,13 @@ class AnswerService
     }
 
     /**
-     * @param int $id
+     * @param array $id
      * @return int
      */
-    public function destroy(int $id)
+    public function destroy(array $id)
     {
         try {
-                return Answer::destroy($id);
+                return Answer::destroy($id['id']);
 
         } catch(Exception $e) {
 

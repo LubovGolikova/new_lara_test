@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Models\Question;
 use App\Models\UserQuestionVote;
 use App\Repositories\QuestionRepository;
-use Tymon\JWTAuth\Facades\JWTAuth;
 
 class QuestionService
 {
@@ -69,13 +68,14 @@ class QuestionService
     }
 
     /**
-     * @param int $id
+     * @param array $id
      * @return int
      */
-    public function destroy(int $id)
+    public function destroy(array $id)
     {
         try {
-            return Question::destroy($id);
+            return Question::destroy($id['id']);
+
         } catch(Exception $e) {
 
         }

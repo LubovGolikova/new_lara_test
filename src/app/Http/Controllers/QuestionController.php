@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\QuestionRequest;
 use App\Http\Requests\QuestionSearchRequest;
-use Illuminate\Http\Request;
+use App\Http\Requests\QuestionDeleteRequest;
 
 class QuestionController extends Controller
 {
@@ -50,7 +50,6 @@ class QuestionController extends Controller
     public function destroy(QuestionDeleteRequest $request)
     {
         $validated = $request->validated();
-        dd($validated);
         $deleteData = app()->make('QuestionService')->destroy($validated);
         return response()->json($deleteData);
     }

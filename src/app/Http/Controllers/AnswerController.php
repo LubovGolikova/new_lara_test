@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AnswerRequest;
 use App\Http\Requests\AnswerSearchRequest;
-use Illuminate\Http\Request;
-use App\Services\AnswerService;
+use App\Http\Requests\AnswerDeleteRequest;
 
 class AnswerController extends Controller
 {
@@ -51,7 +50,6 @@ class AnswerController extends Controller
     public function destroy(AnswerDeleteRequest $request)
     {
         $validated = $request->validated();
-        dd($validated);
         $deleteData = app()->make('AnswerService')->destroy($validated);
         return response()->json($deleteData);
     }
