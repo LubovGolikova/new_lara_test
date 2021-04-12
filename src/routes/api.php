@@ -54,9 +54,10 @@ Route::group([
         });
 
         Route::post('/questions/create', [App\Http\Controllers\QuestionController::class, 'create']);
+        Route::get('/questions/vote', [App\Http\Controllers\QuestionController::class, 'createVote']);
+
         Route::post('/answers/create', [App\Http\Controllers\AnswerController::class, 'create']);
-        Route::post('questions/{question}/vote', [App\Http\Controllers\QuestionController::class, 'createVote']);
-        Route::post('answers/{answers}/vote', [App\Http\Controllers\AnswerController::class, 'createVote']);
+        Route::get('/answers/vote', [App\Http\Controllers\AnswerController::class, 'createVote']);
     });
 });
 

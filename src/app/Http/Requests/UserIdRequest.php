@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class QuestionDeleteRequest extends FormRequest
+class UserIdRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class QuestionDeleteRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required|exists:questions,id'
+            'id' => 'required|exists:users,id'
         ];
     }
 
@@ -34,8 +34,8 @@ class QuestionDeleteRequest extends FormRequest
     public function messages()
     {
         return [
-            'id.required' => 'The id is Required.',
-            'id.exist' => 'Given Question does not exist.'
+            'id.required' => 'The id  is Required.',
+            'id.exist' => 'Given User does not exist.'
         ];
     }
 }

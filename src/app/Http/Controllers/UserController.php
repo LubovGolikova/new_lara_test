@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserDeleteRequest;
+use App\Http\Requests\UserIdRequest;
 use App\Http\Requests\UserRoleRequest;
 
 class UserController extends Controller
@@ -20,11 +20,11 @@ class UserController extends Controller
     }
 
     /**
-     * @param UserDeleteRequest $request
+     * @param UserIdRequest $request
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function destroy(UserDeleteRequest $request)
+    public function destroy(UserIdRequest $request)
     {
         $validated = $request->validated();
         $deleteData = app()->make('UserService')->destroy($validated);

@@ -39,7 +39,7 @@ class QuestionService
      * @param array $data
      * @return mixed
      */
-    public function create(array $data)
+    public function create(array $createData)
     {
         try {
             $createData['user_id'] = \Auth::user()->id;
@@ -51,17 +51,19 @@ class QuestionService
     }
 
     /**
-     * @param int $id
+     * @param array $createVoteData
      * @return mixed
      */
-    public function createVote(int $id)
+    public function createVote(array $createVoteData)
     {
         try {
             $createVoteData['user_id'] = \Auth::user()->id;
+
             return UserQuestionVote::create([
                 'user_id' => (int)$createVoteData['user_id'],
-                'question_id' => (int)$createVoteData['question_id']
+                'question_id' => (int)$createVoteData['id']
             ]);
+
         } catch(Exception $e) {
 
         };

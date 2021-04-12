@@ -52,21 +52,22 @@ class AnswerService
     }
 
     /**
-     * @param int $id
+     * @param array $createVoteData
      * @return mixed
      */
-    public function createVote(int $id)
+    public function createVote(array $createVoteData)
     {
         try {
             $createVoteData['user_id'] = \Auth::user()->id;
+
             return UserAnswerVote::create([
                 'user_id' => (int)$createVoteData['user_id'],
-                'answer_id' => (int)$createVoteData['answer_id']
+                'answer_id' => (int)$createVoteData['id']
             ]);
 
         } catch(Exception $e) {
 
-        }
+        };
     }
 
     /**

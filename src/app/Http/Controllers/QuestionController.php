@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\QuestionRequest;
 use App\Http\Requests\QuestionSearchRequest;
-use App\Http\Requests\QuestionDeleteRequest;
+use App\Http\Requests\QuestionIdRequest;
 
 class QuestionController extends Controller
 {
@@ -32,22 +32,23 @@ class QuestionController extends Controller
     }
 
     /**
-     * @param int $id
+     * @param QuestionIdRequest $request
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function createVote(int $id)
+    public function createVote(QuestionIdRequest $request)
     {
-        $question = app()->make('QuestionService')->createVote($id);
+        $validated = $request->validated();
+        $question = app()->make('QuestionService')->createVote($validated);
         return response()->json($question);
     }
 
     /**
-     * @param QuestionDeleteRequest $request
+     * @param QuestionIdRequest $request
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function destroy(QuestionDeleteRequest $request)
+    public function destroy(QuestionIdRequest $request)
     {
         $validated = $request->validated();
         $deleteData = app()->make('QuestionService')->destroy($validated);
