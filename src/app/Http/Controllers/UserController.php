@@ -20,6 +20,30 @@ class UserController extends Controller
     }
 
     /**
+     * @param UserRoleRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
+    public function discharge(UserRoleRequest $request)
+    {
+        $validated = $request->validated();
+        $usersDischarge = app()->make('UserService')->discharge($validated);
+        return response()->json($usersDischarge);
+    }
+
+    /**
+     * @param UserRoleRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
+    public function newAssign(UserRoleRequest $request)
+    {
+        $validated = $request->validated();
+        $usersDischarge = app()->make('UserService')->newAssign($validated);
+        return response()->json($usersDischarge);
+    }
+
+    /**
      * @param UserIdRequest $request
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Container\BindingResolutionException

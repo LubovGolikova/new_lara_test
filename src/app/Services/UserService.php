@@ -64,13 +64,41 @@ class UserService
      * @param array $data
      * @return mixed
      */
-    public function assign(array $data)
+    public function assign(array $createRoledata)
     {
         try {
-            return UserRole::create([
-                'user_id' => $data['user_id'],
-                'role_id' => $data['role_id']
-            ]);
+            $user = User::find($createRoledata['user_id']);
+             return $user->roles()->attach($createRoledata['role_id']);
+
+        } catch(Exception $e) {
+
+        }
+    }
+
+    /**
+     * @param array $data
+     * @return mixed
+     */
+    public function newAssign(array $createRoledata)
+    {
+        try {
+            $user = User::find($createRoledata['user_id']);
+            return $user->roles()->sync($createRoledata['role_id']);
+
+        } catch(Exception $e) {
+
+        }
+    }
+
+    /**
+     * @param array $createRoledata
+     * @return mixed
+     */
+    public function discharge(array $createRoledata)
+    {
+        try {
+            $user = User::find($createRoledata['user_id']);
+            return $user->roles()->detach($createRoledata['role_id']);
 
         } catch(Exception $e) {
 

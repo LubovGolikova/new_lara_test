@@ -77,7 +77,7 @@ class AnswerService
     public function destroy(array $id)
     {
         try {
-                return Answer::destroy($id['id']);
+            return Answer::destroy($id['id']);
 
         } catch(Exception $e) {
 
