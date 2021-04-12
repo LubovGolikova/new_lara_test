@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Models\Question;
+use App\Models\UserQuestionVote;
 use App\Repositories\QuestionRepository;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -18,14 +20,20 @@ class QuestionService
         $this->questionRepository = $questionRepository;
     }
 
+
     /**
-     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     * @param array $searchData
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function get(array $searchData)
     {
-        $searchData['order_by'] = $searchData['order_by'] ?? 'created_at';
-        $searchData['order_direction'] = $searchData['order_direction'] ?? 'asc';
-        return $this->questionRepository->get($searchData);
+        try {
+            $searchData['order_by'] = $searchData['order_by'] ?? 'created_at';
+            $searchData['order_direction'] = $searchData['order_direction'] ?? 'asc';
+            return $this->questionRepository->get($searchData);
+
+        } catch(Exception $e) {
+        }
     }
 
     /**
@@ -34,24 +42,42 @@ class QuestionService
      */
     public function create(array $data)
     {
-        $createData = [];
-        $user = JWTAuth::parseToken()->authenticate();
-        $createData['user_id'] = $user->id;
-        $createData['title'] = $data['title'];
-        $createData['body'] = $data['body'];
-        return $this->questionRepository->create($createData);
+        try {
+            $createData['user_id'] = \Auth::user()->id;
+            return Question::create($createData);
+
+        } catch(Exception $e) {
+
+        };
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @return mixed
      */
-    public function createVote($id)
+    public function createVote(int $id)
     {
-        $createVoteData= [];
-        $user = JWTAuth::parseToken()->authenticate();
-        $createVoteData['user_id'] = $user->id;
-        $createVoteData['question_id'] = $id;
-        return $this->questionRepository->createVote($createVoteData);
+        try {
+            $createVoteData['user_id'] = \Auth::user()->id;
+            return UserQuestionVote::create([
+                'user_id' => (int)$createVoteData['user_id'],
+                'question_id' => (int)$createVoteData['question_id']
+            ]);
+        } catch(Exception $e) {
+
+        };
+    }
+
+    /**
+     * @param int $id
+     * @return int
+     */
+    public function destroy(int $id)
+    {
+        try {
+            return Question::destroy($id);
+        } catch(Exception $e) {
+
+        }
     }
 }

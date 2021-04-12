@@ -7,12 +7,6 @@ use App\Http\Requests\RoleRequest;
 
 class RoleController extends Controller
 {
-
-    public function index()
-    {
-        dd("index F!!! route get");
-    }
-
     /**
      * @param RoleRequest $request
      * @return \Illuminate\Http\JsonResponse
@@ -20,12 +14,10 @@ class RoleController extends Controller
      */
     public function create(RoleRequest $request)
     {
-
         $validated = $request->validated();
         $roles = app()->make('RoleService')->create($validated);
         return response()->json($roles);
     }
-
 
     /**
      * @param RoleRequest $request
@@ -39,26 +31,13 @@ class RoleController extends Controller
         return response()->json($roles);
     }
 
-
-    public function show($id)
-    {
-        //
-    }
-
-
-    public function edit($id)
-    {
-        dd("edit  F!!!");
-    }
-
-
     /**
      * @param RoleRequest $request
-     * @param $id
+     * @param int $id
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function update(RoleRequest $request, $id)
+    public function update(RoleRequest $request, int $id)
     {
         $validated = $request->validated();
         $roles = app()->make('RoleService')->update($id, $validated);
@@ -66,11 +45,11 @@ class RoleController extends Controller
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $deleteData = app()->make('RoleService')->destroy($id);
         return response()->json($deleteData);

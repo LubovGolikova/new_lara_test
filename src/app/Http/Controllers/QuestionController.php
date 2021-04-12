@@ -32,14 +32,26 @@ class QuestionController extends Controller
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function createVote($id)
+    public function createVote(int $id)
     {
         $question = app()->make('QuestionService')->createVote($id);
         return response()->json($question);
     }
 
+    /**
+     * @param QuestionDeleteRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
+    public function destroy(QuestionDeleteRequest $request)
+    {
+        $validated = $request->validated();
+        dd($validated);
+        $deleteData = app()->make('QuestionService')->destroy($validated);
+        return response()->json($deleteData);
+    }
 }

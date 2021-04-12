@@ -25,7 +25,7 @@ class AnswerRequest extends FormRequest
     {
         return [
             'body' => 'required|max:255',
-            'question_id' => 'max:1000'
+            'question_id' => 'required|exists:questions,id'
         ];
     }
 
@@ -36,7 +36,8 @@ class AnswerRequest extends FormRequest
     {
         return [
             'body.required' => 'The answer is Required.',
-            'body.max'=> 'The answer  should be Maximum of 255 Character'
+            'body.max'=> 'The answer  should be Maximum of 255 Character',
+            'question_id.exist' => 'Given Question does not exist.'
         ];
     }
 }

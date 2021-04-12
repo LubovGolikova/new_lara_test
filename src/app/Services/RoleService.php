@@ -24,29 +24,46 @@ class RoleService
      */
     public function create(array $createData)
     {
-        return Role::create($createData);
+        try {
+            return Role::create($createData);
+
+        } catch(Exception $e) {
+
+        }
     }
 
     /**
+     * @param int $id
+     * @param array $editData
      * @return mixed
      */
-    public function update($id,$editData)
+    public function update(int $id, array $editData)
     {
-        return Role::updateOrCreate(
-            [
-            'id' => $id
-            ],
-            [
-            'name' => $editData['name']
-            ]);
+        try {
+            return Role::updateOrCreate(
+                [
+                    'id' => $id
+                ],
+                [
+                    'name' => $editData['name']
+                ]);
+
+        } catch(Exception $e) {
+
+        }
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @return int
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        return Role::destroy($id);
+        try {
+            return Role::destroy($id);
+
+        } catch(Exception $e) {
+
+        }
     }
 }

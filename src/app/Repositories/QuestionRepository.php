@@ -22,18 +22,20 @@ class QuestionRepository
             $questions = $questions->where('title', 'LIKE', '%' . $searchData['search'] . '%');
 
         }
-        if (isset($searchData['has_answer'])  && ($searchData['has_answer'] === "false")) {
+        if (isset($searchData['has_answer'])  && !$searchData['has_answer']) {
+            dd($searchData['has_answer']);
             $questions = $questions->whereDoesntHave('answers');
 
-        } else if (isset($searchData['has_answer'])  && ($searchData['has_answer'] === "true")) {
+        } else if (isset($searchData['has_answer'])  &&  $searchData['has_answer']) {
+            dd($searchData['has_answer']);
             $questions = $questions->has('answers');
 
         }
 
-        if (isset($searchData['has_voted_answer']) && ($searchData['has_voted_answer'] === "false")) {
+        if (isset($searchData['has_voted_answer']) && !$searchData['has_voted_answer']) {
             $questions = $questions->whereDoesntHave('voted_answers');
 
-        } else if (isset($searchData['has_voted_answer']) && ($searchData['has_voted_answer'] === "true")) {
+        } else if (isset($searchData['has_voted_answer']) && $searchData['has_voted_answer']) {
             $questions = $questions->whereHas('voted_answers');
 
         }
@@ -62,29 +64,9 @@ class QuestionRepository
      * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Builder[][]|\Illuminate\Database\
      * Eloquent\Collection|\Illuminate\Database\Eloquent\Collection[]|\Illuminate\Database\Eloquent\Model[]|mixed
      */
-    public function getById($id)
+    public function getById(int $id)
     {
         return Question::query()->findOrFail($id)->get();
     }
 
-    /**
-     * @param array $data
-     * @return mixed
-     */
-    public function create(array $data)
-    {
-        return Question::create($data);
-    }
-
-    /**
-     * @param $arrElc
-     * @return mixed
-     */
-    public function createVote(array $createVoteData)
-    {
-        return UserQuestionVote::create([
-            'user_id' => (int)$createVoteData['user_id'],
-            'question_id' => (int)$createVoteData['question_id']
-        ]);
-    }
 }

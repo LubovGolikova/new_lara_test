@@ -28,29 +28,36 @@ class UserService
      */
     public function get()
     {
-        return $this->userRepository->get();
+        try {
+            return $this->userRepository->get();
+
+        } catch(Exception $e) {
+
+        }
     }
 
     /**
      * @param array $data
      * @return mixed
      */
-    public function create(array $data)
+    public function create(array $createData)
     {
-        $createData = [];
-        $createData['username'] = $data['username'];
-        $createData['email'] = $data['email'];
-        $createData['avatar_path'] = isset($data['avatar_path']) ? $data['avatar_path'] : null;
-        $createData['password'] = Hash::make($data['password']);
+        try {
+            $createData['avatar_path'] = isset($createData['avatar_path']) ? $createData['avatar_path'] : null;
+            $createData['password'] = Hash::make($createData['password']);
 
-        $factory = JWTFactory::customClaims([
-            'sub' => env('JWT_SECRET'),
-        ]);
-        $payload = $factory->make();
+            $factory = JWTFactory::customClaims([
+                'sub' => env('JWT_SECRET'),
+            ]);
+            $payload = $factory->make();
 
-        $createData['remember_token'] = JWTAuth::encode($payload);
+            $createData['remember_token'] = JWTAuth::encode($payload);
 
-        return $this->userRepository->create($createData);
+            return $this->userRepository->create($createData);
+
+        } catch(Exception $e) {
+
+        }
     }
 
     /**
@@ -59,9 +66,28 @@ class UserService
      */
     public function assign(array $data)
     {
-        return UserRole::create([
-            'user_id' => $data['user_id'],
-            'role_id' => $data['role_id']
-        ]);
+        try {
+            return UserRole::create([
+                'user_id' => $data['user_id'],
+                'role_id' => $data['role_id']
+            ]);
+
+        } catch(Exception $e) {
+
+        }
+    }
+
+    /**
+     * @param int $id
+     * @return int
+     */
+    public function destroy(int $id)
+    {
+        try {
+            return User::destroy($id);
+
+        } catch(Exception $e) {
+
+        }
     }
 }

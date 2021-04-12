@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RoleDeleteRequest extends FormRequest
+class UserDeleteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,6 @@ class RoleDeleteRequest extends FormRequest
     public function rules()
     {
         return [
-            'eloquent' => 'required|string|in:user,question,answer',
             'id' => 'required|exists:users,id'
         ];
     }
@@ -35,7 +34,6 @@ class RoleDeleteRequest extends FormRequest
     public function messages()
     {
         return [
-            'eloquent.required' => 'The eloquent is Required.',
             'id.required' => 'The id  is Required.',
             'id.exist' => 'Given User does not exist.'
         ];

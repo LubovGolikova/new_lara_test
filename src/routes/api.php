@@ -47,6 +47,10 @@ Route::group([
             Route::resource('/admin/roles', App\Http\Controllers\RoleController::class);
             Route::post('/admin/role/assign', [App\Http\Controllers\UserController::class, 'assign']);
 
+            Route::delete('/admin/user/delete', [App\Http\Controllers\UserController::class, 'destroy']);
+            Route::delete('/admin/question/delete', [App\Http\Controllers\QuestionController::class, 'destroy']);
+            Route::delete('/admin/answer/delete', [App\Http\Controllers\AnswerController::class, 'destroy']);
+
         });
 
         Route::post('/questions/create', [App\Http\Controllers\QuestionController::class, 'create']);
