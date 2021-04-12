@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Models\Question;
 use App\Repositories\QuestionRepository;
 use Tymon\JWTAuth\Facades\JWTAuth;
 

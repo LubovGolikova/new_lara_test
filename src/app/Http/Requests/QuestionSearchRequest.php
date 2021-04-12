@@ -27,8 +27,8 @@ class QuestionSearchRequest extends FormRequest
             'search' => 'string|nullable|max:255',
             'order_by' => 'string|nullable|in:updated_at,created_at',
             'order_direction' => 'string|nullable|in:asc,desc',
-            'has_answer' => 'boolean|nullable',
-            'has_voted_answer' => 'boolean|nullable'
+            'has_answer' => 'string|nullable',
+            'has_voted_answer' => 'string|nullable'
         ];
     }
 

@@ -46,9 +46,21 @@ class Question extends Model
         return $this->hasMany(Answer::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function voted_answers()
     {
         return $this->hasMany(Answer::class)->whereHas('votes_answers');
+    }
+
+    //TODO check
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Relations\HasMany[]
+     */
+    public function having_answers_count()
+    {
+        return $this->hasMany(Answer::class)->whereHas('votes_answers')->having('votes_answers_count','>', 0)->get();
     }
 
     /**

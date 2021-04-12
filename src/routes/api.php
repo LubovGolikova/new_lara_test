@@ -44,7 +44,7 @@ Route::group([
             'middleware' => 'role:admin'
         ], function () {
 
-            Route::resource('/admin/role', 'App\Http\Controllers\RoleController::class');
+            Route::resource('/admin/roles', App\Http\Controllers\RoleController::class);
             Route::post('/admin/role/assign', [App\Http\Controllers\UserController::class, 'assign']);
 
         });

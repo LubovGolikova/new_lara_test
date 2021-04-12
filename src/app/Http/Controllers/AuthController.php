@@ -14,6 +14,7 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 class AuthController extends Controller
 {
     private $userService;
+    const USER_ROLE = 1;
 
     /**
      * AuthController constructor.
@@ -56,8 +57,8 @@ class AuthController extends Controller
         $user = app()->make('UserService')->create($validated);
         $token = JWTAuth::fromUser($user);
         $userId = $user->id;
-        $roleId = 1;
-        $addrRole = app()->make('RoleService')->create($userId, $roleId);
+        $roleId = self::USER_ROLE;
+        $addrRole = app()->make('UserService')->assign($userId, $roleId);
         return response()->json([
             'message' => 'User successfully registered',
             'user' => $user,

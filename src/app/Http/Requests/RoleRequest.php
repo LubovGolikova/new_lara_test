@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AnswerSearchRequest extends FormRequest
+class RoleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,18 @@ class AnswerSearchRequest extends FormRequest
     public function rules()
     {
         return [
-            'search' => 'string|nullable|max:255',
-            'order_by' => 'string|nullable|in:updated_at,created_at',
-            'order_direction' => 'string|nullable|in:asc,desc',
-            'has_voted' => 'string|nullable'
+            'name' => 'required|min:2|max:255',
         ];
     }
 
+    /**
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'name.required' => 'The name is Required.',
+            'name.max'=> 'The name  should be Maximum of 255 Character'
+        ];
+    }
 }

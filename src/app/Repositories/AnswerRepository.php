@@ -20,10 +20,10 @@ class AnswerRepository
             $answers = $answers->where('body', 'LIKE', '%' . $searchData['search'] . '%');
 
         }
-        if (isset($searchData['has_voted']) && !$searchData['has_voted']) {
+        if (isset($searchData['has_voted']) && ($searchData['has_voted'] === "false")) {
             $answers = $answers->whereDoesntHave('votes_answers');
 
-        } else if (isset($searchData['has_voted']) && $searchData['has_voted']) {
+        } else if (isset($searchData['has_voted']) && ($searchData['has_voted'] === "true")) {
             $answers = $answers->whereHas('votes_answers');
 
         }

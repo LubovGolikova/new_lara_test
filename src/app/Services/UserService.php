@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Models\User;
 use App\Models\UserRole;
 use App\Repositories\UserRepository;
-use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Facades\JWTFactory;

@@ -22,18 +22,18 @@ class QuestionRepository
             $questions = $questions->where('title', 'LIKE', '%' . $searchData['search'] . '%');
 
         }
-        if (isset($searchData['has_answer'])  && !$searchData['has_answer']) {
+        if (isset($searchData['has_answer'])  && ($searchData['has_answer'] === "false")) {
             $questions = $questions->whereDoesntHave('answers');
 
-        } else if (isset($searchData['has_answer'])  &&  $searchData['has_answer']) {
+        } else if (isset($searchData['has_answer'])  && ($searchData['has_answer'] === "true")) {
             $questions = $questions->has('answers');
 
         }
 
-        if (isset($searchData['has_voted_answer']) && !$searchData['has_voted_answer']) {
+        if (isset($searchData['has_voted_answer']) && ($searchData['has_voted_answer'] === "false")) {
             $questions = $questions->whereDoesntHave('voted_answers');
 
-        } else if (isset($searchData['has_voted_answer']) && $searchData['has_voted_answer']) {
+        } else if (isset($searchData['has_voted_answer']) && ($searchData['has_voted_answer'] === "true")) {
             $questions = $questions->whereHas('voted_answers');
 
         }
