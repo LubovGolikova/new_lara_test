@@ -22,7 +22,7 @@ class QuestionService
 
     /**
      * @param array $searchData
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Http\JsonResponse
      */
     public function get(array $searchData)
     {
@@ -32,12 +32,14 @@ class QuestionService
             return $this->questionRepository->get($searchData);
 
         } catch(Exception $e) {
+
+            return response()->json(['error' => 'Could not receive data'], 500);
         }
     }
 
     /**
-     * @param array $data
-     * @return mixed
+     * @param array $createData
+     * @return \Illuminate\Http\JsonResponse
      */
     public function create(array $createData)
     {
@@ -47,12 +49,13 @@ class QuestionService
 
         } catch(Exception $e) {
 
+            return response()->json(['error' => 'Could not create data'], 500);
         };
     }
 
     /**
      * @param array $createVoteData
-     * @return mixed
+     * @return \Illuminate\Http\JsonResponse
      */
     public function createVote(array $createVoteData)
     {
@@ -66,12 +69,13 @@ class QuestionService
 
         } catch(Exception $e) {
 
+            return response()->json(['error' => 'Could not create data'], 500);
         };
     }
 
     /**
      * @param array $id
-     * @return int
+     * @return \Illuminate\Http\JsonResponse|int
      */
     public function destroy(array $id)
     {
@@ -80,6 +84,7 @@ class QuestionService
 
         } catch(Exception $e) {
 
+            return response()->json(['error' => 'Could not destroy user'], 500);
         }
     }
 }

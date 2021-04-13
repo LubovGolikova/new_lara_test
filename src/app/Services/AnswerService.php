@@ -21,7 +21,8 @@ class AnswerService
     }
 
     /**
-     * @return Answer[]|\Illuminate\Database\Eloquent\Collection
+     * @param array $searchData
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Http\JsonResponse
      */
     public function get(array $searchData)
     {
@@ -32,13 +33,14 @@ class AnswerService
 
         } catch(Exception $e) {
 
+            return response()->json(['error' => 'Could not receive data'], 500);
         }
     }
 
 
     /**
      * @param array $createData
-     * @return mixed
+     * @return \Illuminate\Http\JsonResponse
      */
     public function create(array $createData)
     {
@@ -48,12 +50,13 @@ class AnswerService
 
         } catch(Exception $e) {
 
+            return response()->json(['error' => 'Could not create data'], 500);
         }
     }
 
     /**
      * @param array $createVoteData
-     * @return mixed
+     * @return \Illuminate\Http\JsonResponse
      */
     public function createVote(array $createVoteData)
     {
@@ -67,12 +70,13 @@ class AnswerService
 
         } catch(Exception $e) {
 
+            return response()->json(['error' => 'Could not create data'], 500);
         };
     }
 
     /**
      * @param array $id
-     * @return int
+     * @return \Illuminate\Http\JsonResponse|int
      */
     public function destroy(array $id)
     {
@@ -81,6 +85,7 @@ class AnswerService
 
         } catch(Exception $e) {
 
+            return response()->json(['error' => 'Could not destroy user'], 500);
         }
     }
 }

@@ -20,7 +20,7 @@ class RoleService
 
     /**
      * @param array $createData
-     * @return mixed
+     * @return \Illuminate\Http\JsonResponse
      */
     public function create(array $createData)
     {
@@ -29,13 +29,14 @@ class RoleService
 
         } catch(Exception $e) {
 
+            return response()->json(['error' => 'Could not create data'], 500);
         }
     }
 
     /**
      * @param int $id
      * @param array $editData
-     * @return mixed
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(int $id, array $editData)
     {
@@ -50,12 +51,13 @@ class RoleService
 
         } catch(Exception $e) {
 
+            return response()->json(['error' => 'Could not update data'], 500);
         }
     }
 
     /**
      * @param int $id
-     * @return int
+     * @return \Illuminate\Http\JsonResponse|int
      */
     public function destroy(int $id)
     {
@@ -64,6 +66,7 @@ class RoleService
 
         } catch(Exception $e) {
 
+            return response()->json(['error' => 'Could not destroy user'], 500);
         }
     }
 }

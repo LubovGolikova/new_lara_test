@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\User;
-use App\Models\UserRole;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -12,6 +11,7 @@ use Tymon\JWTAuth\Facades\PayloadFactory;
 
 class UserService
 {
+
     protected $userRepository;
 
     /**
@@ -24,7 +24,7 @@ class UserService
     }
 
     /**
-     * @return User[]|\Illuminate\Database\Eloquent\Collection
+     * @return User[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Http\JsonResponse
      */
     public function get()
     {
@@ -33,12 +33,13 @@ class UserService
 
         } catch(Exception $e) {
 
+            return response()->json(['error' => 'Could not receive data'], 500);
         }
     }
 
     /**
-     * @param array $data
-     * @return mixed
+     * @param array $createData
+     * @return \Illuminate\Http\JsonResponse|mixed
      */
     public function create(array $createData)
     {
@@ -57,12 +58,13 @@ class UserService
 
         } catch(Exception $e) {
 
+            return response()->json(['error' => 'Could not create data'], 500);
         }
     }
 
     /**
-     * @param array $data
-     * @return mixed
+     * @param array $createRoledata
+     * @return \Illuminate\Http\JsonResponse
      */
     public function assign(array $createRoledata)
     {
@@ -72,12 +74,13 @@ class UserService
 
         } catch(Exception $e) {
 
+            return response()->json(['error' => 'Could not assign user'], 500);
         }
     }
 
     /**
-     * @param array $data
-     * @return mixed
+     * @param array $createRoledata
+     * @return \Illuminate\Http\JsonResponse
      */
     public function newAssign(array $createRoledata)
     {
@@ -87,12 +90,13 @@ class UserService
 
         } catch(Exception $e) {
 
+            return response()->json(['error' => 'Could not create new assign data'], 500);
         }
     }
 
     /**
      * @param array $createRoledata
-     * @return mixed
+     * @return \Illuminate\Http\JsonResponse
      */
     public function discharge(array $createRoledata)
     {
@@ -102,12 +106,13 @@ class UserService
 
         } catch(Exception $e) {
 
+            return response()->json(['error' => 'Could not discharge data'], 500);
         }
     }
 
     /**
      * @param array $id
-     * @return int
+     * @return \Illuminate\Http\JsonResponse|int
      */
     public function destroy(array $id)
     {
@@ -116,6 +121,7 @@ class UserService
 
         } catch(Exception $e) {
 
+            return response()->json(['error' => 'Could not destroy user'], 500);
         }
     }
 }
