@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Answer;
-use App\Models\UserAnswerVote;
+
 
 class AnswerRepository
 {
@@ -27,7 +27,17 @@ class AnswerRepository
             $answers = $answers->whereHas('votes_answers');
 
         }
-        $answers = $answers->with('votes_answers')->withCount('votes_answers');
+
+        //TODO check
+        if (isset($searchData['order_by_votes']) && !$searchData['order_by_votes']) {
+            $answers = $answers->with('new_count');
+
+        } else if (isset($searchData['order_by_votes']) && $searchData['order_by_votes']) {
+            dd('answer_not _is');
+        }
+
+///        $answers = $answers->with('votes_answers')->withCount('votes_answers');
+
         $answers = $answers->orderBy($searchData['order_by'], $searchData['order_direction']);
         $answers = $answers->get();
 

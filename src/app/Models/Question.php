@@ -56,11 +56,11 @@ class Question extends Model
 
     //TODO check
     /**
-     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Relations\HasMany[]
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function having_answers_count()
+    public function having_answers()
     {
-        return $this->hasMany(Answer::class)->whereHas('votes_answers')->having('votes_answers_count','>', 0)->get();
+        return $this->answers();
     }
 
     /**

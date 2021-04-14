@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Collection;
 class Answer extends Model
 {
     use HasFactory;
@@ -51,6 +51,14 @@ class Answer extends Model
      */
     public function votes_answers()
     {
-        return $this->belongsToMany(User::class,'user_answer_votes');
+        return $this->belongsToMany(User::class,'user_answer_votes','user_id','answer_id');
     }
+
+    //TODO check
+    public function new_count()
+    {
+        return $this->votes_answers();
+
+    }
+
 }

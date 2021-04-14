@@ -22,6 +22,7 @@ class QuestionRepository
             $questions = $questions->where('title', 'LIKE', '%' . $searchData['search'] . '%');
 
         }
+
         if (isset($searchData['has_answer'])  && $searchData['has_answer']) {
             $questions = $questions->whereDoesntHave('answers');
 
@@ -38,11 +39,18 @@ class QuestionRepository
 
         }
 
+        //TODO check
+        if (isset($searchData['order_by_votes']) && !$searchData['order_by_votes']) {
+            $questions = $questions->with('having_answers');
 
-        $questions = $questions->with('votes_questions')->withCount('votes_questions');
-        $questions = $questions->with('answers', function($query) {
-            $query->withCount('votes_answers');
-        });
+        } else if (isset($searchData['order_by_votes']) && $searchData['order_by_votes']) {
+            dd('$questions_not _is');
+        }
+
+//        $questions = $questions->with('votes_questions')->withCount('votes_questions');
+//        $questions = $questions->with('answers', function($query) {
+//            $query->withCount('votes_answers');
+//        });
         $questions = $questions->orderBy($searchData['order_by'], $searchData['order_direction']);
         $questions = $questions->get();
 
