@@ -7,6 +7,7 @@ use App\Services\UserService;
 use App\Services\QuestionService;
 use App\Services\AnswerService;
 use App\Services\RoleService;
+use App\Services\MailService;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -20,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('QuestionService',QuestionService::class);
         $this->app->bind('AnswerService',AnswerService::class);
         $this->app->bind('RoleService',RoleService::class);
+        $this->app->bind('MailService',MailService::class);
     }
 
     /**

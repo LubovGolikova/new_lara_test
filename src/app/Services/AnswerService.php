@@ -54,7 +54,7 @@ class AnswerService
             $createData['user_id'] = $user->id;
 
             //TODO
-            Mail::to($user->email)->send(new AnswerShipped());
+            $emailSend = app()->make('MailService')->createMail();
             Notification::route('mail', $user->email)->notify(new AnswerReceived($createData['user_id'] ));
 
             return Answer::create($createData);
