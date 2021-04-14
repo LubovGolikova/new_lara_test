@@ -2,13 +2,18 @@
 
 namespace App\Services;
 
+use App\Mail\AnswerShipped;
 use App\Models\Answer;
 use App\Models\UserAnswerVote;
+use App\Notifications\AnswerReceived;
 use App\Repositories\AnswerRepository;
-use Tymon\JWTAuth\Facades\JWTAuth;
-
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
+use Exception;
+use App\Traits\LogTrait;
 class AnswerService
 {
+    use LogTrait;
     protected $answerRepository;
 
     /**
@@ -32,11 +37,11 @@ class AnswerService
             return $this->answerRepository->get($searchData);
 
         } catch(Exception $e) {
-
-            return response()->json(['error' => 'Could not receive data'], 500);
+            $message = 'Could not receive data';
+            $this->customLog($message, $e);
+            return response()->json(['error' => $message], 500);
         }
     }
-
 
     /**
      * @param array $createData
@@ -45,12 +50,19 @@ class AnswerService
     public function create(array $createData)
     {
         try {
-            $createData['user_id'] = \Auth::user()->id;
+            $user = \Auth::user();
+            $createData['user_id'] = $user->id;
+
+            //TODO
+            Mail::to($user->email)->send(new AnswerShipped());
+            Notification::route('mail', $user->email)->notify(new AnswerReceived($createData['user_id'] ));
+
             return Answer::create($createData);
 
         } catch(Exception $e) {
-
-            return response()->json(['error' => 'Could not create data'], 500);
+            $message = 'Could not create data';
+            $this->customLog($message, $e);
+            return response()->json(['error' => $message], 500);
         }
     }
 
@@ -69,9 +81,10 @@ class AnswerService
             ]);
 
         } catch(Exception $e) {
-
-            return response()->json(['error' => 'Could not create data'], 500);
-        };
+            $message = 'Could not create data';
+            $this->customLog($message, $e);
+            return response()->json(['error' => $message], 500);
+        }
     }
 
     /**
@@ -84,8 +97,9 @@ class AnswerService
             return Answer::destroy($id['id']);
 
         } catch(Exception $e) {
-
-            return response()->json(['error' => 'Could not destroy user'], 500);
+            $message = 'Could not destroy user';
+            $this->customLog($message, $e);
+            return response()->json(['error' => $message], 500);
         }
     }
 }

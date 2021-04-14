@@ -24,10 +24,10 @@ class UserController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function discharge(UserRoleRequest $request)
+    public function detach(UserRoleRequest $request)
     {
         $validated = $request->validated();
-        $usersDischarge = app()->make('UserService')->discharge($validated);
+        $usersDischarge = app()->make('UserService')->detach($validated);
         return response()->json($usersDischarge);
     }
 

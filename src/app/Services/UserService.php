@@ -3,40 +3,15 @@
 namespace App\Services;
 
 use App\Models\User;
-use App\Repositories\UserRepository;
+use App\Traits\LogTrait;
 use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Facades\JWTFactory;
-use Tymon\JWTAuth\Facades\PayloadFactory;
+use Exception;
 
 class UserService
 {
-
-    protected $userRepository;
-
-    /**
-     * UserService constructor.
-     * @param UserRepository $userRepository
-     */
-    public function __construct(UserRepository $userRepository)
-    {
-        $this->userRepository = $userRepository;
-    }
-
-    /**
-     * @return User[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Http\JsonResponse
-     */
-    public function get()
-    {
-        try {
-            return $this->userRepository->get();
-
-        } catch(Exception $e) {
-
-            return response()->json(['error' => 'Could not receive data'], 500);
-        }
-    }
-
+    use LogTrait;
     /**
      * @param array $createData
      * @return \Illuminate\Http\JsonResponse|mixed
@@ -50,63 +25,68 @@ class UserService
             $factory = JWTFactory::customClaims([
                 'sub' => env('JWT_SECRET'),
             ]);
+
             $payload = $factory->make();
 
             $createData['remember_token'] = JWTAuth::encode($payload);
 
-            return $this->userRepository->create($createData);
+            return User::create($createData);
 
         } catch(Exception $e) {
-
-            return response()->json(['error' => 'Could not create data'], 500);
+            $message = 'Could not create data';
+            $this->customLog($message, $e);
+            return response()->json(['error' => $message], 500);
         }
     }
 
     /**
-     * @param array $createRoledata
+     * @param array $createRoleData
      * @return \Illuminate\Http\JsonResponse
      */
-    public function assign(array $createRoledata)
+    public function assign(array $createRoleData)
     {
         try {
-            $user = User::find($createRoledata['user_id']);
-             return $user->roles()->attach($createRoledata['role_id']);
+            $user = User::find($createRoleData['user_id']);
+             return $user->roles()->attach($createRoleData['role_id']);
 
         } catch(Exception $e) {
-
-            return response()->json(['error' => 'Could not assign user'], 500);
+            $message = 'Could not assign user';
+            $this->customLog($message, $e);
+            return response()->json(['error' => $message], 500);
         }
     }
 
     /**
-     * @param array $createRoledata
+     * @param array $createRoleData
      * @return \Illuminate\Http\JsonResponse
      */
-    public function newAssign(array $createRoledata)
+    public function newAssign(array $createRoleData)
     {
         try {
-            $user = User::find($createRoledata['user_id']);
-            return $user->roles()->sync($createRoledata['role_id']);
+            $user = User::find($createRoleData['user_id']);
+            return $user->roles()->sync($createRoleData['role_id']);
 
         } catch(Exception $e) {
-
-            return response()->json(['error' => 'Could not create new assign data'], 500);
+            $message = 'Could not create new assign data';
+            $this->customLog($message, $e);
+            return response()->json(['error' => $message], 500);
         }
     }
 
     /**
-     * @param array $createRoledata
+     * @param array $createRoleData
      * @return \Illuminate\Http\JsonResponse
      */
-    public function discharge(array $createRoledata)
+    public function detach(array $createRoleData)
     {
         try {
-            $user = User::find($createRoledata['user_id']);
-            return $user->roles()->detach($createRoledata['role_id']);
+            $user = User::find($createRoleData['user_id']);
+            return $user->roles()->detach($createRoleData['role_id']);
 
         } catch(Exception $e) {
-
-            return response()->json(['error' => 'Could not discharge data'], 500);
+            $message = 'Could not detach data';
+            $this->customLog($message, $e);
+            return response()->json(['error' => $message], 500);
         }
     }
 
@@ -120,8 +100,9 @@ class UserService
             return User::destroy($id['id']);
 
         } catch(Exception $e) {
-
-            return response()->json(['error' => 'Could not destroy user'], 500);
+            $message = 'Could not destroy user';
+            $this->customLog($message, $e);
+            return response()->json(['error' => $message], 500);
         }
     }
 }

@@ -3,21 +3,11 @@
 namespace App\Services;
 
 use App\Models\Role;
-use App\Repositories\RoleRepository;
-
+use Exception;
+use App\Traits\LogTrait;
 class RoleService
 {
-    protected $roleRepository;
-
-    /**
-     * RoleService constructor.
-     * @param RoleRepository $roleRepository
-     */
-    public function __construct(RoleRepository $roleRepository)
-    {
-        $this->roleRepository = $roleRepository;
-    }
-
+    use LogTrait;
     /**
      * @param array $createData
      * @return \Illuminate\Http\JsonResponse
@@ -28,8 +18,9 @@ class RoleService
             return Role::create($createData);
 
         } catch(Exception $e) {
-
-            return response()->json(['error' => 'Could not create data'], 500);
+            $message = 'Could not create data';
+            $this->customLog($message, $e);
+            return response()->json(['error' => $message], 500);
         }
     }
 
@@ -50,8 +41,9 @@ class RoleService
                 ]);
 
         } catch(Exception $e) {
-
-            return response()->json(['error' => 'Could not update data'], 500);
+            $message = 'Could not update data';
+            $this->customLog($message, $e);
+            return response()->json(['error' => $message], 500);
         }
     }
 
@@ -66,7 +58,9 @@ class RoleService
 
         } catch(Exception $e) {
 
-            return response()->json(['error' => 'Could not destroy user'], 500);
+            $message = 'Could not destroy role';
+            $this->customLog($message, $e);
+            return response()->json(['error' => $message], 500);
         }
     }
 }

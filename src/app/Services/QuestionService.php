@@ -5,9 +5,11 @@ namespace App\Services;
 use App\Models\Question;
 use App\Models\UserQuestionVote;
 use App\Repositories\QuestionRepository;
-
+use Exception;
+use App\Traits\LogTrait;
 class QuestionService
 {
+    use LogTrait;
     protected $questionRepository;
 
     /**
@@ -18,7 +20,6 @@ class QuestionService
     {
         $this->questionRepository = $questionRepository;
     }
-
 
     /**
      * @param array $searchData
@@ -32,8 +33,9 @@ class QuestionService
             return $this->questionRepository->get($searchData);
 
         } catch(Exception $e) {
-
-            return response()->json(['error' => 'Could not receive data'], 500);
+            $message = 'Could not receive data';
+            $this->customLog($message, $e);
+            return response()->json(['error' => $message], 500);
         }
     }
 
@@ -48,9 +50,10 @@ class QuestionService
             return Question::create($createData);
 
         } catch(Exception $e) {
-
-            return response()->json(['error' => 'Could not create data'], 500);
-        };
+            $message = 'Could not create data';
+            $this->customLog($message, $e);
+            return response()->json(['error' => $message], 500);
+        }
     }
 
     /**
@@ -68,9 +71,10 @@ class QuestionService
             ]);
 
         } catch(Exception $e) {
-
-            return response()->json(['error' => 'Could not create data'], 500);
-        };
+            $message = 'Could not create data';
+            $this->customLog($message, $e);
+            return response()->json(['error' => $message], 500);
+        }
     }
 
     /**
@@ -83,8 +87,9 @@ class QuestionService
             return Question::destroy($id['id']);
 
         } catch(Exception $e) {
-
-            return response()->json(['error' => 'Could not destroy user'], 500);
+            $message = 'Could not destroy user';
+            $this->customLog($message, $e);
+            return response()->json(['error' => $message], 500);
         }
     }
 }
