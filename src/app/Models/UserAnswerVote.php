@@ -19,4 +19,5 @@ class UserAnswerVote extends Model
         'user_id',
         'answer_id',
     ];
+
 }

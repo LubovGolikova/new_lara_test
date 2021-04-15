@@ -20,7 +20,9 @@ class MailService
     {
         try {
             $user = \Auth::user();
-            Mail::to($user->email)->send(new AnswerShipped());
+            $userEmail = [];
+            $userEmail['email'] = $user->email;
+            Mail::to( $userEmail['email'])->send(new AnswerShipped());
 
         } catch(Exception $e) {
             $message = 'Could not create mail';
