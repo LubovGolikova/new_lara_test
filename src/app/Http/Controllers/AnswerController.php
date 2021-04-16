@@ -30,7 +30,7 @@ class AnswerController extends Controller
         $answer = app()->make('AnswerService')->create($validated);
         $data = app()->make('AnswerService')->createData($answer);
         app()->make('MailService')->createMail($data);
-        return response()->json($data );
+        return response()->json($answer);
 
     }
 

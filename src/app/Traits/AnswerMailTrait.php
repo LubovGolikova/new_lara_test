@@ -24,6 +24,22 @@ trait AnswerMailTrait
         }
 
         return $questionText;
-
     }
+
+    /**
+     * @return mixed
+     */
+    public function mostPopularAnswers()
+    {
+        $answers = Answer::selectRaw('answers.id, count(*) as count')
+            ->join('user_answer_votes', 'answers.id', '=', 'user_answer_votes.answer_id')
+            ->groupBy('answers.id')
+            ->orderBy('count', 'desc')
+            ->limit(5)
+            ->get();
+
+        return $answers;
+    }
+
+
 }

@@ -2,12 +2,11 @@
 
 namespace App\Console\Commands;
 
-use App\Traits\AnswerMailTrait;
+use App\Jobs\ProcessMail;
 use Illuminate\Console\Command;
 
 class WeekQuote extends Command
 {
-    use AnswerMailTrait;
     /**
      * The name and signature of the console command.
      *
@@ -33,19 +32,19 @@ class WeekQuote extends Command
     }
 
     /**
-     * @return mixed
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     *
      */
     public function handle()
     {
-//        $mostpopularAnswers = $this->mostPopularAnswer();
-//        $receiveTextQuestions = $this->receiveTextQuestion($mostpopularAnswers);
-//        $data = array(
-//            'questionTitleText' => $receiveTextQuestion['title'],
-//            'questionBodyText' => $receiveTextQuestion['body'],
-//            'answerBodyText' =>
-//        );
-//        $emailSend = app()->make('MailService')->createMail($data);
+//        $users = User::all();
+//        foreach ($users as $user) {
+//            // Send mail to user
+//            dispatch(new ProcessMail($user));
+//
+//        }
+        dispatch(new ProcessMail());
         $this->info('Email send  Successfully.');
+       return -1;
+
     }
 }
