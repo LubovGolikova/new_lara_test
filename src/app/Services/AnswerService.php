@@ -2,18 +2,19 @@
 
 namespace App\Services;
 
-use App\Mail\AnswerShipped;
 use App\Models\Answer;
 use App\Models\UserAnswerVote;
 use App\Notifications\AnswerReceived;
 use App\Repositories\AnswerRepository;
-use Illuminate\Support\Facades\Mail;
+use App\Traits\AnswerMailTrait;
 use Illuminate\Support\Facades\Notification;
 use Exception;
 use App\Traits\LogTrait;
+
 class AnswerService
 {
     use LogTrait;
+    use AnswerMailTrait;
     protected $answerRepository;
 
     /**
@@ -36,7 +37,7 @@ class AnswerService
             $searchData['order_direction'] = $searchData['order_direction'] ?? 'asc';
             return $this->answerRepository->get($searchData);
 
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $message = 'Could not receive data';
             $this->customLog($message, $e);
             return response()->json(['error' => $message], 500);
@@ -53,13 +54,21 @@ class AnswerService
             $user = \Auth::user();
             $createData['user_id'] = $user->id;
 
-            //TODO
-            $emailSend = app()->make('MailService')->createMail();
-            Notification::route('mail', $user->email)->notify(new AnswerReceived($createData['user_id'] ));
+            $answer = Answer::create($createData);
 
-            return Answer::create($createData);
+            $receiveTextAnswer = $this->receiveTextAnswer($answer);
+            $receiveTextQuestion = $this->receiveTextQuestion($answer);
+            $data = array(
+                'questionTitleText' => $receiveTextQuestion['title'],
+                'questionBodyText' => $receiveTextQuestion['body'],
+                'answerBodyText' => $receiveTextAnswer['body']
+            );
+            $emailSend = app()->make('MailService')->createMail($data);
+            Notification::route('mail', $user->email)->notify(new AnswerReceived($createData['user_id']));
 
-        } catch(Exception $e) {
+            return $answer;
+
+        } catch (Exception $e) {
             $message = 'Could not create data';
             $this->customLog($message, $e);
             return response()->json(['error' => $message], 500);
@@ -80,7 +89,7 @@ class AnswerService
                 'answer_id' => (int)$createVoteData['id']
             ]);
 
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $message = 'Could not create data';
             $this->customLog($message, $e);
             return response()->json(['error' => $message], 500);
@@ -96,7 +105,7 @@ class AnswerService
         try {
             return Answer::destroy($id['id']);
 
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $message = 'Could not destroy user';
             $this->customLog($message, $e);
             return response()->json(['error' => $message], 500);

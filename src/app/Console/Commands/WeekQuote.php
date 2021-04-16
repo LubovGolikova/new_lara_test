@@ -2,10 +2,12 @@
 
 namespace App\Console\Commands;
 
+use App\Traits\AnswerMailTrait;
 use Illuminate\Console\Command;
 
 class WeekQuote extends Command
 {
+    use AnswerMailTrait;
     /**
      * The name and signature of the console command.
      *
@@ -36,7 +38,15 @@ class WeekQuote extends Command
      */
     public function handle()
     {
-        $emailSend = app()->make('MailService')->createMail();
+        $mostpopularAnswer = $this->mostPopularAnswer();
+        $receiveTextAnswer = $this->receiveTextAnswer($mostpopularAnswer);
+        $receiveTextQuestion = $this->receiveTextQuestion($mostpopularAnswer);
+        $data = array(
+            'questionTitleText' => $receiveTextQuestion['title'],
+            'questionBodyText' => $receiveTextQuestion['body'],
+            'answerBodyText' => $receiveTextAnswer['body']
+        );
+        $emailSend = app()->make('MailService')->createMail($data);
         $this->info('Email send  Successfully.');
     }
 }

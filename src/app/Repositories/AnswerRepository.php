@@ -4,7 +4,10 @@ namespace App\Repositories;
 
 use App\Models\Answer;
 
-
+use App\Models\Question;
+use App\Models\UserAnswerVote;
+use App\Models\User;
+use DB;
 class AnswerRepository
 {
 
@@ -30,7 +33,9 @@ class AnswerRepository
 
         //TODO check
         if (isset($searchData['order_by_votes']) && !$searchData['order_by_votes']) {
-            $answers = $answers->with('new_count');
+            //$answersNew = $answers->with('votesCount');
+//            $answers =Answer::query()->find(1);
+//            dd($answers->answers);
 
         } else if (isset($searchData['order_by_votes']) && $searchData['order_by_votes']) {
             dd('answer_not _is');

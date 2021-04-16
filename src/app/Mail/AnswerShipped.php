@@ -3,33 +3,30 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Queue\SerializesModels;
 
 class AnswerShipped extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $data;
+
     /**
-     * Create a new message instance.
-     *
-     * @return void
+     * AnswerShipped constructor.
+     * @param array $data
      */
-    public function __construct()
+    public function __construct(array $data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
-     * Build the message.
-     *
-     * @return $this
+     * @return AnswerShipped
      */
     public function build()
     {
         return $this->from(env('MAIL_FROM_ADDRESS'))
-            ->html('<h1>!!We are here!!!</h1>');
+            ->markdown('email', ['data' => $this->data]);
     }
 }
