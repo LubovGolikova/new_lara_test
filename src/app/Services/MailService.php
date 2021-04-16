@@ -11,7 +11,6 @@ use Exception;
 class MailService
 {
     use LogTrait;
-
     /**
      * @param array $data
      * @return \Illuminate\Http\JsonResponse
@@ -20,9 +19,8 @@ class MailService
     {
         try {
             $user = \Auth::user();
-            $userEmail = [];
-            $userEmail['email'] = $user->email;
-            Mail::to($userEmail['email'])->send(new AnswerShipped($data));
+            $to = $user->email;
+            Mail::to($to)->send(new AnswerShipped($data));
 
         } catch (Exception $e) {
             $message = 'Could not create mail';
@@ -30,5 +28,4 @@ class MailService
             return response()->json(['error' => $message], 500);
         }
     }
-
 }

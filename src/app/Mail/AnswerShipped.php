@@ -26,7 +26,8 @@ class AnswerShipped extends Mailable
      */
     public function build()
     {
-        return $this->from(env('MAIL_FROM_ADDRESS'))
+        $from = env('MAIL_FROM_ADDRESS');
+        return $this->from($from)
             ->markdown('email', ['data' => $this->data]);
     }
 }

@@ -20,7 +20,7 @@ class WeekQuote extends Command
      *
      * @var string
      */
-    protected $description = 'Respectively send 5 answers to all users weekly via email';
+    protected $description = 'Respectively send 5 top rated answers to all the users have top receive weekly via email';
 
     /**
      * Create a new command instance.
@@ -38,15 +38,14 @@ class WeekQuote extends Command
      */
     public function handle()
     {
-        $mostpopularAnswer = $this->mostPopularAnswer();
-        $receiveTextAnswer = $this->receiveTextAnswer($mostpopularAnswer);
-        $receiveTextQuestion = $this->receiveTextQuestion($mostpopularAnswer);
-        $data = array(
-            'questionTitleText' => $receiveTextQuestion['title'],
-            'questionBodyText' => $receiveTextQuestion['body'],
-            'answerBodyText' => $receiveTextAnswer['body']
-        );
-        $emailSend = app()->make('MailService')->createMail($data);
+//        $mostpopularAnswers = $this->mostPopularAnswer();
+//        $receiveTextQuestions = $this->receiveTextQuestion($mostpopularAnswers);
+//        $data = array(
+//            'questionTitleText' => $receiveTextQuestion['title'],
+//            'questionBodyText' => $receiveTextQuestion['body'],
+//            'answerBodyText' =>
+//        );
+//        $emailSend = app()->make('MailService')->createMail($data);
         $this->info('Email send  Successfully.');
     }
 }

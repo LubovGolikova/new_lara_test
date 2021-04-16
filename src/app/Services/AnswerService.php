@@ -4,10 +4,8 @@ namespace App\Services;
 
 use App\Models\Answer;
 use App\Models\UserAnswerVote;
-use App\Notifications\AnswerReceived;
 use App\Repositories\AnswerRepository;
 use App\Traits\AnswerMailTrait;
-use Illuminate\Support\Facades\Notification;
 use Exception;
 use App\Traits\LogTrait;
 
@@ -53,20 +51,7 @@ class AnswerService
         try {
             $user = \Auth::user();
             $createData['user_id'] = $user->id;
-
-            $answer = Answer::create($createData);
-
-            $receiveTextAnswer = $this->receiveTextAnswer($answer);
-            $receiveTextQuestion = $this->receiveTextQuestion($answer);
-            $data = array(
-                'questionTitleText' => $receiveTextQuestion['title'],
-                'questionBodyText' => $receiveTextQuestion['body'],
-                'answerBodyText' => $receiveTextAnswer['body']
-            );
-            $emailSend = app()->make('MailService')->createMail($data);
-            Notification::route('mail', $user->email)->notify(new AnswerReceived($createData['user_id']));
-
-            return $answer;
+            return Answer::create($createData);
 
         } catch (Exception $e) {
             $message = 'Could not create data';
@@ -110,5 +95,29 @@ class AnswerService
             $this->customLog($message, $e);
             return response()->json(['error' => $message], 500);
         }
+    }
+
+    /**
+     * @param array $answers
+     * @return array|\Illuminate\Http\JsonResponse
+     */
+    public function createData(Answer $answer)
+    {
+        try {
+            $receiveTextQuestion = $this->receiveTextQuestion($answer);
+            $data = array(
+                'questionTitleText' => $receiveTextQuestion['title'],
+                'questionBodyText' => $receiveTextQuestion['body'],
+                'answerBodyText' => $answer->body
+            );
+
+            return $data;
+
+        } catch (Exception $e) {
+            $message = 'Could not create data for email';
+            $this->customLog($message, $e);
+            return response()->json(['error' => $message], 500);
+        }
+
     }
 }
