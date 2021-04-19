@@ -9,6 +9,10 @@ class ProcessMailController extends Controller
 {
     public function sendEmail(Request $request)
     {
-        ProcessMail::dispatch()->onQueue('weekly');
+//        ProcessMail::dispatch()->onQueue('weekly');
+
+        $emailJob = new ProcessMail();
+        dispatch($emailJob);
+
     }
 }

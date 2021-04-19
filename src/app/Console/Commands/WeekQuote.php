@@ -39,13 +39,7 @@ class WeekQuote extends Command
      */
     public function handle()
     {
-//        $users = User::all();
-//        foreach ($users as $user) {
-//            dispatch(new ProcessMail($user));
-//
-//        }
-
-           dispatch(new ProcessMail());
-           return;
+       dispatch(new ProcessMail());
+       return;
     }
 }
