@@ -31,7 +31,7 @@ class ProcessMail implements ShouldQueue
     {
         $mostPopularAnswers = $this->mostPopularAnswers();
         foreach($mostPopularAnswers  as $answer) {
-            $data = app()->make('AnswerService')->createData($answer);
+            $data = app()->make('AnswerService')->createData($answer->id);
             app()->make('MailService')->createMail($data);
 
         }

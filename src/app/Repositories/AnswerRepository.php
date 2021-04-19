@@ -44,7 +44,10 @@ class AnswerRepository
                     ->orderBy('count', 'desc')
                     ->limit(5)
                     ->get();
-
+            foreach($answers as $answer)
+            {
+                dd($answer->body);
+            }
             return $answers;
 
         } else if (isset($searchData['order_by_votes']) && $searchData['order_by_votes']) {

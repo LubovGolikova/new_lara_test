@@ -3,12 +3,13 @@
 namespace App\Console\Commands;
 
 use App\Jobs\ProcessMail;
+use App\Traits\AnswerMailTrait;
 use App\Traits\LogTrait;
 use Illuminate\Console\Command;
 use App\Models\User;
 class WeekQuote extends Command
 {
-    use LogTrait;
+    use LogTrait,  AnswerMailTrait;
     /**
      * The name and signature of the console command.
      *
@@ -43,7 +44,8 @@ class WeekQuote extends Command
 //            dispatch(new ProcessMail($user));
 //
 //        }
-               dispatch(new ProcessMail());
-               return;
+
+           dispatch(new ProcessMail());
+           return;
     }
 }

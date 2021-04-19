@@ -98,12 +98,13 @@ class AnswerService
     }
 
     /**
-     * @param array $answers
+     * @param int $answerId
      * @return array|\Illuminate\Http\JsonResponse
      */
-    public function createData(Answer $answer)
+    public function createData(int  $answerId)
     {
         try {
+            $answer = Answer::find($answerId);
             $receiveTextQuestion = $this->receiveTextQuestion($answer);
             $data = array(
                 'questionTitleText' => $receiveTextQuestion['title'],
