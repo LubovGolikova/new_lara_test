@@ -17,6 +17,7 @@ class AnswerController extends Controller
         $validated = $request->validated();
         $answers = app()->make('AnswerService')->get($validated);
         return response()->json($answers);
+
     }
 
     /**
@@ -44,6 +45,7 @@ class AnswerController extends Controller
         $validated = $request->validated();
         $answer = app()->make('AnswerService')->createVote($validated);
         return response()->json($answer);
+
     }
 
     /**
@@ -56,5 +58,6 @@ class AnswerController extends Controller
         $validated = $request->validated();
         $deleteData = app()->make('AnswerService')->destroy($validated);
         return response()->json($deleteData);
+
     }
 }

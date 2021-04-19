@@ -3,10 +3,12 @@
 namespace App\Console\Commands;
 
 use App\Jobs\ProcessMail;
+use App\Traits\LogTrait;
 use Illuminate\Console\Command;
-
+use App\Models\User;
 class WeekQuote extends Command
 {
+    use LogTrait;
     /**
      * The name and signature of the console command.
      *
@@ -32,19 +34,16 @@ class WeekQuote extends Command
     }
 
     /**
-     *
+     * @return \Illuminate\Http\JsonResponse|void
      */
     public function handle()
     {
 //        $users = User::all();
 //        foreach ($users as $user) {
-//            // Send mail to user
 //            dispatch(new ProcessMail($user));
 //
 //        }
-        dispatch(new ProcessMail());
-        $this->info('Email send  Successfully.');
-       return -1;
-
+               dispatch(new ProcessMail());
+               return;
     }
 }

@@ -15,8 +15,7 @@ trait HasRolesPermissions
     public function hasRole($role)
     {
 
-        $user = \Auth::user();
-        $userId = $user->id;
+        $userId= \Auth::user()->id;
         $roleUsers = UserRole::query()
             ->where('user_id', '=', $userId)
             ->get();

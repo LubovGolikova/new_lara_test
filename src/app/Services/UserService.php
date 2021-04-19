@@ -60,7 +60,7 @@ class UserService
      * @param array $createRoleData
      * @return \Illuminate\Http\JsonResponse
      */
-    public function newAssign(array $createRoleData)
+    public function reassign(array $createRoleData)
     {
         try {
             $user = User::find($createRoleData['user_id']);

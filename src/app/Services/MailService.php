@@ -18,9 +18,17 @@ class MailService
     public function createMail(array $data)
     {
         try {
-            $user = \Auth::user();
-            $to = $user->email;
-            Mail::to($to)->send(new AnswerShipped($data));
+           if(is_null( $user = \Auth::user())) {
+               $userEmail = [];
+               $userEmail['email'] = "qwerty@amail.com";
+               Mail::to($userEmail['email'])->send(new AnswerShipped($data));
+           } else {
+               $user = \Auth::user();
+                $userEmail = [];
+                $userEmail['email'] = $user->email;
+                Mail::to($userEmail['email'])->send(new AnswerShipped($data));
+            }
+
 
         } catch (Exception $e) {
             $message = 'Could not create mail';
@@ -28,4 +36,5 @@ class MailService
             return response()->json(['error' => $message], 500);
         }
     }
+
 }

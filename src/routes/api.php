@@ -46,8 +46,10 @@ Route::group([
 
             Route::resource('/admin/roles', App\Http\Controllers\RoleController::class);
             Route::post('/admin/role/assign', [App\Http\Controllers\UserController::class, 'assign']);
-            Route::put('/admin/role/update_assign', [App\Http\Controllers\UserController::class, 'newAssign']);
+            Route::put('/admin/role/update_assign', [App\Http\Controllers\UserController::class, 'reassign']);
             Route::delete('/admin/role/detach', [App\Http\Controllers\UserController::class, 'detach']);
+
+
 
             Route::delete('/admin/user/delete', [App\Http\Controllers\UserController::class, 'destroy']);
             Route::delete('/admin/question/delete', [App\Http\Controllers\QuestionController::class, 'destroy']);
@@ -59,6 +61,7 @@ Route::group([
         Route::get('/questions/vote', [App\Http\Controllers\QuestionController::class, 'createVote']);
 
         Route::post('/answers/create', [App\Http\Controllers\AnswerController::class, 'create']);
+        Route::get('/answers/sendEmail', [App\Http\Controllers\ProcessMailController::class, 'sendEmail']);
         Route::get('/answers/vote', [App\Http\Controllers\AnswerController::class, 'createVote']);
     });
 });

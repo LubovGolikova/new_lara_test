@@ -25,25 +25,27 @@ class ProcessMail implements ShouldQueue
     }
 
     /**
-     * Execute the job.
-     *
-     * @return void
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function handle()
     {
-//        $mostPopularAnswers = $this->mostPopularAnswers();
-//        foreach($mostPopularAnswers  as $answer) {
-//            $data = app()->make('AnswerService')->createData($answer);
-//
-//        }
-        $data = array('name' => 'vikas', 'message' => 'test message');
-        app()->make('MailService')->createMail($data);
+        $mostPopularAnswers = $this->mostPopularAnswers();
+        foreach($mostPopularAnswers  as $answer) {
+            $data = app()->make('AnswerService')->createData($answer);
+            app()->make('MailService')->createMail($data);
 
+        }
+//        $data = array('name' => 'vikas', 'message' => 'test message');
+//        app()->make('MailService')->createMail($data);
+        return;
     }
 
+    /**
+     * @param \Exception $exception
+     * @throws \Exception
+     */
     public function failed(\Exception $exception)
     {
         throw new \Exception("Error Processing the job", 1);
-        // Send user notification of failure, etc...
     }
 }

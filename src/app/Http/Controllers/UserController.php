@@ -36,10 +36,10 @@ class UserController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function newAssign(UserRoleRequest $request)
+    public function reassign(UserRoleRequest $request)
     {
         $validated = $request->validated();
-        $usersDischarge = app()->make('UserService')->newAssign($validated);
+        $usersDischarge = app()->make('UserService')->reassign($validated);
         return response()->json($usersDischarge);
     }
 
