@@ -35,8 +35,6 @@ class ProcessMail implements ShouldQueue
             app()->make('MailService')->createMail($data);
 
         }
-//        $data = array('name' => 'vikas', 'message' => 'test message');
-//        app()->make('MailService')->createMail($data);
         return;
     }
 
