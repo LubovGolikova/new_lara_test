@@ -55,7 +55,7 @@ class AnswerTest extends TestCase
     }
 
     /**
-     * A test user can create answer
+     * A test user can create answer second
      * @return void
      */
 
@@ -63,11 +63,16 @@ class AnswerTest extends TestCase
     public function test_user_can_create_answer_second()
     {
         $this->json('POST', '/api/answers/create', [
+            'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9
+            sb2dpbiIsImlhdCI6MTYxODkzMzY3NiwiZXhwIjoxNjE4OTM3Mjc2LCJuYmYiOjE2MTg5MzM2NzYsImp0aSI6ImVuUkcz
+            ODl3ZDhHSnA2ZU8iLCJzdWIiOjkzLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.
+            NnLiNDHYrUquN8yIfFXkmO6sopDbxYZBLPjars6BiBs',
             'question_id' => 1,
             'body' => 'answer'
         ])
-            ->seeJson([
-                'created' => true,
+            ->assertJson([
+                'user_id' =>93,
+                'answer_id' =>2
             ]);
     }
 }

@@ -46,7 +46,7 @@ class AnswerService
      * @param array $createData
      * @return \Illuminate\Http\JsonResponse
      */
-    public function create(array $createData): string
+    public function create(array $createData): Answer
     {
         try {
             $user = \Auth::user();

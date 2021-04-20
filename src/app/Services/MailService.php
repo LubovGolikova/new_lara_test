@@ -15,7 +15,7 @@ class MailService
      * @param array $data
      * @return \Illuminate\Http\JsonResponse
      */
-    public function createMail(array $data): void
+    public function createMail(array $data)
     {
         try {
            if(is_null( $user = \Auth::user())) {

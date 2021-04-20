@@ -23,7 +23,7 @@ class AuthController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login(Request $request): string
+    public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
         try {
@@ -45,7 +45,7 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function register(UserRequest $request): string
+    public function register(UserRequest $request)
     {
         $validated = $request->validated();
         $user = app()->make('UserService')->create($validated);
@@ -68,7 +68,7 @@ class AuthController extends Controller
     /**
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getAuthenticatedUser(): string
+    public function getAuthenticatedUser()
     {
         try {
 
