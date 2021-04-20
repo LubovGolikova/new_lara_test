@@ -14,7 +14,7 @@ class LoginTest extends TestCase
     /** @test **/
     public function test_user_can_login_with_correct_credentials(): void
     {
-        $response = $this->post('/login', [
+        $response = $this->post('/api/auth/login', [
             'email' => 'qwerty1@sps.ccx',
             'password' => '111111111',
         ]);

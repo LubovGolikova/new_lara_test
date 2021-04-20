@@ -37,6 +37,7 @@ class AnswerTest extends TestCase
         $response->assertSuccessful();
     }
 
+    //TODO
     /**
      * A test user can create vote
      * @return void
@@ -50,6 +51,23 @@ class AnswerTest extends TestCase
         $data = array('user_id' => $user->id, 'answer_id' => $answer->id);
         $createVote = app()->make('AnswerService')->createVote($data);
 
-        $this->assertEquals($data,  $createVote->toArray());
+        $this->assertEquals($data,  json_encode($createVote));
+    }
+
+    /**
+     * A test user can create answer
+     * @return void
+     */
+
+    /** @test **/
+    public function test_user_can_create_answer_second()
+    {
+        $this->json('POST', '/api/answers/create', [
+            'question_id' => 1,
+            'body' => 'answer'
+        ])
+            ->seeJson([
+                'created' => true,
+            ]);
     }
 }
