@@ -15,7 +15,7 @@ class MailService
      * @param array $data
      * @return \Illuminate\Http\JsonResponse
      */
-    public function createMail(array $data)
+    public function createMail(array $data): void
     {
         try {
            if(is_null( $user = \Auth::user())) {
@@ -28,7 +28,6 @@ class MailService
                 $userEmail['email'] = $user->email;
                 Mail::to($userEmail['email'])->send(new AnswerShipped($data));
             }
-
 
         } catch (Exception $e) {
             $message = 'Could not create mail';

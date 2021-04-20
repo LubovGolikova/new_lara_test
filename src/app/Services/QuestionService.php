@@ -25,7 +25,7 @@ class QuestionService
      * @param array $searchData
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Http\JsonResponse
      */
-    public function get(array $searchData)
+    public function get(array $searchData): string
     {
         try {
             $searchData['order_by'] = $searchData['order_by'] ?? 'created_at';
@@ -43,7 +43,7 @@ class QuestionService
      * @param array $createData
      * @return \Illuminate\Http\JsonResponse
      */
-    public function create(array $createData)
+    public function create(array $createData): string
     {
         try {
             $createData['user_id'] = \Auth::user()->id;
@@ -60,7 +60,7 @@ class QuestionService
      * @param array $createVoteData
      * @return \Illuminate\Http\JsonResponse
      */
-    public function createVote(array $createVoteData)
+    public function createVote(array $createVoteData): string
     {
         try {
             $createVoteData['user_id'] = \Auth::user()->id;
@@ -81,7 +81,7 @@ class QuestionService
      * @param array $id
      * @return \Illuminate\Http\JsonResponse|int
      */
-    public function destroy(array $id)
+    public function destroy(array $id): int
     {
         try {
             return Question::destroy($id['id']);

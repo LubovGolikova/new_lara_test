@@ -16,7 +16,7 @@ class UserService
      * @param array $createData
      * @return \Illuminate\Http\JsonResponse|mixed
      */
-    public function create(array $createData)
+    public function create(array $createData): string
     {
         try {
             $createData['avatar_path'] = isset($createData['avatar_path']) ? $createData['avatar_path'] : null;
@@ -43,7 +43,7 @@ class UserService
      * @param array $createRoleData
      * @return \Illuminate\Http\JsonResponse
      */
-    public function assign(array $createRoleData)
+    public function assign(array $createRoleData): string
     {
         try {
             $user = User::find($createRoleData['user_id']);
@@ -60,7 +60,7 @@ class UserService
      * @param array $createRoleData
      * @return \Illuminate\Http\JsonResponse
      */
-    public function reassign(array $createRoleData)
+    public function reassign(array $createRoleData): string
     {
         try {
             $user = User::find($createRoleData['user_id']);
@@ -77,7 +77,7 @@ class UserService
      * @param array $createRoleData
      * @return \Illuminate\Http\JsonResponse
      */
-    public function detach(array $createRoleData)
+    public function detach(array $createRoleData): string
     {
         try {
             $user = User::find($createRoleData['user_id']);
@@ -94,7 +94,7 @@ class UserService
      * @param array $id
      * @return \Illuminate\Http\JsonResponse|int
      */
-    public function destroy(array $id)
+    public function destroy(array $id): int
     {
         try {
             return User::destroy($id['id']);

@@ -12,7 +12,7 @@ trait HasRolesPermissions
      * @param $role
      * @return bool
      */
-    public function hasRole($role)
+    public function hasRole($role): bool
     {
 
         $userId= \Auth::user()->id;

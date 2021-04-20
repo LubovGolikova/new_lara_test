@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->app->bind('UserService',UserService::class);
         $this->app->bind('QuestionService',QuestionService::class);

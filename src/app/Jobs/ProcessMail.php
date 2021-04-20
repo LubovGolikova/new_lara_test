@@ -27,7 +27,7 @@ class ProcessMail implements ShouldQueue
     /**
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function handle()
+    public function handle(): void
     {
         $mostPopularAnswers = $this->mostPopularAnswers();
         foreach($mostPopularAnswers  as $answer) {

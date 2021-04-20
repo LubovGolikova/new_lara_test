@@ -37,7 +37,7 @@ class WeekQuote extends Command
     /**
      * @return \Illuminate\Http\JsonResponse|void
      */
-    public function handle()
+    public function handle(): void
     {
        dispatch(new ProcessMail());
        return;

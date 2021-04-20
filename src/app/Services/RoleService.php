@@ -12,7 +12,7 @@ class RoleService
      * @param array $createData
      * @return \Illuminate\Http\JsonResponse
      */
-    public function create(array $createData)
+    public function create(array $createData): string
     {
         try {
             return Role::create($createData);
@@ -29,7 +29,7 @@ class RoleService
      * @param array $editData
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(int $id, array $editData)
+    public function update(int $id, array $editData): string
     {
         try {
             return Role::updateOrCreate(
@@ -51,7 +51,7 @@ class RoleService
      * @param int $id
      * @return \Illuminate\Http\JsonResponse|int
      */
-    public function destroy(int $id)
+    public function destroy(int $id): int
     {
         try {
             return Role::destroy($id);

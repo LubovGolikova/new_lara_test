@@ -46,7 +46,7 @@ Route::group([
 
             Route::resource('/admin/roles', App\Http\Controllers\RoleController::class);
             Route::post('/admin/role/assign', [App\Http\Controllers\UserController::class, 'assign']);
-            Route::put('/admin/role/update_assign', [App\Http\Controllers\UserController::class, 'reassign']);
+            Route::put('/admin/role/reassign', [App\Http\Controllers\UserController::class, 'reassign']);
             Route::delete('/admin/role/detach', [App\Http\Controllers\UserController::class, 'detach']);
 
 

@@ -12,7 +12,7 @@ class AnswerController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function index(AnswerSearchRequest $request)
+    public function index(AnswerSearchRequest $request): string
     {
         $validated = $request->validated();
         $answers = app()->make('AnswerService')->get($validated);
@@ -25,7 +25,7 @@ class AnswerController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function create(AnswerRequest $request)
+    public function create(AnswerRequest $request): string
     {
         $validated = $request->validated();
         $answer = app()->make('AnswerService')->create($validated);
@@ -40,7 +40,7 @@ class AnswerController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function createVote(AnswerIdRequest $request)
+    public function createVote(AnswerIdRequest $request): string
     {
         $validated = $request->validated();
         $answer = app()->make('AnswerService')->createVote($validated);
@@ -53,7 +53,7 @@ class AnswerController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function destroy(AnswerIdRequest $request)
+    public function destroy(AnswerIdRequest $request): string
     {
         $validated = $request->validated();
         $deleteData = app()->make('AnswerService')->destroy($validated);

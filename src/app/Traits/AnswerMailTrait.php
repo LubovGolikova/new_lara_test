@@ -11,7 +11,7 @@ trait AnswerMailTrait
      * @param Answer $answer
      * @return array
      */
-    public function receiveTextQuestion(Answer $answer)
+    public function receiveTextQuestion(Answer $answer): array
     {
         $questionId = $answer->question_id;
         $questions = Question::query()

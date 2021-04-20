@@ -2,24 +2,20 @@
 
 namespace Tests\Unit\Auth;
 
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class LoginTest extends TestCase
 {
     /**
-     * A basic unit test example.
-     *
+     * A test user can login with correct credentials
      * @return void
      */
-    public function test_example()
-    {
-        $this->assertTrue(true);
-    }
 
-    public function test_user_can_login_with_correct_credentials()
+    /** @test **/
+    public function test_user_can_login_with_correct_credentials(): void
     {
         $response = $this->post('/login', [
-            'email' => 'okasay@ss.ccx',
+            'email' => 'qwerty1@sps.ccx',
             'password' => '111111111',
         ]);
 
