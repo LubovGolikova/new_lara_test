@@ -19,6 +19,7 @@ class AnswerRepository
             $answers = $answers->where('body', 'LIKE', '%' . $searchData['search'] . '%');
 
         }
+
         if (isset($searchData['has_voted']) && !$searchData['has_voted']) {
             $answers = $answers->whereDoesntHave('votes_answers');
 
@@ -27,30 +28,12 @@ class AnswerRepository
 
         }
 
-        //TODO check
         if (isset($searchData['order_by_votes']) && !$searchData['order_by_votes']) {
-            //$answersNew = $answers->with('votesCount');
-//            $answers =Answer::query()->find(1);
-//            dd($answers->answers);
-
-
             $answers= Answer::selectRaw('answers.id, answers.body, count(*) as count')
                     ->join('user_answer_votes', 'answers.id', '=', 'user_answer_votes.answer_id')
                     ->groupBy('answers.id')
-                    ->orderBy('count', 'desc')
-                    ->limit(5)
-                    ->get();
-            foreach($answers as $answer)
-            {
-                dd($answer->body);
-            }
-            return $answers;
-
-        } else if (isset($searchData['order_by_votes']) && $searchData['order_by_votes']) {
-            dd('answer_not _is');
+                    ->orderBy('count', $searchData['order_direction']);
         }
-
-///        $answers = $answers->with('votes_answers')->withCount('votes_answers');
 
         $answers = $answers->orderBy($searchData['order_by'], $searchData['order_direction']);
         $answers = $answers->get();

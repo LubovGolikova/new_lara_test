@@ -2,12 +2,12 @@
 
 namespace App\Listeners;
 
-use App\Events\UserWasBanned;
+use App\Events\UserWasSendEmail;
 use App\Notifications\AnswerReceived;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Notification;
-class EmailBanNotification
+class EmailSendNotification
 {
     /**
      * Create the event listener.
@@ -22,15 +22,16 @@ class EmailBanNotification
     /**
      * Handle the event.
      *
-     * @param  UserWasBanned  $event
+     * @param  UserWasSendEmail  $event
      * @return void
      */
-    public function handle(UserWasBanned $event)
+    public function handle(UserWasSendEmail $event)
     {
         $user = \Auth::user();
         $userData = [];
         $userData['user_id'] = $user->id;
-        Notification::send($user, new AnswerReceived($userData));
-        $user->notify(new AnswerReceived($userData));
+
+//        Notification::send($user, new AnswerReceived($userData));
+//        $user->notify(new AnswerReceived($userData));
     }
 }

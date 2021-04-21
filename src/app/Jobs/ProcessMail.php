@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Events\UserWasSendEmail;
 use App\Traits\AnswerMailTrait;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -35,6 +36,7 @@ class ProcessMail implements ShouldQueue
             app()->make('MailService')->createMail($data);
 
         }
+        event(new UserWasSendEmail());
         return;
     }
 

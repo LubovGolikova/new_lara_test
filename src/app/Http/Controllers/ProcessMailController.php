@@ -12,6 +12,7 @@ class ProcessMailController extends Controller
 //        ProcessMail::dispatch()->onQueue('weekly');
 
         $emailJob = new ProcessMail();
+//        $this->dispatch($emailJob);
         dispatch($emailJob);
 
     }
