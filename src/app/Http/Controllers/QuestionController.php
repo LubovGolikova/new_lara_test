@@ -12,7 +12,7 @@ class QuestionController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function index(QuestionSearchRequest $request): string
+    public function index(QuestionSearchRequest $request)
     {
         $validated = $request->validated();
         $questions = app()->make('QuestionService')->get($validated);
@@ -24,7 +24,7 @@ class QuestionController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function create(QuestionRequest $request): string
+    public function create(QuestionRequest $request)
     {
         $validated = $request->validated();
         $questions = app()->make('QuestionService')->create($validated);
@@ -36,7 +36,7 @@ class QuestionController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function createVote(QuestionIdRequest $request): string
+    public function createVote(QuestionIdRequest $request)
     {
         $validated = $request->validated();
         $question = app()->make('QuestionService')->createVote($validated);
@@ -48,7 +48,7 @@ class QuestionController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function destroy(QuestionIdRequest $request): string
+    public function destroy(QuestionIdRequest $request)
     {
         $validated = $request->validated();
         $deleteData = app()->make('QuestionService')->destroy($validated);

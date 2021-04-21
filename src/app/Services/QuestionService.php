@@ -7,6 +7,7 @@ use App\Models\UserQuestionVote;
 use App\Repositories\QuestionRepository;
 use Exception;
 use App\Traits\LogTrait;
+
 class QuestionService
 {
     use LogTrait;
@@ -23,9 +24,9 @@ class QuestionService
 
     /**
      * @param array $searchData
-     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Http\JsonResponse
+     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function get(array $searchData): string
+    public function get(array $searchData)
     {
         try {
             $searchData['order_by'] = $searchData['order_by'] ?? 'created_at';
@@ -35,7 +36,6 @@ class QuestionService
         } catch(Exception $e) {
             $message = 'Could not receive data';
             $this->customLog($message, $e);
-            return response()->json(['error' => $message], 500);
         }
     }
 
@@ -43,7 +43,7 @@ class QuestionService
      * @param array $createData
      * @return \Illuminate\Http\JsonResponse
      */
-    public function create(array $createData): string
+    public function create(array $createData): Question
     {
         try {
             $createData['user_id'] = \Auth::user()->id;
@@ -52,15 +52,14 @@ class QuestionService
         } catch(Exception $e) {
             $message = 'Could not create data';
             $this->customLog($message, $e);
-            return response()->json(['error' => $message], 500);
         }
     }
 
     /**
      * @param array $createVoteData
-     * @return \Illuminate\Http\JsonResponse
+     * @return UserQuestionVote
      */
-    public function createVote(array $createVoteData): string
+    public function createVote(array $createVoteData): UserQuestionVote
     {
         try {
             $createVoteData['user_id'] = \Auth::user()->id;
@@ -73,7 +72,6 @@ class QuestionService
         } catch(Exception $e) {
             $message = 'Could not create data';
             $this->customLog($message, $e);
-            return response()->json(['error' => $message], 500);
         }
     }
 
@@ -89,7 +87,6 @@ class QuestionService
         } catch(Exception $e) {
             $message = 'Could not destroy user';
             $this->customLog($message, $e);
-            return response()->json(['error' => $message], 500);
         }
     }
 }

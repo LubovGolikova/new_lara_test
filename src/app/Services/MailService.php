@@ -32,7 +32,6 @@ class MailService
         } catch (Exception $e) {
             $message = 'Could not create mail';
             $this->customLog($message, $e);
-            return response()->json(['error' => $message], 500);
         }
     }
 

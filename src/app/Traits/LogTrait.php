@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 use Exception;
-use Illuminate\Support\Facades\Log;
+
 trait LogTrait
 {
     /**

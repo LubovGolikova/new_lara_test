@@ -16,7 +16,7 @@ class UserService
      * @param array $createData
      * @return \Illuminate\Http\JsonResponse|mixed
      */
-    public function create(array $createData)
+    public function create(array $createData): User
     {
         try {
             $createData['avatar_path'] = isset($createData['avatar_path']) ? $createData['avatar_path'] : null;
@@ -35,7 +35,6 @@ class UserService
         } catch(Exception $e) {
             $message = 'Could not create data';
             $this->customLog($message, $e);
-            return response()->json(['error' => $message], 500);
         }
     }
 
@@ -43,16 +42,15 @@ class UserService
      * @param array $createRoleData
      * @return \Illuminate\Http\JsonResponse
      */
-    public function assign(array $createRoleData)
+    public function assign(array $createRoleData): ?User
     {
         try {
             $user = User::find($createRoleData['user_id']);
-             return $user->roles()->attach($createRoleData['role_id']);
+            return $user->roles()->attach($createRoleData['role_id']);
 
         } catch(Exception $e) {
             $message = 'Could not assign user';
             $this->customLog($message, $e);
-            return response()->json(['error' => $message], 500);
         }
     }
 
@@ -60,7 +58,7 @@ class UserService
      * @param array $createRoleData
      * @return \Illuminate\Http\JsonResponse
      */
-    public function reassign(array $createRoleData): array
+    public function reassign(array $createRoleData): ?User
     {
         try {
             $user = User::find($createRoleData['user_id']);
@@ -69,7 +67,6 @@ class UserService
         } catch(Exception $e) {
             $message = 'Could not create new assign data';
             $this->customLog($message, $e);
-            return response()->json(['error' => $message], 500);
         }
     }
 
@@ -77,7 +74,7 @@ class UserService
      * @param array $createRoleData
      * @return \Illuminate\Http\JsonResponse
      */
-    public function detach(array $createRoleData): string
+    public function detach(array $createRoleData): ?User
     {
         try {
             $user = User::find($createRoleData['user_id']);
@@ -86,7 +83,6 @@ class UserService
         } catch(Exception $e) {
             $message = 'Could not detach data';
             $this->customLog($message, $e);
-            return response()->json(['error' => $message], 500);
         }
     }
 
@@ -102,7 +98,6 @@ class UserService
         } catch(Exception $e) {
             $message = 'Could not destroy user';
             $this->customLog($message, $e);
-            return response()->json(['error' => $message], 500);
         }
     }
 }

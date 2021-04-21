@@ -3,10 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\Answer;
-
-use App\Models\Question;
-use App\Models\UserAnswerVote;
-use App\Models\User;
 use DB;
 class AnswerRepository
 {

@@ -11,8 +11,7 @@ use App\Traits\LogTrait;
 
 class AnswerService
 {
-    use LogTrait;
-    use AnswerMailTrait;
+    use LogTrait, AnswerMailTrait;
     protected $answerRepository;
 
     /**
@@ -26,9 +25,9 @@ class AnswerService
 
     /**
      * @param array $searchData
-     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Http\JsonResponse
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
-    public function get(array $searchData): string
+    public function get(array $searchData)
     {
         try {
             $searchData['order_by'] = $searchData['order_by'] ?? 'created_at';
@@ -38,13 +37,13 @@ class AnswerService
         } catch (Exception $e) {
             $message = 'Could not receive data';
             $this->customLog($message, $e);
-            return response()->json(['error' => $message], 500);
+
         }
     }
 
     /**
      * @param array $createData
-     * @return \Illuminate\Http\JsonResponse
+     * @return Answer
      */
     public function create(array $createData): Answer
     {
@@ -56,15 +55,14 @@ class AnswerService
         } catch (Exception $e) {
             $message = 'Could not create data';
             $this->customLog($message, $e);
-            return response()->json(['error' => $message], 500);
         }
     }
 
     /**
      * @param array $createVoteData
-     * @return \Illuminate\Http\JsonResponse
+     * @return UserAnswerVote
      */
-    public function createVote(array $createVoteData): string
+    public function createVote(array $createVoteData): UserAnswerVote
     {
         try {
             $createVoteData['user_id'] = \Auth::user()->id;
@@ -77,13 +75,12 @@ class AnswerService
         } catch (Exception $e) {
             $message = 'Could not create data';
             $this->customLog($message, $e);
-            return response()->json(['error' => $message], 500);
         }
     }
 
     /**
      * @param array $id
-     * @return \Illuminate\Http\JsonResponse|int
+     * @return int
      */
     public function destroy(array $id): int
     {
@@ -93,13 +90,12 @@ class AnswerService
         } catch (Exception $e) {
             $message = 'Could not destroy user';
             $this->customLog($message, $e);
-            return response()->json(['error' => $message], 500);
         }
     }
 
     /**
      * @param int $answerId
-     * @return array|\Illuminate\Http\JsonResponse
+     * @return array
      */
     public function createData(int  $answerId): array
     {
@@ -117,7 +113,6 @@ class AnswerService
         } catch (Exception $e) {
             $message = 'Could not create data for email';
             $this->customLog($message, $e);
-            return response()->json(['error' => $message], 500);
         }
 
     }

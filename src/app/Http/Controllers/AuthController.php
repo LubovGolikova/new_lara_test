@@ -54,7 +54,6 @@ class AuthController extends Controller
         $createddata = [];
         $createddata['user_id'] = $user->id;
         $createddata['role_id'] = self::USER_ROLE;
-
         $addrRole = app()->make('UserService')->assign($createddata);
         return response()->json([
             'message' => 'User successfully registered',

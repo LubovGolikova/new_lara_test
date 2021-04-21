@@ -5,14 +5,16 @@ namespace App\Services;
 use App\Models\Role;
 use Exception;
 use App\Traits\LogTrait;
+
 class RoleService
 {
     use LogTrait;
+
     /**
      * @param array $createData
-     * @return \Illuminate\Http\JsonResponse
+     * @return Role
      */
-    public function create(array $createData): string
+    public function create(array $createData): Role
     {
         try {
             return Role::create($createData);
@@ -20,16 +22,15 @@ class RoleService
         } catch(Exception $e) {
             $message = 'Could not create data';
             $this->customLog($message, $e);
-            return response()->json(['error' => $message], 500);
         }
     }
 
     /**
      * @param int $id
      * @param array $editData
-     * @return \Illuminate\Http\JsonResponse
+     * @return Role
      */
-    public function update(int $id, array $editData): string
+    public function update(int $id, array $editData): Role
     {
         try {
             return Role::updateOrCreate(
@@ -43,13 +44,12 @@ class RoleService
         } catch(Exception $e) {
             $message = 'Could not update data';
             $this->customLog($message, $e);
-            return response()->json(['error' => $message], 500);
         }
     }
 
     /**
      * @param int $id
-     * @return \Illuminate\Http\JsonResponse|int
+     * @return int
      */
     public function destroy(int $id): int
     {
@@ -60,7 +60,6 @@ class RoleService
 
             $message = 'Could not destroy role';
             $this->customLog($message, $e);
-            return response()->json(['error' => $message], 500);
         }
     }
 }

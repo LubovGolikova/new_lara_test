@@ -4,7 +4,6 @@ namespace App\Traits;
 
 use App\Models\UserRole;
 use App\Models\Role;
-use Tymon\JWTAuth\Facades\JWTAuth;
 
 trait HasRolesPermissions
 {

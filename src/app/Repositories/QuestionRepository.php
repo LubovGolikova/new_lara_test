@@ -4,8 +4,6 @@ namespace App\Repositories;
 
 use App\Models\Question;
 use App\Models\User;
-use App\Models\UserQuestionVote;
-
 
 class QuestionRepository
 {
@@ -67,9 +65,8 @@ class QuestionRepository
     }
 
     /**
-     * @param $id
-     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Builder[][]|\Illuminate\Database\
-     * Eloquent\Collection|\Illuminate\Database\Eloquent\Collection[]|\Illuminate\Database\Eloquent\Model[]|mixed
+     * @param int $id
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Builder[][]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Collection[]|\Illuminate\Database\Eloquent\Model[]|mixed
      */
     public function getById(int $id)
     {
