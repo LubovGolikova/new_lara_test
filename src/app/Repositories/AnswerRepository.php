@@ -21,10 +21,10 @@ class AnswerRepository
         }
 
         if (isset($searchData['has_voted']) && !$searchData['has_voted']) {
-            $answers = $answers->whereDoesntHave('votes_answers');
+            $answers = $answers->whereHas('votes_answers');
 
         } else if (isset($searchData['has_voted']) && $searchData['has_voted']) {
-            $answers = $answers->whereHas('votes_answers');
+            $answers = $answers->whereDoesntHave('votes_answers');
 
         }
 
