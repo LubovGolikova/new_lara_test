@@ -6,9 +6,13 @@ use App\Events\UserWasSendEmail;
 use App\Notifications\AnswerReceived;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
-use Notification;
-class EmailSendNotification
+use Illuminate\Support\Facades\Notification;
+use App\Models\Answer;
+
+class EmailSendNotification implements ShouldQueue
 {
+    public $user;
+
     /**
      * Create the event listener.
      *
@@ -27,11 +31,9 @@ class EmailSendNotification
      */
     public function handle(UserWasSendEmail $event)
     {
-        $user = \Auth::user();
-        $userData = [];
-        $userData['user_id'] = $user->id;
-
-//        Notification::send($user, new AnswerReceived($userData));
+//        $user = \Auth::user();
+//        $answer = Answer::find(1);
+//        Notification::send($user, new AnswerReceived($user, $answer));
 //        $user->notify(new AnswerReceived($userData));
     }
 }

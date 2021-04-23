@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AnswerRequest;
 use App\Http\Requests\AnswerSearchRequest;
 use App\Http\Requests\AnswerIdRequest;
+use App\Models\Answer;
+use App\Notifications\AnswerReceived;
+use Illuminate\Support\Facades\Notification;
 
 class AnswerController extends Controller
 {
@@ -31,6 +34,9 @@ class AnswerController extends Controller
         $answer = app()->make('AnswerService')->create($validated);
         $data = app()->make('AnswerService')->createData($answer->id);
         app()->make('MailService')->createMail($data);
+        $user = \Auth::user();
+        Notification::send($user, new AnswerReceived($answer, $user));
+//        $user->notify(new AnswerReceived($answer, $user));
         return response()->json($answer);
 
     }

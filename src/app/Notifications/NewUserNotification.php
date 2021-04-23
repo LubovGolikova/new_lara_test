@@ -4,25 +4,22 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use App\Models\Answer;
 use App\Models\User;
-class AnswerReceived extends Notification implements ShouldQueue
+
+class NewUserNotification extends Notification
 {
     use Queueable;
-    private $answer;
     private $user;
-
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(User $user, Answer $answer)
+    public function __construct(User $user)
     {
         $this->user = $user;
-        $this->answer = $answer;
-
     }
 
     /**
@@ -37,19 +34,6 @@ class AnswerReceived extends Notification implements ShouldQueue
     }
 
     /**
-     * Get the DB representation of the notification.
-     * @param $notifiable
-     * @return array
-     */
-    public function toDatabase($notifiable)
-    {
-        return [
-            'User' => $this->user->id,
-            'Answer' => $this->answer->id,
-
-        ];
-    }
-    /**
      * Get the array representation of the notification.
      *
      * @param  mixed  $notifiable
@@ -58,7 +42,8 @@ class AnswerReceived extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            //
+            'name' => $this->user->name,
+            'email' => $this->user->email
         ];
     }
 }

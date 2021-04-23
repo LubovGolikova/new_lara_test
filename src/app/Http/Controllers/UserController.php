@@ -12,7 +12,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function assign(UserRoleRequest $request): string
+    public function assign(UserRoleRequest $request)
     {
         $validated = $request->validated();
         $usersAssigns = app()->make('UserService')->assign($validated);
@@ -24,7 +24,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function detach(UserRoleRequest $request): string
+    public function detach(UserRoleRequest $request)
     {
         $validated = $request->validated();
         $usersDischarge = app()->make('UserService')->detach($validated);
@@ -36,7 +36,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function reassign(UserRoleRequest $request): string
+    public function reassign(UserRoleRequest $request)
     {
         $validated = $request->validated();
         $usersDischarge = app()->make('UserService')->reassign($validated);
@@ -48,7 +48,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function destroy(UserIdRequest $request): string
+    public function destroy(UserIdRequest $request)
     {
         $validated = $request->validated();
         $deleteData = app()->make('UserService')->destroy($validated);

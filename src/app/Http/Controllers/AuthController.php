@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\LoginHistory;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -33,7 +34,8 @@ class AuthController extends Controller
         } catch (JWTException $e) {
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
-
+        $user = \Auth::user();
+        event(new LoginHistory($user));
         return response()->json([
             'message' => 'User successfully login',
             'token' => $token
@@ -50,7 +52,6 @@ class AuthController extends Controller
         $validated = $request->validated();
         $user = app()->make('UserService')->create($validated);
         $token = JWTAuth::fromUser($user);
-
         $createddata = [];
         $createddata['user_id'] = $user->id;
         $createddata['role_id'] = self::USER_ROLE;

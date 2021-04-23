@@ -63,15 +63,14 @@ class AnswerTest extends TestCase
     public function test_user_can_create_answer_second()
     {
         $this->json('POST', '/api/answers/create', [
-            'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9
-            sb2dpbiIsImlhdCI6MTYxODkzMzY3NiwiZXhwIjoxNjE4OTM3Mjc2LCJuYmYiOjE2MTg5MzM2NzYsImp0aSI6ImVuUkcz
-            ODl3ZDhHSnA2ZU8iLCJzdWIiOjkzLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.
-            NnLiNDHYrUquN8yIfFXkmO6sopDbxYZBLPjars6BiBs',
+            'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC
+            9sb2dpbiIsImlhdCI6MTYxOTE3NzMxMSwiZXhwIjoxNjE5MTgwOTExLCJuYmYiOjE2MTkxNzczMTEsImp0aSI6IjdCcU5WYnZyT0VNTk5XV
+            kMiLCJzdWIiOjQxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.qKLMv0h2LlKmmJrIS9XDvML18VtSt2-t5OeKZUmGB0g',
             'question_id' => 1,
             'body' => 'answer'
         ])
             ->assertJson([
-                'user_id' =>93,
+                'user_id' =>1,
                 'answer_id' =>2
             ]);
     }

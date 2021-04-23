@@ -36,7 +36,8 @@ class ProcessMail implements ShouldQueue
             app()->make('MailService')->createMail($data);
 
         }
-        event(new UserWasSendEmail());
+        $user = \Auth::user();
+        event(new UserWasSendEmail($user));
         return;
     }
 

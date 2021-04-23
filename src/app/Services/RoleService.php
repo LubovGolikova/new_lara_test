@@ -14,7 +14,7 @@ class RoleService
      * @param array $createData
      * @return Role
      */
-    public function create(array $createData): Role
+    public function create(array $createData): ?Role
     {
         try {
             return Role::create($createData);
@@ -30,7 +30,7 @@ class RoleService
      * @param array $editData
      * @return Role
      */
-    public function update(int $id, array $editData): Role
+    public function update(int $id, array $editData): ?Role
     {
         try {
             return Role::updateOrCreate(

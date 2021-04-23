@@ -45,7 +45,7 @@ class AnswerService
      * @param array $createData
      * @return Answer
      */
-    public function create(array $createData): Answer
+    public function create(array $createData): ?Answer
     {
         try {
             $user = \Auth::user();
@@ -62,7 +62,7 @@ class AnswerService
      * @param array $createVoteData
      * @return UserAnswerVote
      */
-    public function createVote(array $createVoteData): UserAnswerVote
+    public function createVote(array $createVoteData): ?UserAnswerVote
     {
         try {
             $createVoteData['user_id'] = \Auth::user()->id;

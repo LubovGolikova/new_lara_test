@@ -11,7 +11,7 @@ class RoleController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function create(RoleRequest $request): string
+    public function create(RoleRequest $request)
     {
         $validated = $request->validated();
         $roles = app()->make('RoleService')->create($validated);
@@ -23,7 +23,7 @@ class RoleController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function store(RoleRequest $request): string
+    public function store(RoleRequest $request)
     {
         $validated = $request->validated();
         $roles = app()->make('RoleService')->create($validated);
@@ -36,7 +36,7 @@ class RoleController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function update(RoleRequest $request, int $id): string
+    public function update(RoleRequest $request, int $id)
     {
         $validated = $request->validated();
         $roles = app()->make('RoleService')->update($id, $validated);
@@ -48,7 +48,7 @@ class RoleController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function destroy(int $id): string
+    public function destroy(int $id)
     {
         $deleteData = app()->make('RoleService')->destroy($id);
         return response()->json($deleteData);

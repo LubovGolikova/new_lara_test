@@ -43,7 +43,7 @@ class QuestionService
      * @param array $createData
      * @return \Illuminate\Http\JsonResponse
      */
-    public function create(array $createData): Question
+    public function create(array $createData): ?Question
     {
         try {
             $createData['user_id'] = \Auth::user()->id;
@@ -59,7 +59,7 @@ class QuestionService
      * @param array $createVoteData
      * @return UserQuestionVote
      */
-    public function createVote(array $createVoteData): UserQuestionVote
+    public function createVote(array $createVoteData): ?UserQuestionVote
     {
         try {
             $createVoteData['user_id'] = \Auth::user()->id;
