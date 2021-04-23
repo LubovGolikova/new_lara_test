@@ -7,6 +7,7 @@ use App\Traits\AnswerMailTrait;
 use App\Traits\LogTrait;
 use Illuminate\Console\Command;
 use App\Models\User;
+
 class WeekQuote extends Command
 {
     use LogTrait,  AnswerMailTrait;
@@ -39,7 +40,7 @@ class WeekQuote extends Command
      */
     public function handle(): void
     {
-       dispatch(new ProcessMail());
-       return;
+        dispatch(new ProcessMail());
+        $this->info('Email sent successfully.');
     }
 }

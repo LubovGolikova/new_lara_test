@@ -97,7 +97,7 @@ class AnswerService
      * @param int $answerId
      * @return array
      */
-    public function createData(int  $answerId): array
+    public function preparedDataToSendEmail(int  $answerId): array
     {
         try {
             $answer = Answer::find($answerId);

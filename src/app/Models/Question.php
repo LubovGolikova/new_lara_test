@@ -54,15 +54,6 @@ class Question extends Model
         return $this->hasMany(Answer::class)->whereHas('votes_answers');
     }
 
-    //TODO check
-    /**
-     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function having_answers()
-    {
-        return $this->answers();
-    }
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */

@@ -8,10 +8,11 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use App\Models\User;
 
-class NewUserNotification extends Notification
+class AdminNotification extends Notification
 {
     use Queueable;
-    private $user;
+    public $user;
+
     /**
      * Create a new notification instance.
      *
@@ -30,7 +31,33 @@ class NewUserNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['mail','database'];
+    }
+
+    /**
+     * Get the mail representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return \Illuminate\Notifications\Messages\MailMessage
+     */
+    public function toMail($notifiable)
+    {
+        return (new MailMessage)
+                    ->line('The introduction to the notification.')
+                    ->action('Notification Action', url('/'))
+                    ->line('Thank you for using our application!');
+    }
+
+    /**
+     * Get the DB representation of the notification.
+     * @param $notifiable
+     * @return array
+     */
+    public function toDatabase($notifiable)
+    {
+        return [
+            'User' => $this->user->id,
+        ];
     }
 
     /**
@@ -42,8 +69,6 @@ class NewUserNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'username' => $this->user->username,
-            'email' => $this->user->email
         ];
     }
 }

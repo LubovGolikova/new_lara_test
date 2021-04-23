@@ -54,11 +54,4 @@ class Answer extends Model
         return $this->belongsToMany(User::class,'user_answer_votes','user_id','answer_id');
     }
 
-    //TODO check
-    public function new_count()
-    {
-        return $this->votes_answers();
-
-    }
-
 }

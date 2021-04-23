@@ -4,15 +4,16 @@ namespace App\Listeners;
 
 use App\Events\UserWasSendEmail;
 use App\Notifications\AnswerReceived;
+use App\Traits\AdminTrait;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Notification;
-use App\Models\Answer;
+use App\Models\User;
+use App\Notifications\AdminNotification;
 
 class EmailSendNotification implements ShouldQueue
 {
-    public $user;
-
+    use AdminTrait;
     /**
      * Create the event listener.
      *
@@ -31,9 +32,7 @@ class EmailSendNotification implements ShouldQueue
      */
     public function handle(UserWasSendEmail $event)
     {
-//        $user = \Auth::user();
-//        $answer = Answer::find(1);
-//        Notification::send($user, new AnswerReceived($user, $answer));
-//        $user->notify(new AnswerReceived($userData));
+        $admins = $this->receiveAdmin();
+        Notification::send($admins, new AdminNotification($admins));
     }
 }

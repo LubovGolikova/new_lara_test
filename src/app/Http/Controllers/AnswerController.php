@@ -32,11 +32,10 @@ class AnswerController extends Controller
     {
         $validated = $request->validated();
         $answer = app()->make('AnswerService')->create($validated);
-        $data = app()->make('AnswerService')->createData($answer->id);
+        $data = app()->make('AnswerService')->preparedDataToSendEmail($answer->id);
         app()->make('MailService')->createMail($data);
         $user = \Auth::user();
-        Notification::send($user, new AnswerReceived($answer, $user));
-//        $user->notify(new AnswerReceived($answer, $user));
+        Notification::send($user, new AnswerReceived($user,$answer));
         return response()->json($answer);
 
     }

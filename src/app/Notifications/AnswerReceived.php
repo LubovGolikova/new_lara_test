@@ -7,11 +7,12 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;
 use App\Models\Answer;
 use App\Models\User;
+
 class AnswerReceived extends Notification implements ShouldQueue
 {
     use Queueable;
-    private $answer;
-    private $user;
+    protected $answer;
+    protected $user;
 
     /**
      * Create a new notification instance.
@@ -46,7 +47,6 @@ class AnswerReceived extends Notification implements ShouldQueue
         return [
             'User' => $this->user->id,
             'Answer' => $this->answer->id,
-
         ];
     }
     /**

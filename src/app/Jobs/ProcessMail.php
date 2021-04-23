@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Events\UserWasSendEmail;
 use App\Traits\AnswerMailTrait;
+use App\Traits\AdminTrait;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -13,7 +14,7 @@ use Illuminate\Queue\SerializesModels;
 
 class ProcessMail implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, AnswerMailTrait;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, AnswerMailTrait,  AdminTrait;
 
     /**
      * Create a new job instance.
@@ -30,15 +31,28 @@ class ProcessMail implements ShouldQueue
      */
     public function handle(): void
     {
-        $mostPopularAnswers = $this->mostPopularAnswers();
-        foreach($mostPopularAnswers  as $answer) {
-            $data = app()->make('AnswerService')->createData($answer->id);
-            app()->make('MailService')->createMail($data);
+        try {
+            $mostPopularAnswers = $this->mostPopularAnswers();
+            foreach($mostPopularAnswers  as $answer) {
+                $data = app()->make('AnswerService')->preparedDataToSendEmail($answer->id);
+                app()->make('MailService')->createMail($data);
 
+            }
+
+            if(is_null( $user = \Auth::user())) {
+                $admins = $this->receiveAdmin();
+                event(new UserWasSendEmail($admins));
+
+            } else {
+                $user = \Auth::user();
+                event(new UserWasSendEmail($user));
+            }
+
+
+        } catch (Exception $e) {
+            $message = 'Could not  send most popular answer';
+            $this->customLog($message, $e);
         }
-        $user = \Auth::user();
-        event(new UserWasSendEmail($user));
-        return;
     }
 
     /**
