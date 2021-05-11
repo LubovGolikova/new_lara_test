@@ -21,9 +21,8 @@
             <a class="navbar-brand">Questions</a>
             <form class="d-flex justify-content-between">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-                <button type="button" class="btn btn-primary" href="#login"  data-toggle="modal" data-target="#myModal">Log in</button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signUp">Sign up</button>
+                <button type="button" class="btn btn-primary ml-2" href="#login"  data-toggle="modal" data-target="#myModal">Log in</button>
+                <button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#signUp">Sign up</button>
             </form>
         </div>
     </nav>
@@ -55,19 +54,21 @@
     </div>
     <div class="page-content p-4" id="content">
         <div class="menu-page-content bg-white p-5">
-            <div class="row justify-content-between">
+            <div class="row justify-content-between align-items-center">
                 <div class="text-menu-content">
                     <h1>All Questions</h1>
                 </div>
-                <button id="btnAskQuestion" type="button" class="btn btn-success">Ask Question</button>
+                <button id="btnAskQuestion" type="button" class="btn btn-primary ">Ask Question</button>
             </div>
-            <div class="row justify-content-between">
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <button  type="button" class="btn btn-primary">Newest</button>
-                    <button type="button" class="btn btn-primary">Active</button>
-                    <button type="button" class="btn btn-primary">Unanswered</button>
+            <div class="row justify-content-between mt-2">
+                <div>123</div>
+
+                <div class="btn-group btn-group-sm ml-auto" role="group" aria-label="Basic example">
+                    <button  type="button" class="btn btn-outline-secondary">Newest</button>
+                    <button type="button" class="btn btn-outline-secondary">Active</button>
+                    <button type="button" class="btn  btn-outline-secondary">Unanswered <span class="badge badge-primary">123</span></button>
                 </div>
-                <button id="btnFilter" type="button" class="btn btn-light">Filter</button>
+                <button id="btnFilter" type="button" class="btn btn-light ml-2">Filter</button>
             </div>
         </div>
         <div class="separator"></div>
