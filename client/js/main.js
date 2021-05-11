@@ -4,10 +4,10 @@
             var bodyString = '';
             data.forEach(({ id, user_id, title, body, votes_questions_count, }) => {
 
-                bodyString += ('<div class="row"><div class="stats-container col-2 ">' +
+                bodyString += ('<div class="row"><div class="stats-container col-1 ">' +
                     '<p>' + id + '</p>' + '<p>' + votes_questions_count + '</p>' + '</div>'
                     + '<div class="summary">'+
-                    '<div class="question-container col-10">'+'<h2>' + title + '</h2>'
+                    '<div class="question-container col-11">'+'<h2>' + title + '</h2>'
                     +'<p>' + body + '</p>' + '</div>' + '<div class="user-container">'+ user_id +
                     '</div>'+'</div>'+'</div>'+'</div>'+'<div class="separator"></div>');
 
