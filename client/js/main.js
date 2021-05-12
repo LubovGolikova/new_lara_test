@@ -7,7 +7,7 @@
                 bodyString += ('<div class="row"><div class="stats-container col-1 ">' +
                     '<p>' + id + '</p>' + '<p>' + votes_questions_count + '</p>' + '</div>'
                     + '<div class="summary">'+
-                    '<div class="question-container col-11">'+'<h2>' + title + '</h2>'
+                    '<div class="question-container col-11">'+'<a href="../view/question.html"><h2>' + title + '</h2></a>'
                     +'<p>' + body + '</p>' + '</div>' + '<div class="user-container">'+ user_id +
                     '</div>'+'</div>'+'</div>'+'</div>'+'<div class="separator"></div>');
 
@@ -19,16 +19,18 @@
             $(this).height("300");
         });
 
-        //TODO receive data from form
-        $('body').on('click', '#btnAskQuestion', function() {
+        // //TODO receive data from form
+        $('body').on('click', '#send', function() {
             $.post("http://127.0.0.1:8000/api/questions/create",
                 {
-
-                },
-                function(data, status){
-                alert("Data: " + data + "\nStatus: " + status);
+                       title: $('#title').val(),
+                       body: $('#body').val()
+                 },
+                 function(data, status){
+                 alert("Data: " + data + "\nStatus: " + status);
             });
         });
+
         $('#myModal').modal('show');
 
         $('#signUp').modal('toggle');
