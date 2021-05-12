@@ -15,7 +15,21 @@
 
 </head>
 <body>
-@@include('./view/header.html')
+<header>
+    <nav class="navbar navbar-light bg-light ">
+        <div class=" container container-fluid">
+            <a class="navbar-brand">Questions</a>
+            <form class="d-flex justify-content-between">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+
+                <a type="button" class="btn btn-primary ml-2" href="./view/login.html" >Log in</a>
+                <a type="button" class="btn btn-primary ml-2" href="./view/registration.html" >Sign up</a>
+
+            </form>
+        </div>
+    </nav>
+</header>
+
 
 <section class="main-container">
     <div class="vertical-nav bg-white" id="sidebar">
@@ -91,7 +105,9 @@
         </div>
     </div>
 </div>
-@@include('./view/footer.html')
+<footer>
+
+</footer>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"> </script>
