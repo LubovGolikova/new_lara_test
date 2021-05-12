@@ -68,10 +68,12 @@ li {
 }
 footer {
   clear: both;
-  position: relative;
   width: 100%;
   min-height: 100px;
   background: $bg-black;
   z-index: 10;
   margin-right: -17rem;
+  position: relative;
+  left: 0;
+  bottom: 0;
 }
