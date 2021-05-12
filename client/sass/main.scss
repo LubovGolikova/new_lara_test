@@ -74,4 +74,9 @@ footer {
   background: $bg-black;
   z-index: 10;
   margin-right: -17rem;
+  flex: 0 0 auto;
+}
+.login-container {
+  min-height: 700px;
+  min-width: 300px;
 }

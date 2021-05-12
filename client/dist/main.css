@@ -61,4 +61,9 @@ footer {
   min-height: 100px;
   background: #232729;
   z-index: 10;
-  margin-right: -17rem; }
+  margin-right: -17rem;
+  flex: 0 0 auto; }
+
+.login-container {
+  min-height: 300px;
+  min-width: 300px; }
