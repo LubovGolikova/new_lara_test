@@ -62,7 +62,3 @@ footer {
   z-index: 10;
   position: absolute;
   bottom: 0; }
-
-.login-container {
-  min-height: 700px;
-  min-width: 300px; }
