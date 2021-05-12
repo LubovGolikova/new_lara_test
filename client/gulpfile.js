@@ -2,6 +2,16 @@ const browserSync = require('browser-sync').create();
 const gulp = require('gulp');
 const sass = require('gulp-sass');
 const del = require('del');
+const fileinclude = require('gulp-file-include');
+
+gulp.task('fileinclude', function() {
+   return gulp.src(['index.html'])
+        .pipe(fileinclude({
+            prefix: '@@',
+            basepath: '@file'
+        }))
+        .pipe(gulp.dest('./'));
+});
 
 gulp.task('browserSync', () => {
     browserSync.init({

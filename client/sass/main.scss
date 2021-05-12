@@ -68,13 +68,15 @@ li {
 }
 footer {
   clear: both;
-  position: relative;
+  //position: relative;
   width: 100%;
   min-height: 100px;
   background: $bg-black;
   z-index: 10;
-  margin-right: -17rem;
-  flex: 0 0 auto;
+  //margin-right: -17rem;
+  //flex: 0 0 auto;
+  position: absolute;
+  bottom: 0;
 }
 .login-container {
   min-height: 700px;

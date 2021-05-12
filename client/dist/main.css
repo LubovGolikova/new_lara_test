@@ -56,14 +56,13 @@ li a {
 
 footer {
   clear: both;
-  position: relative;
   width: 100%;
   min-height: 100px;
   background: #232729;
   z-index: 10;
-  margin-right: -17rem;
-  flex: 0 0 auto; }
+  position: absolute;
+  bottom: 0; }
 
 .login-container {
-  min-height: 300px;
+  min-height: 700px;
   min-width: 300px; }
