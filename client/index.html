@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Test Client API</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800">
+    <link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="dist/main.css">
+
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-light bg-light ">
+        <div class=" container container-fluid">
+            <a class="navbar-brand">Questions</a>
+            <form class="d-flex justify-content-between">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+
+                <a type="button" class="btn btn-primary ml-2" href="login.html" >Log in</a>
+                <a type="button" class="btn btn-primary ml-2" href="registration.html" >Sign up</a>
+
+            </form>
+        </div>
+    </nav>
+</header>
+<section class="main-container">
+    <div class="vertical-nav bg-white" id="sidebar">
+        <ul class="nav flex-column bg-white mb-0">
+            <li class="nav-item">
+                <a class="nav-link text-dark " href="#home">
+                    Home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark " href="#home">
+                    PUBLIC
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark " href="#home">
+                    Questions
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark " href="#home">
+                    Users
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="page-content p-4" id="content">
+        <div class="menu-page-content bg-white p-5">
+            <div class="row justify-content-between align-items-center">
+                <div class="text-menu-content">
+                    <h1>All Questions</h1>
+                </div>
+                <button id="btnAskQuestion" type="button" class="btn btn-primary ">Ask Question</button>
+            </div>
+            <div class="row justify-content-between mt-2">
+                <div>123</div>
+
+                <div class="btn-group btn-group-sm ml-auto" role="group" aria-label="Basic example">
+                    <button  type="button" class="btn btn-outline-secondary">Newest</button>
+                    <button type="button" class="btn btn-outline-secondary">Active</button>
+                    <button type="button" class="btn  btn-outline-secondary">Unanswered <span class="badge badge-primary">123</span></button>
+                </div>
+                <button id="btnFilter" type="button" class="btn btn-light ml-2">Filter</button>
+            </div>
+        </div>
+        <div class="separator"></div>
+        <div class="main-page-content">
+            <div id="questions">
+                <div class="question-summary" id="question-summary">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+
+</footer>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"> </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"> </script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"> </script>
+
+<script src="dist/js/jquery.min.js"></script>
+<script src="dist/js/popper.min.js"></script>
+<script src="dist/js/bootstrap.min.js"></script>
+
+<script src="dist/js/main.js"></script>
+</body>
+</html>
