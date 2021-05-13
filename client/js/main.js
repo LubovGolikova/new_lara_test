@@ -33,5 +33,17 @@
                  alert("Data: " + data + "\nStatus: " + status);
             });
         });
+
+        // //TODO receive data from form
+        $('body').on('click', '#send', function() {
+            $.post("http://127.0.0.1:8000/api/questions/create",
+                {
+                    title: $('#title').val(),
+                    body: $('#body').val()
+                },
+                function(data, status){
+                    alert("Data: " + data + "\nStatus: " + status);
+                });
+        });
     });
 })(jQuery);
