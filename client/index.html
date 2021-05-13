@@ -67,11 +67,50 @@
                 <div>123 questions</div>
 
                 <div class="btn-group btn-group-sm ml-auto" role="group" aria-label="Basic example">
-                    <button  type="button" class="btn btn-outline-secondary">Newest</button>
+                    <button type="button" class="btn btn-outline-secondary">Newest</button>
                     <button type="button" class="btn btn-outline-secondary">Active</button>
                     <button type="button" class="btn  btn-outline-secondary">Unanswered <span class="badge badge-primary">123</span></button>
                 </div>
-                <button id="btnFilter" type="button" class="btn btn-light ml-2">Filter</button>
+                <button id="filter" type="button" class="btn btn-light ml-2" data-toggle="collapse" data-target="#filter-body"
+                        aria-expanded="false" aria-controls="filter-body">Filter</button>
+            </div>
+            <div class="col">
+                <div class="collapse" id="filter-body">
+                    <div class="filter-card mt-5 mb-3 card card-body">
+                        <div class="filter-card-content row">
+                            <div class="order-by-group col-6">
+                                <fieldset>
+                                    <legend>Filter by</legend>
+                                    <div class="filter-position">
+                                        <input class="filter-by-checkbox" type="checkbox" name="filterId" value=""/>
+                                        <label>Has answer</label>
+                                    </div>
+                                    <div class="filter-position">
+                                        <input class="filter-by-checkbox" type="checkbox" name="filterId" value=""/>
+                                        <label>Has voted answer</label>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="filter-sorted-group col-6 ">
+                                <fieldset>
+                                    <legend>Sorted by</legend>
+                                    <div class="filter-position">
+                                        <input class="filter-by-checkbox" type="checkbox" name="filterId" value=""/>
+                                        <label>Order by </label>
+                                    </div>
+                                    <div class="filter-position">
+                                        <input class="filter-by-checkbox" type="checkbox" name="filterId" value=""/>
+                                        <label>Order by votes</label>
+                                    </div>
+                                    <div class="filter-position">
+                                        <input class="filter-by-checkbox" type="checkbox" name="filterId" value=""/>
+                                        <label>Order direction</label>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="separator"></div>
@@ -84,28 +123,7 @@
     </div>
 </section>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
 <footer>
-
 </footer>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

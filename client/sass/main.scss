@@ -1,5 +1,5 @@
 @import "_vertical-menu";
-
+@import "_footer";
 
 body {
   background: $bg-white;
@@ -27,12 +27,4 @@ body {
   position: fixed;
   width: 100%;
 }
-footer {
-  clear: both;
-  width: 100%;
-  min-height: 100px;
-  background: $bg-black;
-  z-index: 10;
-  position: absolute;
-  bottom: 0;
-}
+
