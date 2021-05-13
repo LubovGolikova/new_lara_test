@@ -1,6 +1,5 @@
-$bg-white: #fff;
-$bg-grey: #dcdcdc;
-$bg-black: #232729;
+@import "_vertical-menu";
+
 
 body {
   background: $bg-white;
@@ -8,45 +7,7 @@ body {
   position: relative;
 }
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  background-color: #f1f1f1;
-  width: 100%;
-  height: 100%;
-}
 
-li {
-  a {
-    display: block;
-    color: $bg-black;
-    padding: 8px 16px;
-    text-decoration: none;
-    &:active {
-      background-color: #4CAF50;
-      color: $bg-white;
-    }
-    &:hover {
-      background-color: #555;
-      color: $bg-white;
-    }
-  }
-}
-.text-menu-content {
-  h1 {
-    color:red;
-  }
-}
-.vertical-nav {
-  min-width: 17rem;
-  margin-top: 55px;
-  width: 17rem;
-  height: 80vh;
-  position: fixed;
-  left: 0;
-  border-right: 1px solid $bg-grey;
-}
 .page-content {
   width: calc(100% - 17rem);
   margin-left: 17rem;
