@@ -33,7 +33,5 @@
                  alert("Data: " + data + "\nStatus: " + status);
             });
         });
-        // $('.collapse').collapse()
-
     });
 })(jQuery);

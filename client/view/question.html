@@ -65,10 +65,44 @@
             </div>
             <div class="separator"></div>
             <div class="main-page-content">
-                <div id="question">
-                    <div class="question-content" id="question-question">
+                <div class="row mr-5">
+                    <div class="add-vote col-1">
+                        <div class="top-arrow"></div>
+                        <div class="digit-vote">
+                            <p>0</p>
+                        </div>
+                        <div class="bottom-arrow"></div>
+                    </div>
+                    <div id="question col-11">
+                        <div class="question-content" id="question-question">
+                            <h2>Body</h2>
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div class="separator"></div>
+            <div class="answer-container">
+                <div class="answer-text text-left">
+                    <label>Your Answer</label>
+                </div>
+                <form action="http://127.0.0.1:8000/api/answers/create" method="post">
+                    <div class="answer-text text-left">
+                        <label>Body</label>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col ">
+                            <textarea id="body"  class="form-control" name="body" value=""></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group row mb-0">
+                        <div class="col">
+                            <button id="send" type="submit" class="btn btn-primary ">
+                                Send
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

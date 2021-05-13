@@ -57,3 +57,24 @@ footer {
   z-index: 10;
   position: fixed;
   width: 100%; }
+
+.top-arrow, .bottom-arrow {
+  width: 0;
+  height: 0;
+  border-style: solid; }
+
+.top-arrow {
+  border-width: 0 15px 15px 15px;
+  border-color: transparent transparent #6a737c transparent; }
+
+.bottom-arrow {
+  border-width: 15px 15px 0 15px;
+  border-color: #6a737c transparent transparent transparent; }
+
+.digit-vote p {
+  font-family: system-ui;
+  color: #6a737c;
+  font-size: 20px;
+  margin: 2px;
+  padding-left: 5px;
+  align-items: center !important; }
