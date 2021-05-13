@@ -1,6 +1,6 @@
 @import "_vertical-menu";
 @import "_footer";
-
+$bg-greylight:#eff0f2;
 body {
   background: $bg-white;
   margin: 0;
@@ -27,4 +27,12 @@ body {
   position: fixed;
   width: 100%;
 }
-
+.filter-card {
+  background: $bg-greylight;
+  border-radius: 3px;
+  border: 1px solid $bg-grey;
+}
+.filter-card-separator {
+  border-bottom: 1px solid $bg-grey;
+  margin: 20px -20px 20px -20px;
+}

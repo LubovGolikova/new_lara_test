@@ -62,3 +62,12 @@ body {
   z-index: 10;
   position: fixed;
   width: 100%; }
+
+.filter-card {
+  background: #eff0f2;
+  border-radius: 3px;
+  border: 1px solid #dcdcdc; }
+
+.filter-card-separator {
+  border-bottom: 1px solid #dcdcdc;
+  margin: 20px -20px 20px -20px; }
