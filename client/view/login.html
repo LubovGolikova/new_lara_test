@@ -4,8 +4,19 @@
     <title>Test Client API</title>
 
     <meta charset="UTF-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<!--    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data:gap: http://www.visitsingapore.com-->
+<!--     https://ssl.gstatic.com 'unsafe-eval';style-src 'self' 'unsafe-inline'; media-src *;-->
+<!--      script-src 'sha256-V+/U3qbjHKP0SaNQhMwYNm62gfWX4QHwPJ7We1PXokI='">-->
+<!--    <meta http-equiv="Content-Security-Policy" content="default-src 'self'">-->
+<!--    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
+<!--        <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'sha256-WOdSzz11/3cpqOdrm89LBL2UPwEU9EhbDtMy2OciEhs='">-->
+<!--    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
+<!--    Content-Security-Policy: script-src 'nonce-xyz123'; style-src 'nonce-xyz123';-->
+
+    <meta http-equiv="Content-Security-Policy" content="default-src https://cdn.example.net; child-src 'none'; object-src 'none'">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -21,22 +32,20 @@
             <a class="navbar-brand"  href="/" >Questions</a>
             <form class="d-flex justify-content-between">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-
                 <a type="button" class="btn btn-primary ml-2" href="login.html" >Log in</a>
                 <a type="button" class="btn btn-primary ml-2" href="register.html" >Sign up</a>
-
             </form>
         </div>
     </nav>
 </header>
 <section class="main-container">
     <div class="login-container ">
-        <form action="" method="post">
+        <form  role="form" action="login.html" id="login-form" method="post" name="loginForm">
             <div class="login-text text-left">
                 <label>Email</label>
             </div>
             <div class="form-group row">
-                <div class="col ">
+                <div class="col">
                     <input id="email" type="text" class="form-control" name="email" value="">
                 </div>
             </div>
@@ -44,21 +53,22 @@
                 <label>Password</label>
             </div>
             <div class="form-group row">
-                <div class="col ">
+                <div class="col">
                     <input id="password" type="text" class="form-control" name="password" value="">
                 </div>
             </div>
 
             <div class="form-group row mb-0">
                 <div class="col">
-                    <button type="submit" class="btn btn-primary  w-100">
+                    <button id="login-form-submit" type="submit" class="btn btn-primary  w-100">
                         Log in
                     </button>
                 </div>
             </div>
+            <p id="login-error-msg">Invalid email <span id="error-msg-second-line">and/or password</span></p>
         </form>
     </div>
-
+<div id="result"></div>
 </section>
 
 
@@ -71,6 +81,8 @@
 <script src="../dist/js/jquery.min.js"></script>
 <script src="../dist/js/popper.min.js"></script>
 <script src="../dist/js/bootstrap.min.js"></script>
-<script src="../dist/js/main.js"></script>
+<script src="../dist/js/login.js"></script>
+
+<script src="https://www.paypal.com/sdk/js?client-id=sb" data-csp-nonce="xyz-123">
 </body>
 </html>

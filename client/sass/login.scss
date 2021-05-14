@@ -1,6 +1,7 @@
 $bg-grey:#ececec;
 $bg-white: #fff;
 $bg-black: #232729;
+$bg-red:#8a0000;
 
 body {
   background: $bg-grey;
@@ -23,4 +24,12 @@ body {
   font-size: 15px;
   font-weight: 700;
   margin-bottom: -5px;
+}
+#login-error-msg {
+  text-align: center;
+  margin: 2px;
+  padding: 5px;
+  font-size: 12px;
+  color: $bg-red;
+  opacity: 0;
 }

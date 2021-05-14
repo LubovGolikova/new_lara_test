@@ -18,3 +18,11 @@ body {
   font-size: 15px;
   font-weight: 700;
   margin-bottom: -5px; }
+
+#login-error-msg {
+  text-align: center;
+  margin: 2px;
+  padding: 5px;
+  font-size: 12px;
+  color: #8a0000;
+  opacity: 0; }
