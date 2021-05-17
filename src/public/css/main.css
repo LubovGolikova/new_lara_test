@@ -54,6 +54,10 @@ body {
   position: relative;
 }
 
+.bg-grey {
+  background: #dcdcdc;
+}
+
 .page-content {
   width: calc(100% - 17rem);
   margin-left: 17rem;

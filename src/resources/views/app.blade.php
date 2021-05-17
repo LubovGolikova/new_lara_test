@@ -12,12 +12,13 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800">
     <link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
-    {{--    <link rel="stylesheet" href="css/new-question.css">--}}
-    {{--    <link rel="stylesheet" href="css/question.css">--}}
-    {{--    <link rel="stylesheet" href="css/register.css">--}}
-    {{--    <link rel="stylesheet" href="css/login.css">--}}
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="css/new-question.css">
+{{--    <link rel="stylesheet" href="css/question.css">--}}
+
 </head>
-<body>
+<body class= "{{ $body_class ?? '' }}">
 @include('header')
 @yield('content')
 @include('footer')

@@ -1,14 +1,14 @@
 @extends('app')
 @section('content')
 
-<main class="main-container">
+<main class="main-container-new-question">
     <div class="container">
-        <div class="question-headline-text">
+        <div class="new-question-headline-text">
             Ask a public question
         </div>
-        <div class="question-container">
+        <div class="new-question-container">
             <form role="form" method="post">
-                <div class="question-text text-left">
+                <div class="new-question-text text-left">
                     <label>Title</label>
                 </div>
                 <div class="form-group row">
@@ -16,7 +16,7 @@
                         <input id="title" type="text" class="form-control" name="title" value="">
                     </div>
                 </div>
-                <div class="question-text text-left">
+                <div class="new-question-text text-left">
                     <label>Body</label>
                 </div>
                 <div class="form-group row">

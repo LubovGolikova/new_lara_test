@@ -9,6 +9,9 @@ body {
   position: relative;
 }
 
+.bg-grey {
+    background: $bg-grey;
+}
 
 .page-content {
   width: calc(100% - 17rem);

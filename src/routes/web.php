@@ -18,15 +18,21 @@ Route::get('/', function () {
 });
 
 Route::get('/new-question', function () {
-    return view('layouts.new-question');
+    return view('layouts.new-question', [
+        'body_class' => 'bg-grey'
+    ]);
 });
 
 Route::get('/login', function () {
-    return view('layouts.login');
+    return view('layouts.login', [
+        'body_class' => 'bg-grey'
+    ]);
 });
 
 Route::get('/register', function () {
-    return view('layouts.register');
+    return view('layouts.register', [
+        'body_class' => 'bg-grey'
+    ]);
 });
 
 Route::get('/question', function () {

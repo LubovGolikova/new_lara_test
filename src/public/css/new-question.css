@@ -1,8 +1,4 @@
-body {
-  background: #ececec;
-}
-
-.question-container {
+.new-question-container {
   position: absolute;
   left: 30%;
   top: 30%;
@@ -14,14 +10,14 @@ body {
   border-radius: 3px;
 }
 
-.question-text {
+.new-question-text {
   font-family: system-ui;
   color: #232729;
   font-weight: 700;
   margin-bottom: -5px;
 }
 
-.question-headline-text {
+.new-question-headline-text {
   font-family: system-ui;
   font-size: 27px;
   color: #232729;

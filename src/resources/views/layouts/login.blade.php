@@ -1,7 +1,7 @@
 @extends('app')
 @section('content')
 
-<main class="main-container">
+<main class="main-container-login">
     <div class="login-container ">
         <form  role="form" action="/login" id="login-form" method="post" name="loginForm">
             <div class="login-text text-left">
