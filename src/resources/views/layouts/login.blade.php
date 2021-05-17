@@ -1,7 +1,7 @@
 @include('header')
 <main class="main-container">
     <div class="login-container ">
-        <form  role="form" action="login.html" id="login-form" method="post" name="loginForm">
+        <form  role="form" action="/login" id="login-form" method="post" name="loginForm">
             <div class="login-text text-left">
                 <label>Email</label>
             </div>

@@ -24,25 +24,26 @@
         @include('filter')
         <div class="separator"></div>
             <div class="main-page-content">
-                <article id="questions">
-                    <div class="question-summary" id="question-summary">
-                        <template id="question-template">
+                <article id="questions-questions">
+                    <div class="question-summary" id="question-summary-questions">
+                        <template id="question-template-questions">
                               <div class="row">
-                                   <div class="stats-container col-lg-1">
-                                       <p id="votes"> votes</p>
+                                   <div class="stats-container col-3">
+                                       <p id="votes-questions"> votes</p>
                                        <label>votes</label>
-                                       <p id="answers">answers</p>
+                                       <p id="answers-questions">answers</p>
                                        <label>answers</label>
                                     </div>
-                                    <div class="summary">
-                                        <div class="question-container col-lg-6">
+                                    <div class="summary col-9">
+                                        <div class="question-container">
                                             <a href="/question">
-                                            <h2 id="title">title</h2></a>
-                                            <p id="body"></p>
+                                            <h2 id="title-questions">title</h2></a>
+                                            <p id="body-questions"></p>
                                         </div>
-                                        <div class="user-container">user_id</div>
+                                        <div id="user-container-questions">user_id</div>
                                     </div>
                                </div>
+                            <div class="separator"></div>
                         </template>
                     </div>
                 </article>

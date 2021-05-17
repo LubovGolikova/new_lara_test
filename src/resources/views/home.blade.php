@@ -23,26 +23,37 @@
             </hgroup>
             <div class="separator"></div>
             <div class="main-page-content">
-                <article id="questions">
-{{--                    <div class="question-summary" id="question-summary">--}}
-{{--                        <template id="question-template">--}}
-{{--                              <div class="row">--}}
-{{--                                   <div class="stats-container col-lg-1">--}}
-{{--                                       <p id="votes"> votes</p>--}}
-{{--                                       <label>votes</label>--}}
-{{--                                       <p id="answers">answers</p>--}}
-{{--                                       <label>answers</label>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="summary">--}}
-{{--                                        <div class="question-container col-lg-6">--}}
-{{--                                            <a href="/question">--}}
-{{--                                            <h2 id="title">title</h2></a>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="user-container">user_id</div>--}}
-{{--                                    </div>--}}
-{{--                               </div>--}}
-{{--                        </template>--}}
-{{--                    </div>--}}
+                <article id="questions-home">
+                    <div class="question-summary" id="question-summary-home">
+                        <template id="question-template-home">
+                              <div class="row">
+                                   <div class="stats-container col-3">
+                                       <div class="row">
+                                           <div class="col-3">
+                                               <p id="votes-home"> votes</p>
+                                               <label>votes</label>
+                                           </div>
+                                           <div class="col-3">
+                                               <p id="answers-home">answers</p>
+                                               <label>answers</label>
+                                           </div>
+                                           <div class="col-3">
+                                               <p id="views-home">views</p>
+                                               <label>views</label>
+                                           </div>
+                                       </div>
+                                    </div>
+                                    <div class="summary col-9">
+                                        <div class="question-container">
+                                            <a href="/question">
+                                            <h2 id="title-home">title</h2></a>
+                                        </div>
+                                        <div id="user-container-home">user_id</div>
+                                    </div>
+                               </div>
+                            <div class="separator"></div>
+                        </template>
+                    </div>
                 </article>
             </div>
         </div>
