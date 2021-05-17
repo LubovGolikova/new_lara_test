@@ -1,0 +1,10 @@
+$bg-black: #232729;
+footer {
+  clear: both;
+  width: 100%;
+  min-height: 100px;
+  background: $bg-black;
+  z-index: 10;
+  position: absolute;
+  bottom: 0;
+}
