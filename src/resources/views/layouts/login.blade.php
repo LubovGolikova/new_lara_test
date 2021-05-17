@@ -1,4 +1,6 @@
-@include('header')
+@extends('layouts.app')
+@section('content')
+
 <main class="main-container">
     <div class="login-container ">
         <form  role="form" action="/login" id="login-form" method="post" name="loginForm">
@@ -31,4 +33,4 @@
     </div>
 <div id="result"></div>
 </main>
-@include('footer')
+@endsection

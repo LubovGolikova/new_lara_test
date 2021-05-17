@@ -1,4 +1,6 @@
-@include('header')
+@extends('layouts.app')
+@section('content')
+
 <main class="main-container">
     <div class="register-container">
         <form role="form" method="post">
@@ -53,5 +55,6 @@
         </form>
     </div>
 </main>
-@include('footer')
+@endsection
+
 

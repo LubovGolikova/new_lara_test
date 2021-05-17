@@ -1,4 +1,6 @@
-@include('header')
+@extends('layouts.app')
+@section('content')
+
 <main class="main-container">
     <div class="container">
         <div class="question-headline-text">
@@ -34,4 +36,5 @@
         </div>
     </div>
 </main>
-@include('footer')
+@endsection
+

@@ -1,4 +1,5 @@
-@include('header')
+@extends('layouts.app')
+@section('content')
 
 <main class="main-container">
 @include('aside')
@@ -52,4 +53,4 @@
     </div>
 </main>
 
-@include('footer')
+@endsection
