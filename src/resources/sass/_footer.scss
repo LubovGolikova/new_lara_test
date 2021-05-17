@@ -1,10 +1,18 @@
 $bg-black: #232729;
+$bg-grey-color:#dcdcdc;
 footer {
-  clear: both;
+  //clear: both;
   width: 100%;
   min-height: 100px;
   background: $bg-black;
   z-index: 10;
-  position: absolute;
-  bottom: 0;
+  //position: absolute;
+  //bottom: 0;
+  flex: 0 0 auto;
+}
+.footer-bg {
+    p{
+        color: $bg-grey-color;
+    }
+
 }

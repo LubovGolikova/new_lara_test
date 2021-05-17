@@ -6,18 +6,8 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark " href="/">
-                PUBLIC
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark " href="/">
+            <a class="nav-link text-dark " href="/questions">
                 Questions
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark " href="/">
-                Users
             </a>
         </li>
     </ul>

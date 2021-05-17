@@ -1,6 +1,5 @@
 @include('header')
-<link rel="stylesheet" href="../dist/new-question.css">
-<section class="main-container">
+<main class="main-container">
     <div class="container">
         <div class="question-headline-text">
             Ask a public question
@@ -26,7 +25,7 @@
 
                 <div class="form-group row mb-0">
                     <div class="col">
-                        <button id="mew-question-form-submit" type="submit" class="btn btn-primary ">
+                        <button id="new-question-form-submit" type="submit" class="btn btn-primary ">
                             Send
                         </button>
                     </div>
@@ -34,8 +33,5 @@
             </form>
         </div>
     </div>
-
-</section>
-
-
-@include('footer');
+</main>
+@include('footer')
