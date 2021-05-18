@@ -1,12 +1,18 @@
-.page-one-question-content {
+.page-content-one-question {
   width: calc(100% - 17rem);
   margin-left: 17rem;
   border-left: 1px solid #dcdcdc;
 }
 
-.main-one-question-page-content {
+.main-page-content-one-question {
   background: #fff;
   width: 100%;
+}
+
+.text-menu-content-one-question p {
+  font-family: system-ui;
+  font-size: 27px;
+  color: #3C4146;
 }
 
 .separator-one-question {

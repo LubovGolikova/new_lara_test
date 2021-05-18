@@ -1,14 +1,22 @@
 $bg-white: #fff;
 $bg-grey: #dcdcdc;
 $bg-triangle:#6a737c;
-.page-one-question-content {
+$bg-black-text:#3C4146;
+.page-content-one-question {
   width: calc(100% - 17rem);
   margin-left: 17rem;
   border-left: 1px solid $bg-grey;
 }
-.main-one-question-page-content {
+.main-page-content-one-question {
   background:$bg-white ;
   width: 100%;
+}
+.text-menu-content-one-question {
+   p {
+       font-family: system-ui;
+       font-size: 27px;
+       color:$bg-black-text;
+    }
 }
 .separator-one-question {
   margin: 20px 0 20px -30px;

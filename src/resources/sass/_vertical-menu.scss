@@ -1,7 +1,7 @@
 $bg-white: #fff;
 $bg-grey: #dcdcdc;
 $bg-black: #232729;
-
+$bg-black-h1:#242729;
 ul {
   list-style-type: none;
   margin: 0;
@@ -29,7 +29,9 @@ li {
 }
 .text-menu-content {
   h1 {
-    color:red;
+      font-family: system-ui;
+      font-size: 27px;
+      color:$bg-black-h1;
   }
 }
 .vertical-nav {

@@ -2,10 +2,10 @@
 @section('content')
 <main class="main-container">
     <x-package-aside/>
-    <div class="page-one-question-content p-4" id="content">
+    <div class="page-content-one-question p-4" id="content">
         <div class="menu-page-content bg-white p-5">
             <hgroup class="row  align-items-center">
-                <div class="text-menu-content col-8">
+                <div class="text-menu-content-one-question col-8">
                     <p>{{$question->title}}</p>
                 </div>
                 <div class="btn-menu-content col-4">
@@ -13,7 +13,7 @@
                 </div>
             </hgroup>
             <div class="separator-one-question"></div>
-            <article class="main-one-question-page-content">
+            <article class="main-page-content-one-question">
                 <div class="row mr-5">
                     <div class="add-vote col-1">
                         <div class="top-arrow"></div>

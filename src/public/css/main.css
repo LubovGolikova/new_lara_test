@@ -23,7 +23,9 @@ li a:hover {
 }
 
 .text-menu-content h1 {
-  color: red;
+  font-family: system-ui;
+  font-size: 27px;
+  color: #242729;
 }
 
 .vertical-nav {
