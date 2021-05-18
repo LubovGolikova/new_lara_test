@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\QuestionIdRequest;
-use App\Http\Requests;
 class HomeViewController extends Controller
 {
     /**
@@ -31,10 +29,22 @@ class HomeViewController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function receiveQuestion(int $id)
+    public function getQuestion(int $id)
     {
         $question =  app()->make('QuestionService')->receiveQuestion($id);
-        return view('layouts.question',compact('question'));
+        $answers = app()->make('AnswerService')->getAnswerByIdQuestion($id);
+//        dd($answers);
+        return view('layouts.question',compact('question','answers'));
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function login()
+    {
+        return view('layouts.login', [
+            'body_class' => 'bg-grey'
+        ]);
     }
 
 }

@@ -116,4 +116,19 @@ class AnswerService
         }
 
     }
+
+    /**
+     * @param int $id
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public function getAnswerByIdQuestion(int $id)
+    {
+        try {
+            return $this->answerRepository->getAnswerByIdQuestion($id);
+
+        } catch(Exception $e) {
+            $message = 'Could not receive answers';
+            $this->customLog($message, $e);
+        }
+    }
 }

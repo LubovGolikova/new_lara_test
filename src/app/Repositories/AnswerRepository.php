@@ -42,5 +42,15 @@ class AnswerRepository
         return $answers;
     }
 
+    /**
+     * @param int $id
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public function getAnswerByIdQuestion(int $id)
+    {
+        return Answer::query()
+            ->where('question_id','=', $id)
+            ->get();
+    }
 
 }

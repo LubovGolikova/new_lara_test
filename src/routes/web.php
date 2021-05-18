@@ -14,16 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', [App\Http\Controllers\HomeViewController::class, 'index']);
 Route::get('/questions', [App\Http\Controllers\HomeViewController::class, 'questions']);
-Route::get('/question/{id}', [App\Http\Controllers\HomeViewController::class, 'receiveQuestion']);
+Route::get('/question/{id}', [App\Http\Controllers\HomeViewController::class, 'getQuestion']);
+Route::get('/login', [App\Http\Controllers\HomeViewController::class, 'login']);
 
 Route::get('/new-question', function () {
     return view('layouts.new-question', [
-        'body_class' => 'bg-grey'
-    ]);
-});
-
-Route::get('/login', function () {
-    return view('layouts.login', [
         'body_class' => 'bg-grey'
     ]);
 });

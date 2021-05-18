@@ -39,10 +39,6 @@
                                                <p id="answers-home">{{$question->id}}</p>
                                                <label>answers</label>
                                            </div>
-                                           <div class="col-3">
-                                               <p id="views-home">{{$question->id}}</p>
-                                               <label>views</label>
-                                           </div>
                                        </div>
                                     </div>
                                     <div class="summary col-9">
