@@ -27,25 +27,26 @@
             <div class="main-page-content">
                 <article id="questions-questions">
                     <div class="question-summary" id="question-summary-questions">
-                        <template id="question-template-questions">
+                        @foreach($questions as $question)
+                        <div id="question-container-questions">
                               <div class="row">
                                    <div class="stats-container col-3">
-                                       <p id="votes-questions"> votes</p>
+                                       <p id="votes-questions">{{$question->id}}</p>
                                        <label>votes</label>
-                                       <p id="answers-questions">answers</p>
+                                       <p id="answers-questions">{{$question->id}}</p>
                                        <label>answers</label>
                                     </div>
                                     <div class="summary col-9">
                                         <div class="question-container">
-                                            <a href="/question">
-                                            <h2 id="title-questions">title</h2></a>
-                                            <p id="body-questions"></p>
+                                            <a href="/question/{{$question->id}}"><h2 id="title-questions">{{$question->title}}</h2></a>
+                                            <p id="body-questions">{{$question->body}}</p>
                                         </div>
-                                        <div id="user-container-questions">user_id</div>
+                                        <div id="user-container-questions">{{$question->user_id}}</div>
                                     </div>
                                </div>
                             <div class="separator"></div>
-                        </template>
+                        </div>
+                        @endforeach
                     </div>
                 </article>
             </div>

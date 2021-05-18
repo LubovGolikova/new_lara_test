@@ -17,43 +17,44 @@
                 <div class="btn-group btn-group-sm ml-auto" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-outline-secondary">Interesting</button>
                     <button type="button" class="btn btn-outline-secondary"> <span class="badge badge-primary">123</span> Bounties</button>
-                    <button type="button" class="btn  btn-outline-secondary">Hot</button>
-                    <button type="button" class="btn  btn-outline-secondary">Week</button>
-                    <button type="button" class="btn  btn-outline-secondary">Month</button>
+                    <button type="button" class="btn btn-outline-secondary">Hot</button>
+                    <button type="button" class="btn btn-outline-secondary">Week</button>
+                    <button type="button" class="btn btn-outline-secondary">Month</button>
                 </div>
             </hgroup>
             <div class="separator"></div>
             <div class="main-page-content">
                 <article id="questions-home">
                     <div class="question-summary" id="question-summary-home">
-                        <template id="question-template-home">
+                        @foreach($questions as $question)
+                        <div id="question-container-home">
                               <div class="row">
                                    <div class="stats-container col-3">
                                        <div class="row">
                                            <div class="col-3">
-                                               <p id="votes-home"> votes</p>
+                                               <p id="votes-home">{{$question->id}}</p>
                                                <label>votes</label>
                                            </div>
                                            <div class="col-3">
-                                               <p id="answers-home">answers</p>
+                                               <p id="answers-home">{{$question->id}}</p>
                                                <label>answers</label>
                                            </div>
                                            <div class="col-3">
-                                               <p id="views-home">views</p>
+                                               <p id="views-home">{{$question->id}}</p>
                                                <label>views</label>
                                            </div>
                                        </div>
                                     </div>
                                     <div class="summary col-9">
                                         <div class="question-container">
-                                            <a href="/question">
-                                            <h2 id="title-home">title</h2></a>
+                                            <a href="/question/{{$question->id}}"><h2 id="title-home">{{$question->title}}</h2></a>
                                         </div>
-                                        <div id="user-container-home">user_id</div>
+                                        <div id="user-container-home">{{$question->user_id}}</div>
                                     </div>
                                </div>
                             <div class="separator"></div>
-                        </template>
+                        </div>
+                        @endforeach
                     </div>
                 </article>
             </div>

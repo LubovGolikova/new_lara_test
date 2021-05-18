@@ -1,7 +1,7 @@
 @import "_vertical-menu";
 @import "_footer";
 
-$bg-greylight:#eff0f2;
+$bg-grey-light:#eff0f2;
 
 body {
   background: $bg-white;
@@ -33,7 +33,7 @@ body {
   width: 100%;
 }
 .filter-card {
-  background: $bg-greylight;
+  background: $bg-grey-light;
   border-radius: 3px;
   border: 1px solid $bg-grey;
 }

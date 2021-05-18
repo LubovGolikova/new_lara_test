@@ -26,7 +26,7 @@ class QuestionService
      * @param array $searchData
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function get(array $searchData)
+    public function get(array $searchData = [])
     {
         try {
             $searchData['order_by'] = $searchData['order_by'] ?? 'created_at';
@@ -85,7 +85,22 @@ class QuestionService
             return Question::destroy($id['id']);
 
         } catch(Exception $e) {
-            $message = 'Could not destroy user';
+            $message = 'Could not destroy question';
+            $this->customLog($message, $e);
+        }
+    }
+
+    /**
+     * @param int $id
+     * @return Question
+     */
+    public function receiveQuestion(int $id): Question
+    {
+        try {
+            return Question::find($id);
+
+        } catch(Exception $e) {
+            $message = 'Could not receive question';
             $this->customLog($message, $e);
         }
     }

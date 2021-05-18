@@ -12,10 +12,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('layouts.home');
-});
+Route::get('/', [App\Http\Controllers\HomeViewController::class, 'index']);
+Route::get('/questions', [App\Http\Controllers\HomeViewController::class, 'questions']);
+Route::get('/question/{id}', [App\Http\Controllers\HomeViewController::class, 'receiveQuestion']);
 
 Route::get('/new-question', function () {
     return view('layouts.new-question', [
@@ -35,10 +34,11 @@ Route::get('/register', function () {
     ]);
 });
 
-Route::get('/question', function () {
-    return view('layouts.question');
+Route::get('/clear', function(){
+    Artisan::call('cache:clear');
+    Artisan::call('view:clear');
+    return 'Cache clear!';
 });
 
-Route::get('/questions', function () {
-    return view('layouts.questions');
-});
+
+

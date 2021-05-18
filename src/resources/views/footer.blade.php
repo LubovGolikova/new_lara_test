@@ -1,6 +1,6 @@
 <footer>
     <div class="footer-bg">
-        <p>Copyright</p>
+        <p>Copyright &COPY;</p>
     </div>
 </footer>
 

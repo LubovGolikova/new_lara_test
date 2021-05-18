@@ -2,16 +2,16 @@
 @section('content')
 <main class="main-container">
     <x-package-aside/>
-    <div class="page-content p-4" id="content">
+    <div class="page-one-question-content p-4" id="content">
         <div class="menu-page-content bg-white p-5">
             <div class="row justify-content-between align-items-center">
                 <div class="text-menu-content">
                     <h1>Title</h1>
                 </div>
-                <a id="btnAskQuestion" type="button" href="new-question.html" class="btn btn-primary ">Ask Question</a>
+                <a id="btnAskQuestion" type="button" href="/new-question" class="btn btn-primary ">Ask Question</a>
             </div>
             <div class="separator"></div>
-            <div class="main-page-content">
+            <div class="main-one-question-page-content">
                 <div class="row mr-5">
                     <div class="add-vote col-1">
                         <div class="top-arrow"></div>
@@ -27,7 +27,7 @@
                     </div>
                 </div>
             </div>
-            <div class="separator"></div>
+            <div class="separator-one-question"></div>
             <div class="answer-container">
                 <div class="answer-text text-left">
                     <label>Your Answer</label>

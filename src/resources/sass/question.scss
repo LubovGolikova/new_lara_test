@@ -1,16 +1,16 @@
-@import "_vertical-menu";
-@import "_footer";
+$bg-white: #fff;
+$bg-grey: #dcdcdc;
 $bg-triangle:#6a737c;
-.page-content {
+.page-one-question-content {
   width: calc(100% - 17rem);
   margin-left: 17rem;
   border-left: 1px solid $bg-grey;
 }
-.main-page-content {
+.main-one-question-page-content {
   background:$bg-white ;
   width: 100%;
 }
-.separator {
+.separator-one-question {
   margin: 20px 0 20px -30px;
   border-bottom: 1px solid $bg-grey;
 }

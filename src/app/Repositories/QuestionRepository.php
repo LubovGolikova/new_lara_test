@@ -11,7 +11,7 @@ class QuestionRepository
      * @param array $searchData
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function get(array $searchData)
+    public function get(array $searchData = [])
     {
 
         $questions = Question::query();
