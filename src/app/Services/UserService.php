@@ -100,12 +100,4 @@ class UserService
             $this->customLog($message, $e);
         }
     }
-
-
-    public function getUserById(int $id)
-    {
-        return User::query()
-            ->where('id','=', $id)
-            ->get();
-    }
 }

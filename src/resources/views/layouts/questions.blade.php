@@ -41,7 +41,7 @@
                                             <a href="/question/{{$question->id}}"><h2 id="title-questions">{{$question->title}}</h2></a>
                                             <p id="body-questions">{{$question->body}}</p>
                                         </div>
-                                        <div id="user-container-questions">{{$question->user_id}}</div>
+                                        <div id="user-container-questions">asked by {{$question->user->username}}</div>
                                     </div>
                                </div>
                             <div class="separator"></div>

@@ -11,13 +11,7 @@ class HomeViewController extends Controller
     public function index()
     {
         $questions =  app()->make('QuestionService')->get();
-        //TODO receive username
-        foreach ($questions as $question)
-        {
-            $users = app()->make('UserService')->getUserById($question->user_id);
-            dd($users);
-        }
-        return view('layouts.home',compact('questions','users'));
+        return view('layouts.home',compact('questions'));
     }
 
     /**
