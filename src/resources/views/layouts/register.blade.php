@@ -4,6 +4,7 @@
 <main class="main-container">
     <div class="register-container">
         <form role="form" method="post">
+            @csrf
             <div class="register-text text-left">
                 <label>Username</label>
             </div>

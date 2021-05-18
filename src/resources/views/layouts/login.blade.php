@@ -4,6 +4,7 @@
 <main class="main-container-login">
     <div class="login-container ">
         <form  role="form" action="/login" id="login-form" method="post" name="loginForm">
+            @csrf
             <div class="login-text text-left">
                 <label>Email</label>
             </div>

@@ -8,6 +8,7 @@
         </div>
         <div class="new-question-container">
             <form role="form" method="post">
+                @csrf
                 <div class="new-question-text text-left">
                     <label>Title</label>
                 </div>

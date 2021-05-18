@@ -1,7 +1,7 @@
 @extends('app')
 @section('content')
 <main class="main-container">
-    @include('aside')
+    <x-package-aside/>
     <div class="page-content p-4" id="content">
         <div class="menu-page-content bg-white p-5">
             <div class="row justify-content-between align-items-center">

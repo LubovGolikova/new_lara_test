@@ -2,12 +2,15 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use App\Services\UserService;
 use App\Services\QuestionService;
 use App\Services\AnswerService;
 use App\Services\RoleService;
 use App\Services\MailService;
+use App\View\Components\Aside;
+use App\View\Components\Filter;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -31,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Blade::component('package-aside', Aside::class);
+        Blade::component('package-filter', Filter::class);
     }
 }
