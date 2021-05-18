@@ -45,6 +45,7 @@
                                         <div class="question-container">
                                             <a href="/question/{{$question->id}}"><h2 id="title-home">{{$question->title}}</h2></a>
                                         </div>
+                                        {{--TODO get username--}}
                                         <div id="user-container-home">{{$question->user_id}}</div>
                                     </div>
                                </div>

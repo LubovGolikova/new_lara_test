@@ -29,11 +29,8 @@
                     </div>
                 </div>
             </article>
-
-{{--            TODO answers--}}
             <hgroup class="row align-items-center mt-5">
-                <div class="text-menu-content col-8 mt-3">
-                    @foreach($answers as $answer)
+                <div class="text-menu-content col-8">
                     <div class="row align-items-center">
                         <p>1</p>
                         <p>Answers</p>
@@ -47,22 +44,23 @@
                     </div>
                 </div>
             </hgroup>
-            <article class="main-one-question-page-content">
-                <div class="row mr-5">
-                    <div class="add-vote col-1">
-                        <div class="top-arrow"></div>
-                        <div class="digit-vote">
-                            <p>0</p>
+            @foreach($answers as $answer)
+                <article class="main-one-question-page-content mt-3">
+                    <div class="row mr-5">
+                        <div class="add-vote col-1">
+                            <div class="top-arrow"></div>
+                            <div class="digit-vote">
+                                <p>0</p>
+                            </div>
+                            <div class="bottom-arrow"></div>
                         </div>
-                        <div class="bottom-arrow"></div>
-                    </div>
-                    <div class="question col-11">
-                        <div class="question-content" id="question-question">
-                            <p>{{$answer->body}}</p>
+                        <div class="question col-11">
+                            <div class="question-content" id="question-question">
+                                <p>{{$answer->body}}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </article>
+                </article>
             @endforeach
             <div class="separator-one-question"></div>
             <div class="answer-container">
