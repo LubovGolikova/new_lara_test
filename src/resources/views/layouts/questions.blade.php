@@ -34,13 +34,13 @@
                                        <div class="col">
                                            <div class="col-3">
                                                <div class="status unanswered">
-                                                   <span id="votes-questions">{{$question->id}}</span>
+                                                   <span id="votes-questions">{{$question->votes_questions_count}}</span>
                                                    <label>votes</label>
                                                </div>
                                            </div>
                                            <div class="col-3">
                                                <div class="status answered">
-                                                   <span id="answers-questions">{{$question->id}}</span>
+                                                   <span id="answers-questions">{{$countAnswers}}</span>
                                                    <label>answers</label>
                                                </div>
                                            </div>

@@ -32,8 +32,8 @@
             <hgroup class="row align-items-center mt-5">
                 <div class="text-menu-content col-8">
                     <div class="row align-items-center">
-                        <p>1</p>
-                        <p>Answers</p>
+                        <span>{{$countAnswers}} </span>
+                        <span>Answers</span>
                     </div>
                 </div>
                 <div class="btn-menu-content col-4">
@@ -76,7 +76,6 @@
                             <textarea id="body"  class="form-control" name="body" value=""></textarea>
                         </div>
                     </div>
-
                     <div class="form-group row mb-0">
                         <div class="col">
                             <button id="send" type="submit" class="btn btn-primary ">

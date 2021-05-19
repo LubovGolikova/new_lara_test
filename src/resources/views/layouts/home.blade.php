@@ -37,7 +37,7 @@
                                            </div>
                                            <div class="col-3">
                                                <div class="status answered">
-                                                   <span id="answers-home">{{$question->id}}</span>
+                                                   <span id="answers-home">{{$countAnswers}}</span>
                                                    <label>answers</label>
                                                </div>
                                            </div>

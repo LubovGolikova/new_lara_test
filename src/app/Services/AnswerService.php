@@ -131,4 +131,18 @@ class AnswerService
             $this->customLog($message, $e);
         }
     }
+
+    /**
+     * @return int
+     */
+    public function getAnswerCountByIdQuestion(int $id): int
+    {
+        try {
+            return $this->answerRepository->getAnswerCountByIdQuestion($id);
+
+        } catch(Exception $e) {
+            $message = 'Could not receive a count answers';
+            $this->customLog($message, $e);
+        }
+    }
 }

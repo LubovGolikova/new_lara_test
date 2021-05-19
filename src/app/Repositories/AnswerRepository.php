@@ -53,4 +53,15 @@ class AnswerRepository
             ->get();
     }
 
+    /**
+     * @param int $id
+     * @return int
+     */
+    public function getAnswerCountByIdQuestion(int $id)
+    {
+        return Answer::query()
+            ->where('question_id','=', $id)
+            ->count();
+    }
+
 }
