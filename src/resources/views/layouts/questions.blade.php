@@ -12,7 +12,7 @@
                 <a id="btnAskQuestion" type="button" href="/new-question" class="btn btn-primary ">Ask Question</a>
             </hgroup>
             <hgroup class="row justify-content-between mt-2">
-                <div>123 questions</div>
+                <div>{{$countQuestion}} questions</div>
 
                 <div class="btn-group btn-group-sm ml-auto" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-outline-secondary">Newest</button>

@@ -12,8 +12,6 @@
                 <a id="btnAskQuestion" type="button" href="/new-question" class="btn btn-primary ">Ask Question</a>
             </hgroup>
             <hgroup class="row justify-content-between mt-2">
-                <div>123 questions</div>
-
                 <div class="btn-group btn-group-sm ml-auto" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-outline-secondary">Interesting</button>
                     <button type="button" class="btn btn-outline-secondary"> <span class="badge badge-primary">123</span> Bounties</button>
@@ -33,7 +31,7 @@
                                        <div class="row ">
                                            <div class="col-3">
                                                <div class="status unanswered">
-                                                   <span id="votes-home">{{$question->id}}</span>
+                                                   <span id="votes-home">{{$question->votes_questions_count}}</span>
                                                    <label>votes</label>
                                                </div>
                                            </div>

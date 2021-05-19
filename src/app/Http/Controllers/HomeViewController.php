@@ -21,7 +21,8 @@ class HomeViewController extends Controller
     public function questions()
     {
         $questions =  app()->make('QuestionService')->get();
-        return view('layouts.questions',compact('questions'));
+        $countQuestion = app()->make('QuestionService')->countQuestion();
+        return view('layouts.questions',compact('questions','countQuestion'));
     }
 
     /**

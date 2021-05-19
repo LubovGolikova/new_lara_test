@@ -105,4 +105,19 @@ class QuestionService
         }
     }
 
+    /**
+     * @return int
+     */
+    public function countQuestion(): int
+    {
+        try {
+            return Question::query()
+                ->count();
+           } catch(Exception $e) {
+            $message = 'Could not receive a count questions';
+            $this->customLog($message, $e);
+        }
+    }
+
+
 }
