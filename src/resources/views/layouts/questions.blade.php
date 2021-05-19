@@ -4,7 +4,7 @@
 <main class="main-container">
     <x-package-aside/>
     <div class="page-content p-4" id="content">
-        <div class="menu-page-content bg-white p-5">
+        <div class="menu-page-content  p-5 ">
             <hgroup class="row justify-content-between align-items-center">
                 <div class="text-menu-content">
                     <h1>All Questions</h1>
@@ -24,7 +24,7 @@
             </hgroup>
       <x-package-filter/>
         <div class="separator"></div>
-            <div class="main-page-content">
+            <div class="main-page-content mr-0">
                 <article id="questions-questions">
                     <div class="question-summary" id="question-summary-questions">
                         @foreach($questions as $question)
@@ -40,10 +40,17 @@
                                                        </div>
                                                    </div>
                                                    <div class="col-3">
-                                                       <div class="status answered">
-                                                           <span id="answers-questions">{{$countAnswer}}</span>
-                                                           <label>answers</label>
-                                                       </div>
+                                                       @if ($countAnswer === 0)
+                                                           <div class="status unanswered-questions">
+                                                               <span id="answers-home">{{$countAnswer}}</span>
+                                                               <label>answers</label>
+                                                           </div>
+                                                       @else
+                                                           <div class="status answered">
+                                                               <span id="answers-home">{{$countAnswer}}</span>
+                                                               <label>answers</label>
+                                                           </div>
+                                                       @endif
                                                    </div>
                                                </div>
                                             </div>

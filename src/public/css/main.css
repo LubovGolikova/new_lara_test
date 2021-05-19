@@ -130,13 +130,16 @@ body {
   vertical-align: middle;
 }
 
-.answered {
-  border-color: #48a868;
-  color: #48a868;
+.unanswered-questions, .unanswered {
+  border-color: transparent;
+  color: #848D95 !important;
 }
 
 .unanswered {
-  border-color: transparent;
-  color: #848D95;
   margin-left: 6px;
+}
+
+.answered {
+  border-color: #48a868;
+  color: #48a868;
 }

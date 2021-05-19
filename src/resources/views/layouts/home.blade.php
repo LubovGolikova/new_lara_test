@@ -24,6 +24,7 @@
             <div class="main-page-content">
                 <article id="questions-home">
                     <div class="question-summary" id="question-summary-home">
+
                         @foreach($questions as $question)
                             @foreach($countAnswers as $countAnswer)
                                 <div id="question-container-home">

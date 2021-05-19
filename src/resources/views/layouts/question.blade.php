@@ -18,7 +18,9 @@
                     <div class="add-vote col-1">
                         <div class="top-arrow"></div>
                         <div class="digit-vote">
+{{--                            //TODO receive votes--}}
                             <p>0</p>
+                            <p>{{$question->votes_questions}}</p>
                         </div>
                         <div class="bottom-arrow"></div>
                     </div>

@@ -90,12 +90,19 @@ body {
     text-align: center;
     vertical-align: middle
 }
+
+%unanswered-questions {
+    border-color: transparent;
+    color:$bg-grey-color !important;
+}
+.unanswered {
+    @extend %unanswered-questions;
+    margin-left: 6px;
+}
+.unanswered-questions {
+    @extend %unanswered-questions;
+}
 .answered {
     border-color:$bg-green;
     color:$bg-green;
-}
-.unanswered {
-    border-color: transparent;
-    color:$bg-grey-color;
-    margin-left: 6px;
 }
