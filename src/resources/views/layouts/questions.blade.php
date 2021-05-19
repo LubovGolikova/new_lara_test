@@ -30,16 +30,26 @@
                         @foreach($questions as $question)
                         <div id="question-container-questions">
                               <div class="row">
-                                   <div class="stats-container col-3">
-                                       <p id="votes-questions">{{$question->id}}</p>
-                                       <label>votes</label>
-                                       <p id="answers-questions">{{$question->id}}</p>
-                                       <label>answers</label>
+                                   <div class="stats-container col-2">
+                                       <div class="col">
+                                           <div class="col-3">
+                                               <div class="status unanswered">
+                                                   <span id="votes-questions">{{$question->id}}</span>
+                                                   <label>votes</label>
+                                               </div>
+                                           </div>
+                                           <div class="col-3">
+                                               <div class="status answered">
+                                                   <span id="answers-questions">{{$question->id}}</span>
+                                                   <label>answers</label>
+                                               </div>
+                                           </div>
+                                       </div>
                                     </div>
-                                    <div class="summary col-9">
+                                    <div class="summary col-10">
                                         <div class="question-container">
                                             <a href="/question/{{$question->id}}"><h3 id="title-questions">{{$question->title}}</h3></a>
-                                            <p id="body-questions">{{$question->body}}</p>
+                                            <p id="body-questions">{{$question->shortContent()}}</p>
                                         </div>
                                         <div id="user-container-questions">asked by {{$question->user->username}}</div>
                                     </div>

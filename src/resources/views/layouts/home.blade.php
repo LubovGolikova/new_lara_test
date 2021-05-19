@@ -30,14 +30,18 @@
                         <div id="question-container-home">
                               <div class="row">
                                    <div class="stats-container col-3">
-                                       <div class="row">
+                                       <div class="row ">
                                            <div class="col-3">
-                                               <p id="votes-home">{{$question->id}}</p>
-                                               <label>votes</label>
+                                               <div class="status unanswered">
+                                                   <span id="votes-home">{{$question->id}}</span>
+                                                   <label>votes</label>
+                                               </div>
                                            </div>
                                            <div class="col-3">
-                                               <p id="answers-home">{{$question->id}}</p>
-                                               <label>answers</label>
+                                               <div class="status answered">
+                                                   <span id="answers-home">{{$question->id}}</span>
+                                                   <label>answers</label>
+                                               </div>
                                            </div>
                                        </div>
                                     </div>

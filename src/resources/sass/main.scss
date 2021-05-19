@@ -2,7 +2,8 @@
 $bg-grey-light:#eff0f2;
 $bg-blue:#007BFF;
 $bg-black: #232729;
-$bg-grey-color:#dcdcdc;
+$bg-grey-color:#848D95;
+$bg-green:#48a868;
 
 html,body {
     height: 100%;
@@ -76,4 +77,25 @@ body {
     right: 0;
     bottom: 0;
     z-index: 10;
+}
+.status {
+    display: inline-block;
+    margin: 0 3px 0 0;
+    min-width: 44px;
+    height: 58px;
+    font-size: 13px;
+    padding: 6px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    text-align: center;
+    vertical-align: middle
+}
+.answered {
+    border-color:$bg-green;
+    color:$bg-green;
+}
+.unanswered {
+    border-color: transparent;
+    color:$bg-grey-color;
+    margin-left: 6px;
 }

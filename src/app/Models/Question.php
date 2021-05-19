@@ -62,4 +62,15 @@ class Question extends Model
         return $this->belongsToMany(User::class,'user_question_votes');
     }
 
+    /**
+     * @param int $len
+     * @return mixed|string
+     */
+    function   shortContent($len=100){
+        $str = $this->body;
+        if(strlen($str)>$len)
+            return mb_substr($str, 0, $len).'...';
+        return $str;
+    }
+
 }
