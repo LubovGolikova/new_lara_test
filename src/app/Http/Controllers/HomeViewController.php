@@ -24,7 +24,7 @@ class HomeViewController extends Controller
     public function questions()
     {
         $questions =  app()->make('QuestionService')->get();
-        $countQuestion = app()->make('QuestionService')->countQuestion();
+        $countQuestion = app()->make('QuestionService')->getcountQuestion();
         foreach($questions as $question){
             $countAnswers[] = app()->make('AnswerService')->getAnswerCountByIdQuestion((int)$question->id);
         }
@@ -41,7 +41,8 @@ class HomeViewController extends Controller
         $question =  app()->make('QuestionService')->receiveQuestion($id);
         $answers = app()->make('AnswerService')->getAnswerByIdQuestion($id);
         $countAnswers = app()->make('AnswerService')->getAnswerCountByIdQuestion($id);
-        return view('layouts.question',compact('question','answers','countAnswers'));
+        $countVotesQuestion =  app()->make('QuestionService')->getVotesCountByIdQuestion($id);
+        return view('layouts.question',compact('question','answers','countAnswers','countVotesQuestion'));
     }
 
     /**

@@ -108,7 +108,7 @@ class QuestionService
     /**
      * @return int
      */
-    public function countQuestion(): int
+    public function getcountQuestion(): int
     {
         try {
             return Question::query()->count();
@@ -125,7 +125,8 @@ class QuestionService
     public function getCountAnswers()
     {
         try {
-            return $this->questionRepository->getCountAnswers();
+            return Question::query()->with('answers')
+                ->count();
 
         } catch(Exception $e) {
             $message = 'Could not receive count answers';
@@ -134,4 +135,20 @@ class QuestionService
 
     }
 
+    /**
+     * @return int
+     */
+    public function getVotesCountByIdQuestion(int $id)
+    {
+        try {
+            return UserQuestionVote::query()
+                ->where('question_id','=', $id)
+                ->count();
+
+        } catch(Exception $e) {
+            $message = 'Could not receive count votes questions';
+            $this->customLog($message, $e);
+        }
+
+    }
 }

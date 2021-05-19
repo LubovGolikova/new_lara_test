@@ -131,7 +131,6 @@ class AnswerService
             $this->customLog($message, $e);
         }
     }
-
     /**
      * @return int
      */

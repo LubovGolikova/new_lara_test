@@ -19,8 +19,7 @@
                         <div class="top-arrow"></div>
                         <div class="digit-vote">
 {{--                            //TODO receive votes--}}
-                            <p>0</p>
-                            <p>{{$question->votes_questions}}</p>
+                            <p>{{$countVotesQuestion}}</p>
                         </div>
                         <div class="bottom-arrow"></div>
                     </div>
