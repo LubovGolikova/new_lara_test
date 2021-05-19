@@ -73,5 +73,12 @@ class QuestionRepository
         return Question::query()->findOrFail($id)->get();
     }
 
-
+    /**
+     * @return int
+     */
+    public function getCountAnswers()
+    {
+        return Question::query()->with('answers')
+            ->count();
+    }
 }

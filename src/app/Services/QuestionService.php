@@ -111,13 +111,24 @@ class QuestionService
     public function countQuestion(): int
     {
         try {
-            return Question::query()
-                ->count();
-           } catch(Exception $e) {
+            return Question::query()->count();
+
+        } catch(Exception $e) {
             $message = 'Could not receive a count questions';
             $this->customLog($message, $e);
         }
     }
 
+    public function getCountAnswers()
+    {
+        try {
+            return $this->questionRepository->getCountAnswers();
+
+        } catch(Exception $e) {
+            $message = 'Could not receive count answers';
+            $this->customLog($message, $e);
+        }
+
+    }
 
 }

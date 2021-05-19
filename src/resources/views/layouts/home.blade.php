@@ -25,6 +25,7 @@
                 <article id="questions-home">
                     <div class="question-summary" id="question-summary-home">
                         @foreach($questions as $question)
+                            @foreach($countAnswers as $countAnswer)
                         <div id="question-container-home">
                               <div class="row">
                                    <div class="stats-container col-3">
@@ -37,7 +38,7 @@
                                            </div>
                                            <div class="col-3">
                                                <div class="status answered">
-                                                   <span id="answers-home">{{$countAnswers}}</span>
+                                                   <span id="answers-home">{{$countAnswer}}</span>
                                                    <label>answers</label>
                                                </div>
                                            </div>
@@ -52,6 +53,7 @@
                                </div>
                             <div class="separator"></div>
                         </div>
+                            @endforeach
                         @endforeach
                     </div>
                 </article>

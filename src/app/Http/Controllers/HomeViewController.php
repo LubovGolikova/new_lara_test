@@ -11,11 +11,9 @@ class HomeViewController extends Controller
     public function index()
     {
         $questions =  app()->make('QuestionService')->get();
-        //TODO receive countAnswers
         foreach($questions as $question){
-            $countAnswers = app()->make('AnswerService')->getAnswerCountByIdQuestion($question->id);
+            $countAnswers[] = app()->make('AnswerService')->getAnswerCountByIdQuestion((int)$question->id);
         }
-//        dd($countAnswers);
         return view('layouts.home',compact('questions', 'countAnswers'));
     }
 
@@ -27,8 +25,9 @@ class HomeViewController extends Controller
     {
         $questions =  app()->make('QuestionService')->get();
         $countQuestion = app()->make('QuestionService')->countQuestion();
-        //TODO receive countAnswers
-        $countAnswers = app()->make('AnswerService')->getAnswerCountByIdQuestion(11);
+        foreach($questions as $question){
+            $countAnswers[] = app()->make('AnswerService')->getAnswerCountByIdQuestion((int)$question->id);
+        }
         return view('layouts.questions',compact('questions','countQuestion', 'countAnswers'));
     }
 
