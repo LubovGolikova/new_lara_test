@@ -43,7 +43,7 @@
                                     </div>
                                     <div class="summary col-9">
                                         <div class="question-container">
-                                            <a href="/question/{{$question->id}}"><h2 id="title-home">{{$question->title}}</h2></a>
+                                            <a href="/question/{{$question->id}}"><h3 id="title-question">{{$question->title}}</h3></a>
                                         </div>
                                         <div id="user-container-home">asked by {{$question->user->username}}</div>
                                     </div>

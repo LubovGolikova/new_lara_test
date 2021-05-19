@@ -1884,7 +1884,11 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /***/ (() => {
 
 (function ($) {
-  $(document).ready(function () {});
+  $(document).ready(function () {
+    if ($(document).height() <= $(window).height()) {
+      $(".page-footer").addClass("fixed-bottom");
+    }
+  });
 })(jQuery);
 
 /***/ }),

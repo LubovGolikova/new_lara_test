@@ -38,22 +38,20 @@ li a:hover {
   border-right: 1px solid #dcdcdc;
 }
 
-footer {
-  width: 100%;
-  min-height: 100px;
-  background: #232729;
-  z-index: 10;
-  flex: 0 0 auto;
-}
-
-.footer-bg p {
-  color: #dcdcdc;
+html, body {
+  height: 100%;
 }
 
 body {
   background: #fff;
   margin: 0;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1 0 auto;
+  height: 100%;
 }
 
 .bg-grey {
@@ -92,4 +90,29 @@ body {
 .filter-card-separator {
   border-bottom: 1px solid #dcdcdc;
   margin: 20px -20px 20px -20px;
+}
+
+.question-container h3 {
+  font-family: system-ui;
+  font-size: 20px;
+  color: #007BFF;
+}
+
+.footer-bg p {
+  color: #dcdcdc;
+}
+
+.page-footer {
+  padding: 1rem;
+  background: #232729;
+  color: #dcdcdc;
+  text-align: end;
+}
+
+.page-footer.fixed-bottom {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
 }

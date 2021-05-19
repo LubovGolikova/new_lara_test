@@ -38,7 +38,7 @@
                                     </div>
                                     <div class="summary col-9">
                                         <div class="question-container">
-                                            <a href="/question/{{$question->id}}"><h2 id="title-questions">{{$question->title}}</h2></a>
+                                            <a href="/question/{{$question->id}}"><h3 id="title-questions">{{$question->title}}</h3></a>
                                             <p id="body-questions">{{$question->body}}</p>
                                         </div>
                                         <div id="user-container-questions">asked by {{$question->user->username}}</div>
