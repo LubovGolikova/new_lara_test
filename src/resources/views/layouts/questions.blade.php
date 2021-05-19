@@ -29,34 +29,34 @@
                     <div class="question-summary" id="question-summary-questions">
                         @foreach($questions as $question)
                             @foreach($countAnswers as $countAnswer)
-                        <div id="question-container-questions">
-                              <div class="row">
-                                   <div class="stats-container col-2">
-                                       <div class="col">
-                                           <div class="col-3">
-                                               <div class="status unanswered">
-                                                   <span id="votes-questions">{{$question->votes_questions_count}}</span>
-                                                   <label>votes</label>
+                                <div id="question-container-questions">
+                                      <div class="row">
+                                           <div class="stats-container col-2">
+                                               <div class="col">
+                                                   <div class="col-3">
+                                                       <div class="status unanswered">
+                                                           <span id="votes-questions">{{$question->votes_questions_count}}</span>
+                                                           <label>votes</label>
+                                                       </div>
+                                                   </div>
+                                                   <div class="col-3">
+                                                       <div class="status answered">
+                                                           <span id="answers-questions">{{$countAnswer}}</span>
+                                                           <label>answers</label>
+                                                       </div>
+                                                   </div>
                                                </div>
-                                           </div>
-                                           <div class="col-3">
-                                               <div class="status answered">
-                                                   <span id="answers-questions">{{$countAnswer}}</span>
-                                                   <label>answers</label>
-                                               </div>
-                                           </div>
+                                            </div>
+                                            <div class="summary col-10">
+                                                <div class="question-container">
+                                                    <a href="/question/{{$question->id}}"><h3 id="title-questions">{{$question->title}}</h3></a>
+                                                    <p id="body-questions">{{$question->shortContent()}}</p>
+                                                </div>
+                                                <div id="user-container-questions">asked by {{$question->user->username}}</div>
+                                            </div>
                                        </div>
-                                    </div>
-                                    <div class="summary col-10">
-                                        <div class="question-container">
-                                            <a href="/question/{{$question->id}}"><h3 id="title-questions">{{$question->title}}</h3></a>
-                                            <p id="body-questions">{{$question->shortContent()}}</p>
-                                        </div>
-                                        <div id="user-container-questions">asked by {{$question->user->username}}</div>
-                                    </div>
-                               </div>
-                            <div class="separator"></div>
-                        </div>
+                                    <div class="separator"></div>
+                                </div>
                             @endforeach
                         @endforeach
                     </div>

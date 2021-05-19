@@ -119,6 +119,9 @@ class QuestionService
         }
     }
 
+    /**
+     * @return int
+     */
     public function getCountAnswers()
     {
         try {
