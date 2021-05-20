@@ -28,10 +28,6 @@ class HomeViewController extends Controller
         foreach($questions as $question){
             $countAnswers[] = app()->make('AnswerService')->getAnswerCountByIdQuestion((int)$question->id);
         }
-//        $collection = collect($questions);
-//        $combined = $collection->combine($countAnswers);
-//        $combined->all();
-//        return view('layouts.questions',compact('combined','countQuestion','questions'));
         return view('layouts.questions',compact('countAnswers','countQuestion','questions'));
     }
 
