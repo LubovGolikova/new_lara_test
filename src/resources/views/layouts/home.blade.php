@@ -24,22 +24,20 @@
             <div class="main-page-content">
                 <article id="questions-home">
                     <div class="question-summary" id="question-summary-home">
-
-                        @foreach($questions as $question)
-                            @foreach($countAnswers as $countAnswer)
+                        @for ($i = 0; $i < count($questions); $i++)
                                 <div id="question-container-home">
                                       <div class="row">
                                            <div class="stats-container col-3">
                                                <div class="row ">
                                                    <div class="col-3">
                                                        <div class="status unanswered">
-                                                           <span id="votes-home">{{$question->votes_questions_count}}</span>
+                                                           <span id="votes-home">{{$questions[$i]->votes_questions_count}}</span>
                                                            <label>votes</label>
                                                        </div>
                                                    </div>
                                                    <div class="col-3">
                                                        <div class="status answered">
-                                                           <span id="answers-home">{{$countAnswer}}</span>
+                                                           <span id="answers-home">{{$countAnswers[$i]}}</span>
                                                            <label>answers</label>
                                                        </div>
                                                    </div>
@@ -47,15 +45,14 @@
                                             </div>
                                             <div class="summary col-9">
                                                 <div class="question-container">
-                                                    <a href="/question/{{$question->id}}"><h3 id="title-question">{{$question->title}}</h3></a>
+                                                    <a href="/question/{{$questions[$i]->id}}"><h3 id="title-question">{{$questions[$i]->title}}</h3></a>
                                                 </div>
-                                                <div id="user-container-home">asked by {{$question->user->username}}</div>
+                                                <div id="user-container-home">asked by {{$questions[$i]->user->username}}</div>
                                             </div>
                                        </div>
                                     <div class="separator"></div>
                                 </div>
-                            @endforeach
-                        @endforeach
+                        @endfor
                     </div>
                 </article>
             </div>

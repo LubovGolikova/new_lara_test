@@ -27,27 +27,26 @@
             <div class="main-page-content mr-0">
                 <article id="questions-questions">
                     <div class="question-summary" id="question-summary-questions">
-                        @foreach($questions as $question)
-                            @foreach($countAnswers as $countAnswer)
+                        @for ($i = 0; $i < count($questions); $i++)
                                 <div id="question-container-questions">
                                       <div class="row">
                                            <div class="stats-container col-2">
                                                <div class="col">
                                                    <div class="col-3">
                                                        <div class="status unanswered">
-                                                           <span id="votes-questions">{{$question->votes_questions_count}}</span>
+                                                           <span id="votes-questions">{{$questions[$i]->votes_questions_count}}</span>
                                                            <label>votes</label>
                                                        </div>
                                                    </div>
                                                    <div class="col-3">
-                                                       @if ($countAnswer === 0)
+                                                       @if ($countAnswers[$i] === 0)
                                                            <div class="status unanswered-questions">
-                                                               <span id="answers-home">{{$countAnswer}}</span>
+                                                               <span id="answers-home">{{$countAnswers[$i]}}</span>
                                                                <label>answers</label>
                                                            </div>
                                                        @else
                                                            <div class="status answered">
-                                                               <span id="answers-home">{{$countAnswer}}</span>
+                                                               <span id="answers-home">{{$countAnswers[$i]}}</span>
                                                                <label>answers</label>
                                                            </div>
                                                        @endif
@@ -56,16 +55,15 @@
                                             </div>
                                             <div class="summary col-10">
                                                 <div class="question-container">
-                                                    <a href="/question/{{$question->id}}"><h3 id="title-questions">{{$question->title}}</h3></a>
-                                                    <p id="body-questions">{{$question->shortContent()}}</p>
+                                                    <a href="/question/{{$questions[$i]->id}}"><h3 id="title-questions">{{$questions[$i]->title}}</h3></a>
+                                                    <p id="body-questions">{{$questions[$i]->shortContent()}}</p>
                                                 </div>
-                                                <div id="user-container-questions">asked by {{$question->user->username}}</div>
+                                                <div id="user-container-questions">asked by {{$questions[$i]->user->username}}</div>
                                             </div>
                                        </div>
                                     <div class="separator"></div>
                                 </div>
-                            @endforeach
-                        @endforeach
+                        @endfor
                     </div>
                 </article>
             </div>
