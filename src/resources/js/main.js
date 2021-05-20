@@ -33,6 +33,13 @@
                  function(data, status){
                      alert("Data: " + data + "\nStatus: " + status);
                      console.log(data+"!!!!!");
+                     if (status === 'success') {
+                         alert("You have successfully logged in.");
+                     } else {
+                         alert(status);
+                            loginErrorMsg.style.opacity = 1;
+                        }
+
             });
         });
 

@@ -1917,25 +1917,15 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
       }, function (data, status) {
         alert("Data: " + data + "\nStatus: " + status);
         console.log(data + "!!!!!");
+
+        if (status === 'success') {
+          alert("You have successfully logged in.");
+        } else {
+          alert(status);
+          loginErrorMsg.style.opacity = 1;
+        }
       });
-    }); //
-    // document.querySelector('#update-form').addEventListener('submit', (e) => {
-    //     e.preventDefault();
-    //     var formData = new FormData(e.target);
-    //     fetch("{{ route('update', ['id' => $user['id']]) }}", {
-    //         method: 'POST',
-    //         body: formData
-    //     }).then(() => console.log('success'));
-    // });
-    // $("login-form").submit(function(event){
-    //     alert("!!!");
-    //     event.preventDefault();
-    //     var formValues = $(this).serialize();
-    //     $.post("http://127.0.0.1:8000/api/auth/login", formValues, function(data){
-    //         alert(data);
-    //         console.log(data);
-    //     });
-    // });
+    });
   });
 })(jQuery);
 
