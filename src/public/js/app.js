@@ -1904,20 +1904,38 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
     $('body').on('click', '#deleteVoteQuestion', function () {
       $('#addVoteQuestion').removeClass("add-vote-top");
       $('#deleteVoteQuestion').addClass("add-vote-bottom");
-      $.get("http://127.0.0.1:8000/api/questions", function (data, status) {
-        alert(data);
-      });
     });
-    $('body').on('click', '#login-form-submit', function () {
+    $('body').on('click', '#login-form-submit', function (e) {
+      e.preventDefault();
       var email = loginForm.email.value;
       var password = loginForm.password.value;
       $.post("http://127.0.0.1:8000/api/auth/login", {
         email: email,
-        password: password
+        //qwert@sps.ccx
+        password: password //111111111
+
       }, function (data, status) {
         alert("Data: " + data + "\nStatus: " + status);
+        console.log(data + "!!!!!");
       });
-    });
+    }); //
+    // document.querySelector('#update-form').addEventListener('submit', (e) => {
+    //     e.preventDefault();
+    //     var formData = new FormData(e.target);
+    //     fetch("{{ route('update', ['id' => $user['id']]) }}", {
+    //         method: 'POST',
+    //         body: formData
+    //     }).then(() => console.log('success'));
+    // });
+    // $("login-form").submit(function(event){
+    //     alert("!!!");
+    //     event.preventDefault();
+    //     var formValues = $(this).serialize();
+    //     $.post("http://127.0.0.1:8000/api/auth/login", formValues, function(data){
+    //         alert(data);
+    //         console.log(data);
+    //     });
+    // });
   });
 })(jQuery);
 

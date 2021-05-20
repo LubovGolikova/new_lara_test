@@ -56,4 +56,12 @@ class HomeViewController extends Controller
         ]);
     }
 
+    public function loginPost()
+    {
+        return view('layouts.login', [
+            'body_class' => 'bg-grey'
+        ]);
+    }
+
+
 }

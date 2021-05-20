@@ -17,17 +17,21 @@ Route::get('/questions', [App\Http\Controllers\HomeViewController::class, 'quest
 Route::get('/question/{id}', [App\Http\Controllers\HomeViewController::class, 'getQuestion']);
 Route::get('/login', [App\Http\Controllers\HomeViewController::class, 'login']);
 
-Route::get('/new-question', function () {
-    return view('layouts.new-question', [
-        'body_class' => 'bg-grey'
-    ]);
-});
+Route::post('/loginPost', [App\Http\Controllers\HomeViewController::class, 'loginPost']);
 
 Route::get('/register', function () {
     return view('layouts.register', [
         'body_class' => 'bg-grey'
     ]);
 });
+
+Route::get('/new-question', function () {
+    return view('layouts.new-question', [
+        'body_class' => 'bg-grey'
+    ]);
+});
+
+
 
 Route::get('/clear', function(){
     Artisan::call('cache:clear');

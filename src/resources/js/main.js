@@ -21,17 +21,20 @@
             $('#deleteVoteQuestion').addClass("add-vote-bottom");
         });
 
-        $('body').on('click', '#login-form-submit', function() {
+        $('body').on('click', '#login-form-submit', function(e) {
+            e.preventDefault();
             const email = loginForm.email.value;
             const password = loginForm.password.value;
             $.post("http://127.0.0.1:8000/api/auth/login",
                 {
-                       email: email ,
-                       password: password
+                       email: email ,   //qwert@sps.ccx
+                       password: password   //111111111
                 },
                  function(data, status){
                      alert("Data: " + data + "\nStatus: " + status);
+                     console.log(data+"!!!!!");
             });
         });
+
     });
 })(jQuery);

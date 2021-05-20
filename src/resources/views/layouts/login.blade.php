@@ -3,7 +3,7 @@
 
 <main class="main-container-login">
     <div class="login-container ">
-        <form  role="form"  id="login-form" method="post" name="loginForm">
+        <form  role="form" action="/loginPost" id="login-form" method="post" name="loginForm">
             @csrf
             <div class="login-text text-left">
                 <label>Email</label>
@@ -24,7 +24,7 @@
 
             <div class="form-group row mb-0">
                 <div class="col">
-                    <button id="login-form-submit" type="submit" class="btn btn-primary  w-100">
+                    <button type="submit" id="login-form-submit"  class="btn btn-primary  w-100">
                         Log in
                     </button>
                 </div>
