@@ -16,11 +16,11 @@
             <article class="main-page-content-one-question">
                 <div class="row mr-5">
                     <div class="add-vote col-1">
-                        <div class="top-arrow"></div>
+                        <div id="addVoteQuestion" class="top-arrow"></div>
                         <div class="digit-vote">
                             <p>{{$countVotesQuestion}}</p>
                         </div>
-                        <div class="bottom-arrow"></div>
+                        <div id="deleteVoteQuestion" class="bottom-arrow"></div>
                     </div>
                     <div class="question col-11">
                         <div class="question-content" id="question-question">
@@ -28,6 +28,7 @@
                         </div>
                     </div>
                 </div>
+                <input type="hidden" id="question" name="question" value="{{ $question->id }}" />
             </article>
             <hgroup class="row align-items-center mt-5">
                 <div class="text-menu-content col-8">

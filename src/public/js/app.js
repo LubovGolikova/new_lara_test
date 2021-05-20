@@ -1888,6 +1888,36 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
     if ($(document).height() <= $(window).height()) {
       $(".page-footer").addClass("fixed-bottom");
     }
+
+    var loginForm = document.getElementById("login-form");
+    $('body').on('click', '#addVoteQuestion', function () {
+      $('#addVoteQuestion').addClass("add-vote-top");
+      $('#deleteVoteQuestion').removeClass("add-vote-bottom");
+      var idQuestion = document.getElementById("question").value;
+      $.get('http://127.0.0.1:8000/api/questions/vote', {
+        id: idQuestion
+      }, function (data) {
+        alert(data);
+        console.log(data);
+      });
+    });
+    $('body').on('click', '#deleteVoteQuestion', function () {
+      $('#addVoteQuestion').removeClass("add-vote-top");
+      $('#deleteVoteQuestion').addClass("add-vote-bottom");
+      $.get("http://127.0.0.1:8000/api/questions", function (data, status) {
+        alert(data);
+      });
+    });
+    $('body').on('click', '#login-form-submit', function () {
+      var email = loginForm.email.value;
+      var password = loginForm.password.value;
+      $.post("http://127.0.0.1:8000/api/auth/login", {
+        email: email,
+        password: password
+      }, function (data, status) {
+        alert("Data: " + data + "\nStatus: " + status);
+      });
+    });
   });
 })(jQuery);
 

@@ -2,6 +2,7 @@ $bg-white: #fff;
 $bg-grey: #dcdcdc;
 $bg-triangle:#6a737c;
 $bg-black-text:#3C4146;
+$bg-orange:#e98438;
 .page-content-one-question {
   width: calc(100% - 17rem);
   margin-left: 17rem;
@@ -38,10 +39,20 @@ $bg-black-text:#3C4146;
   border-width: 0 15px 15px 15px;
   border-color: transparent transparent $bg-triangle transparent;
 }
+
+.top-arrow.add-vote-top{
+    border-color: transparent transparent $bg-orange transparent;
+}
 .bottom-arrow{
   @extend %triangle;
   border-width: 15px 15px 0 15px;
   border-color: $bg-triangle transparent transparent  transparent;
+}
+.bottom-arrow.add-vote-bottom{
+    border-color: $bg-orange transparent transparent  transparent;
+}
+.bottom-arrow.delete-vote{
+    border-color: $bg-triangle transparent transparent  transparent;
 }
 .digit-vote{
   p{

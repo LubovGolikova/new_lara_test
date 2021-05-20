@@ -38,8 +38,20 @@
   border-color: transparent transparent #6a737c transparent;
 }
 
+.top-arrow.add-vote-top {
+  border-color: transparent transparent #e98438 transparent;
+}
+
 .bottom-arrow {
   border-width: 15px 15px 0 15px;
+  border-color: #6a737c transparent transparent transparent;
+}
+
+.bottom-arrow.add-vote-bottom {
+  border-color: #e98438 transparent transparent transparent;
+}
+
+.bottom-arrow.delete-vote {
   border-color: #6a737c transparent transparent transparent;
 }
 
