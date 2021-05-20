@@ -18,7 +18,6 @@
                     <div class="add-vote col-1">
                         <div class="top-arrow"></div>
                         <div class="digit-vote">
-{{--                            //TODO receive votes--}}
                             <p>{{$countVotesQuestion}}</p>
                         </div>
                         <div class="bottom-arrow"></div>
@@ -34,7 +33,7 @@
                 <div class="text-menu-content col-8">
                     <div class="row align-items-center">
                         <span>{{$countAnswers}} </span>
-                        <span>Answers</span>
+                        <span class="ml-1">Answers</span>
                     </div>
                 </div>
                 <div class="btn-menu-content col-4">
@@ -51,7 +50,7 @@
                         <div class="add-vote col-1">
                             <div class="top-arrow"></div>
                             <div class="digit-vote">
-                                <p>0</p>
+                                <p>{{$countVotesAnswer}}</p>
                             </div>
                             <div class="bottom-arrow"></div>
                         </div>

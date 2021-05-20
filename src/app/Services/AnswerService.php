@@ -131,6 +131,7 @@ class AnswerService
             $this->customLog($message, $e);
         }
     }
+
     /**
      * @return int
      */
@@ -143,5 +144,22 @@ class AnswerService
             $message = 'Could not receive a count answers';
             $this->customLog($message, $e);
         }
+    }
+
+    /**
+     * @return int
+     */
+    public function getVotesCountByIdAnswer(int $id)
+    {
+        try {
+            return UserAnswerVote::query()
+                ->where('answer_id','=', $id)
+                ->count();
+
+        } catch(Exception $e) {
+            $message = 'Could not receive count votes answers';
+            $this->customLog($message, $e);
+        }
+
     }
 }
