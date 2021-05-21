@@ -22,17 +22,11 @@ li a:hover {
   color: #fff;
 }
 
-.text-menu-content h1 {
-  font-family: system-ui;
-  font-size: 27px;
-  color: #242729;
-}
-
 .vertical-nav {
   min-width: 17rem;
-  margin-top: 90px;
+  margin-top: 50px;
   width: 17rem;
-  height: 70vh;
+  height: 76vh;
   position: fixed;
   left: 0;
   border-right: 1px solid #dcdcdc;
@@ -58,27 +52,31 @@ body {
   background: #dcdcdc;
 }
 
-.page-content {
-  width: calc(100% - 17rem);
-  margin-left: 17rem;
-  border-left: 1px solid #dcdcdc;
-}
-
-.main-page-content {
-  background: #fff;
-  width: 100%;
-}
-
-.separator {
-  margin: 20px 0 20px -90px;
-  border-bottom: 1px solid #dcdcdc;
-}
-
 .navbar {
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
   z-index: 10;
   position: fixed;
   width: 100%;
+}
+
+.page-content {
+  width: calc(100% - 17rem);
+  margin-left: 17rem;
+  border-left: 1px solid #dcdcdc;
+  background: #fff;
+}
+.page-content .main-group-menu-top {
+  margin: 40px 0 0 -50px;
+  border-bottom: 1px solid #dcdcdc;
+}
+.page-content .main-group-menu-top .text-menu-content h1 {
+  font-family: system-ui;
+  font-size: 27px;
+  color: #242729;
+}
+.page-content .main-page-content .question-container-main {
+  margin: 20px 0 20px -100px;
+  border-bottom: 1px solid #dcdcdc;
 }
 
 .filter-card {
@@ -87,7 +85,7 @@ body {
   border: 1px solid #dcdcdc;
 }
 
-.filter-card-separator {
+.filter-card-content {
   border-bottom: 1px solid #dcdcdc;
   margin: 20px -20px 20px -20px;
 }

@@ -33,7 +33,6 @@
                     </fieldset>
                 </div>
             </div>
-            <div class="filter-card-separator"></div>
             <div class="row justify-content-between ml-1 mr-5">
                 <a href="#" class="btn btn-primary">Apply filter</a>
                 <a href="#" class="card-link">Cancel</a>

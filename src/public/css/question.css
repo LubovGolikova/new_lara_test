@@ -3,28 +3,21 @@
   margin-left: 17rem;
   border-left: 1px solid #dcdcdc;
 }
-
-.main-page-content-one-question {
-  background: #fff;
-  width: 100%;
+.page-content-one-question .main-group-menu-top {
+  margin: 20px;
+  border-bottom: 1px solid #dcdcdc;
 }
-
-.text-menu-content-one-question p {
+.page-content-one-question .main-group-menu-top .text-menu-content-one-question p {
   font-family: system-ui;
   font-size: 27px;
   color: #3C4146;
 }
-
-.separator-one-question {
-  margin: 20px 0 20px -30px;
-  border-bottom: 1px solid #dcdcdc;
-}
-
-.navbar {
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
-  z-index: 10;
-  position: fixed;
+.page-content-one-question .main-page-content-one-question {
+  background: #fff;
   width: 100%;
+}
+.page-content-one-question .main-page-content-one-answer {
+  border-bottom: 1px solid #dcdcdc;
 }
 
 .bottom-arrow, .top-arrow {

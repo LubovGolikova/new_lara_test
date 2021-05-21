@@ -1844,6 +1844,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./main.js */ "./resources/js/main.js");
 
+__webpack_require__(/*! ./login.js */ "./resources/js/login.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -1877,11 +1879,74 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/config.js":
+/*!********************************!*\
+  !*** ./resources/js/config.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var ENV = {
+  'apiEndpoint': 'http://127.0.0.1:8000/'
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ENV);
+
+/***/ }),
+
+/***/ "./resources/js/login.js":
+/*!*******************************!*\
+  !*** ./resources/js/login.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./config */ "./resources/js/config.js");
+
+
+(function ($) {
+  $(document).ready(function () {
+    var loginForm = document.getElementById("login-form");
+    var loginErrorMsg = document.getElementById("login-error-msg");
+    $('body').on('click', '#login-form-submit', function (e) {
+      e.preventDefault();
+      var email = loginForm.email.value;
+      var password = loginForm.password.value;
+      $.post(_config__WEBPACK_IMPORTED_MODULE_0__.default.apiEndpoint + '/api/auth/login', {
+        email: email,
+        //qwert@sps.ccx
+        password: password //111111111
+
+      }, function (data, status, xhr) {
+        alert("Data: " + data + "\nStatus: " + status + " " + response.data);
+        console.log(data + "" + response.data + "!!!!!");
+      }).done(function () {
+        alert('Request done!' + data.token);
+        location.reload();
+      }).fail(function (jqxhr, settings, ex) {
+        alert('failed,' + jqxhr + " " + settings + " " + ex);
+        loginErrorMsg.style.opacity = 1;
+      });
+    });
+  });
+})(jQuery);
+
+/***/ }),
+
 /***/ "./resources/js/main.js":
 /*!******************************!*\
   !*** ./resources/js/main.js ***!
   \******************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./config */ "./resources/js/config.js");
+
 
 (function ($) {
   $(document).ready(function () {
@@ -1889,12 +1954,11 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
       $(".page-footer").addClass("fixed-bottom");
     }
 
-    var loginForm = document.getElementById("login-form");
     $('body').on('click', '#addVoteQuestion', function () {
       $('#addVoteQuestion').addClass("add-vote-top");
       $('#deleteVoteQuestion').removeClass("add-vote-bottom");
       var idQuestion = document.getElementById("question").value;
-      $.get('http://127.0.0.1:8000/api/questions/vote', {
+      $.get(_config__WEBPACK_IMPORTED_MODULE_0__.default.apiEndpoint + '/api/questions/vote', {
         id: idQuestion
       }, function (data) {
         alert(data);
@@ -1904,27 +1968,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
     $('body').on('click', '#deleteVoteQuestion', function () {
       $('#addVoteQuestion').removeClass("add-vote-top");
       $('#deleteVoteQuestion').addClass("add-vote-bottom");
-    });
-    $('body').on('click', '#login-form-submit', function (e) {
-      e.preventDefault();
-      var email = loginForm.email.value;
-      var password = loginForm.password.value;
-      $.post("http://127.0.0.1:8000/api/auth/login", {
-        email: email,
-        //qwert@sps.ccx
-        password: password //111111111
-
-      }, function (data, status) {
-        alert("Data: " + data + "\nStatus: " + status);
-        console.log(data + "!!!!!");
-
-        if (status === 'success') {
-          alert("You have successfully logged in.");
-        } else {
-          alert(status);
-          loginErrorMsg.style.opacity = 1;
-        }
-      });
     });
   });
 })(jQuery);
@@ -19463,6 +19506,18 @@ process.umask = function() { return 0; };
 /******/ 				}
 /******/ 			}
 /******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	

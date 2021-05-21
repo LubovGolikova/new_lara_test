@@ -28,18 +28,12 @@ li {
     }
   }
 }
-.text-menu-content {
-  h1 {
-      font-family: system-ui;
-      font-size: 27px;
-      color:$bg-black-h1;
-  }
-}
+
 .vertical-nav {
   min-width: 17rem;
-  margin-top: 90px;
+  margin-top: 50px;
   width: 17rem;
-  height: 70vh;
+  height: 76vh;
   position: fixed;
   left: 0;
   border-right: 1px solid $bg-grey;
