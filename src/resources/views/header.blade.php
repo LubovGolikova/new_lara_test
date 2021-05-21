@@ -3,7 +3,7 @@
     <nav class="navbar navbar-light bg-light ">
         <div class=" container container-fluid">
             <a class="navbar-brand"  href="/questions" >Questions</a>
-            <form class="d-flex justify-content-between">
+            <hgroup class="d-flex justify-content-between">
                 <div class="col p-0 m-0" id="search-bar">
                     <div class="input-group input-group-sm m-0 p-1 border d-flex justify-content-between">
                         <a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
@@ -11,9 +11,11 @@
                                placeholder="Search..." >
                     </div>
                 </div>
-                <a type="button" class="btn btn-primary ml-2" href="/login" >Log in</a>
-                <a type="button" class="btn btn-primary ml-2" href="/register" >Sign up</a>
-            </form>
+                <a id="signin" type="button" class="btn btn-primary ml-2" href="/login" >Log in</a>
+                <a id="signup" type="button" class="btn btn-primary ml-2" href="/register" >Sign up</a>
+                <a id="logout" type="button" class="btn btn-primary ml-2" href="/logout" >Log out</a>
+            </hgroup>
+            <div id="second"></div>
         </div>
     </nav>
 </header>

@@ -1891,7 +1891,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 var ENV = {
-  'apiEndpoint': 'http://127.0.0.1:8000/'
+  'apiEndpoint': 'http://127.0.0.1:8000'
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ENV);
 
@@ -1912,6 +1912,7 @@ __webpack_require__.r(__webpack_exports__);
   $(document).ready(function () {
     var loginForm = document.getElementById("login-form");
     var loginErrorMsg = document.getElementById("login-error-msg");
+    var logout = document.getElementById("logout");
     $('body').on('click', '#login-form-submit', function (e) {
       e.preventDefault();
       var email = loginForm.email.value;
@@ -1921,14 +1922,20 @@ __webpack_require__.r(__webpack_exports__);
         //qwert@sps.ccx
         password: password //111111111
 
-      }, function (data, status, xhr) {
-        alert("Data: " + data + "\nStatus: " + status + " " + response.data);
-        console.log(data + "" + response.data + "!!!!!");
-      }).done(function () {
-        alert('Request done!' + data.token);
-        location.reload();
+      }, function (data) {
+        alert(data);
+      }, 'json').done(function (data) {
+        var token = data.token;
+        document.cookie = token;
+        $("#signin").hide();
+        $("#signup").hide();
+        $("#logout").show(); // location.reload();
+        // window.location.href = "/";
+        // if (window.location.href ==  "/") {
+        //     $("#second").append("<a type='button' id='logout' value='Log Out' <a/>");
+        // }
       }).fail(function (jqxhr, settings, ex) {
-        alert('failed,' + jqxhr + " " + settings + " " + ex);
+        alert('failed:' + ex);
         loginErrorMsg.style.opacity = 1;
       });
     });
@@ -1954,6 +1961,7 @@ __webpack_require__.r(__webpack_exports__);
       $(".page-footer").addClass("fixed-bottom");
     }
 
+    $("#logout").hide();
     $('body').on('click', '#addVoteQuestion', function () {
       $('#addVoteQuestion').addClass("add-vote-top");
       $('#deleteVoteQuestion').removeClass("add-vote-bottom");
@@ -1963,6 +1971,7 @@ __webpack_require__.r(__webpack_exports__);
       }, function (data) {
         alert(data);
         console.log(data);
+        console.log(document.cookie);
       });
     });
     $('body').on('click', '#deleteVoteQuestion', function () {

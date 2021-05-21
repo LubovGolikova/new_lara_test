@@ -62,9 +62,6 @@
                 <label>Your Answer</label>
             </div>
             <form action="" method="post">
-                <div class="answer-text text-left">
-                    <label>Body</label>
-                </div>
                 <div class="form-group row">
                     <div class="col ">
                         <textarea id="body"  class="form-control" name="body" value=""></textarea>

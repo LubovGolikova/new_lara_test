@@ -5,6 +5,7 @@ import ENV from "./config";
         if( $(document).height() <= $(window).height() ){
             $(".page-footer").addClass("fixed-bottom");
         }
+        $("#logout").hide();
 
         $('body').on('click', '#addVoteQuestion', function() {
             $('#addVoteQuestion').addClass("add-vote-top");
@@ -13,6 +14,7 @@ import ENV from "./config";
              $.get(ENV.apiEndpoint + '/api/questions/vote', {id: idQuestion}, function (data) {
                     alert(data);
                     console.log(data);
+                 console.log(document.cookie);
              });
 
         });
