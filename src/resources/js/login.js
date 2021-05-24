@@ -23,12 +23,11 @@ import ENV from "./config";
                     let {token} = data;
                     // sessionStorage.clear();
                     localStorage.clear();
-                    // console.log(token);
+
                     // document.cookie = token;
                     // console.log(document.cookie);
 
-                    // $.cookie("token",token, { expires : 365, path: "/", secure: true});
-                    // alert($.cookie("token"));
+                    // $.cookie("token",token, { expires : 3600, path: "/", secure: true});
                     //  console.log($.cookie("token"));
 
                     // sessionStorage.setItem("token", token);

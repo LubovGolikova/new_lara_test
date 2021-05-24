@@ -1848,6 +1848,8 @@ __webpack_require__(/*! ./login.js */ "./resources/js/login.js");
 
 __webpack_require__(/*! ./register.js */ "./resources/js/register.js");
 
+__webpack_require__(/*! ./search.js */ "./resources/js/search.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -1928,11 +1930,9 @@ __webpack_require__.r(__webpack_exports__);
       }, 'json').done(function (data) {
         var token = data.token; // sessionStorage.clear();
 
-        localStorage.clear(); // console.log(token);
-        // document.cookie = token;
+        localStorage.clear(); // document.cookie = token;
         // console.log(document.cookie);
-        // $.cookie("token",token, { expires : 365, path: "/", secure: true});
-        // alert($.cookie("token"));
+        // $.cookie("token",token, { expires : 3600, path: "/", secure: true});
         //  console.log($.cookie("token"));
         // sessionStorage.setItem("token", token);
 
@@ -2046,6 +2046,35 @@ __webpack_require__.r(__webpack_exports__);
           alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }
       });
+    });
+  });
+})(jQuery);
+
+/***/ }),
+
+/***/ "./resources/js/search.js":
+/*!********************************!*\
+  !*** ./resources/js/search.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./config */ "./resources/js/config.js");
+
+
+(function ($) {
+  $(document).ready(function () {
+    var filterForm = document.getElementById("filter-form");
+    $('body').on('click', '#filter-form-submit', function (e) {
+      e.preventDefault();
+      var checkedHasAnswer = $("#hasAnswer").is(":checked");
+      var checkedOrderDirection = $("#orderDirection").is(":checked");
+      var checkedHasVotedAnswer = $("#hasVotedAnswer").is(":checked");
+      var checkedOrderByVotes = $("#orderByVotes").is(":checked");
+      var orderBy = $('#orderBy').val();
+      console.log(orderBy);
+      console.log(checkedHasAnswer);
     });
   });
 })(jQuery);

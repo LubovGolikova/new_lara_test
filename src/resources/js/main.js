@@ -34,7 +34,6 @@ import ENV from "./config";
                     // alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
                 }
             });
-
         });
 
         $('body').on('click', '#deleteVoteQuestion', function() {
