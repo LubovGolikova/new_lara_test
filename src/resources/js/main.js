@@ -30,7 +30,8 @@ import ENV from "./config";
                     console.log(token);
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
-                    alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                    alert("Your vote already exist!!!");
+                    // alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
                 }
             });
 

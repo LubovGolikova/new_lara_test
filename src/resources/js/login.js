@@ -33,10 +33,14 @@ import ENV from "./config";
 
                     // sessionStorage.setItem("token", token);
                     localStorage.setItem("token", token);
+                    $("#signin").hide();
+                    $("#signup").hide();
+                    $("#logout").show();
+                    // location.reload();
                     // $("#signin").hide();
                     // $("#signup").hide();
                     // $("#logout").show();
-                    // location.reload();
+
                     // window.location.href = "/";
                     // if (window.location.href ==  "/") {
                     //     $("#signin").hide();

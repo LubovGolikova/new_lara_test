@@ -3,14 +3,17 @@
 
 <main class="main-container">
     <div class="register-container">
-        <form role="form" method="post">
+        <form id="register-form" role="form" method="post" name="registerForm">
             @csrf
             <div class="register-text text-left">
                 <label>Username</label>
             </div>
             <div class="form-group row">
                 <div class="col ">
-                    <input id="username" type="text" class="form-control" name="username" value="">
+                    <input id="username" type="text"  class="input @error('username') is-danger @enderror form-control"  name="username"  value="{{old('username')}}">
+                    @error('username')
+                    <p class="help is-danger">{{$error->first('username') }}</p>
+                    @enderror
                 </div>
             </div>
             <div class="register-text text-left">

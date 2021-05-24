@@ -1936,10 +1936,13 @@ __webpack_require__.r(__webpack_exports__);
         //  console.log($.cookie("token"));
         // sessionStorage.setItem("token", token);
 
-        localStorage.setItem("token", token); // $("#signin").hide();
+        localStorage.setItem("token", token);
+        $("#signin").hide();
+        $("#signup").hide();
+        $("#logout").show(); // location.reload();
+        // $("#signin").hide();
         // $("#signup").hide();
         // $("#logout").show();
-        // location.reload();
         // window.location.href = "/";
         // if (window.location.href ==  "/") {
         //     $("#signin").hide();
@@ -1999,7 +2002,7 @@ __webpack_require__.r(__webpack_exports__);
           console.log(token);
         },
         error: function error(xhr, ajaxOptions, thrownError) {
-          alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+          alert("Your vote already exist!!!"); // alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }
       });
     });
@@ -2025,7 +2028,26 @@ __webpack_require__.r(__webpack_exports__);
 
 (function ($) {
   $(document).ready(function () {
-    var registerForm = document.getElementById("");
+    var registerForm = document.getElementById("register-form");
+    $('body').on('click', '#register-form-submit', function (e) {
+      e.preventDefault();
+      var data = new FormData(document.querySelector('#register-form'));
+      data.append('files[]', $('#avatar-path').get(0).files[0]);
+      $.ajax({
+        url: _config__WEBPACK_IMPORTED_MODULE_0__.default.apiEndpoint + '/api/auth/register',
+        method: 'POST',
+        dataType: 'json',
+        processData: false,
+        contentType: false,
+        data: data,
+        success: function success(data) {
+          console.log('success: ' + data);
+        },
+        error: function error(xhr, ajaxOptions, thrownError) {
+          alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+      });
+    });
   });
 })(jQuery);
 
