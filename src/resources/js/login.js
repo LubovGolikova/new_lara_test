@@ -17,18 +17,31 @@ import ENV from "./config";
                     password: password   //111111111
                 },
                 function(data){
-                    alert( data);
+                    // alert( data);
                 }, 'json')
                 .done(function(data) {
                     let {token} = data;
-                    document.cookie = token;
-                    $("#signin").hide();
-                    $("#signup").hide();
-                    $("#logout").show();
+                    // sessionStorage.clear();
+                    localStorage.clear();
+                    // console.log(token);
+                    // document.cookie = token;
+                    // console.log(document.cookie);
+
+                    // $.cookie("token",token, { expires : 365, path: "/", secure: true});
+                    // alert($.cookie("token"));
+                    //  console.log($.cookie("token"));
+
+                    // sessionStorage.setItem("token", token);
+                    localStorage.setItem("token", token);
+                    // $("#signin").hide();
+                    // $("#signup").hide();
+                    // $("#logout").show();
                     // location.reload();
                     // window.location.href = "/";
                     // if (window.location.href ==  "/") {
-                    //     $("#second").append("<a type='button' id='logout' value='Log Out' <a/>");
+                    //     $("#signin").hide();
+                    //     $("#signup").hide();
+                    //     $("#logout").show();
                     // }
                 })
                 .fail(function(jqxhr, settings, ex){
@@ -36,6 +49,7 @@ import ENV from "./config";
                         loginErrorMsg.style.opacity = 1;
                     }
                 );
+
 
         });
     });

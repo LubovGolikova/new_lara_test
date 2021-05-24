@@ -1846,6 +1846,8 @@ __webpack_require__(/*! ./main.js */ "./resources/js/main.js");
 
 __webpack_require__(/*! ./login.js */ "./resources/js/login.js");
 
+__webpack_require__(/*! ./register.js */ "./resources/js/register.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -1922,17 +1924,27 @@ __webpack_require__.r(__webpack_exports__);
         //qwert@sps.ccx
         password: password //111111111
 
-      }, function (data) {
-        alert(data);
+      }, function (data) {// alert( data);
       }, 'json').done(function (data) {
-        var token = data.token;
-        document.cookie = token;
-        $("#signin").hide();
-        $("#signup").hide();
-        $("#logout").show(); // location.reload();
+        var token = data.token; // sessionStorage.clear();
+
+        localStorage.clear(); // console.log(token);
+        // document.cookie = token;
+        // console.log(document.cookie);
+        // $.cookie("token",token, { expires : 365, path: "/", secure: true});
+        // alert($.cookie("token"));
+        //  console.log($.cookie("token"));
+        // sessionStorage.setItem("token", token);
+
+        localStorage.setItem("token", token); // $("#signin").hide();
+        // $("#signup").hide();
+        // $("#logout").show();
+        // location.reload();
         // window.location.href = "/";
         // if (window.location.href ==  "/") {
-        //     $("#second").append("<a type='button' id='logout' value='Log Out' <a/>");
+        //     $("#signin").hide();
+        //     $("#signup").hide();
+        //     $("#logout").show();
         // }
       }).fail(function (jqxhr, settings, ex) {
         alert('failed:' + ex);
@@ -1965,19 +1977,55 @@ __webpack_require__.r(__webpack_exports__);
     $('body').on('click', '#addVoteQuestion', function () {
       $('#addVoteQuestion').addClass("add-vote-top");
       $('#deleteVoteQuestion').removeClass("add-vote-bottom");
-      var idQuestion = document.getElementById("question").value;
-      $.get(_config__WEBPACK_IMPORTED_MODULE_0__.default.apiEndpoint + '/api/questions/vote', {
-        id: idQuestion
-      }, function (data) {
-        alert(data);
-        console.log(data);
-        console.log(document.cookie);
+      var idQuestion = document.getElementById("question").value; // const {token} = document.cookie;
+      // const token = sessionStorage.getItem("token");
+
+      var token = localStorage.getItem("token");
+      console.log(token);
+      $.ajax({
+        url: _config__WEBPACK_IMPORTED_MODULE_0__.default.apiEndpoint + '/api/questions/vote',
+        headers: {
+          'Authorization': "Bearer ".concat(token),
+          'Content-Type': 'application/json'
+        },
+        method: 'GET',
+        dataType: 'json',
+        data: {
+          id: idQuestion
+        },
+        success: function success(data) {
+          console.log('success: ' + data);
+          console.log("------");
+          console.log(token);
+        },
+        error: function error(xhr, ajaxOptions, thrownError) {
+          alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
       });
     });
     $('body').on('click', '#deleteVoteQuestion', function () {
       $('#addVoteQuestion').removeClass("add-vote-top");
       $('#deleteVoteQuestion').addClass("add-vote-bottom");
     });
+  });
+})(jQuery);
+
+/***/ }),
+
+/***/ "./resources/js/register.js":
+/*!**********************************!*\
+  !*** ./resources/js/register.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./config */ "./resources/js/config.js");
+
+
+(function ($) {
+  $(document).ready(function () {
+    var registerForm = document.getElementById("");
   });
 })(jQuery);
 

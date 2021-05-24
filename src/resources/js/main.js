@@ -11,11 +11,28 @@ import ENV from "./config";
             $('#addVoteQuestion').addClass("add-vote-top");
             $('#deleteVoteQuestion').removeClass("add-vote-bottom");
             let idQuestion = document.getElementById("question").value;
-             $.get(ENV.apiEndpoint + '/api/questions/vote', {id: idQuestion}, function (data) {
-                    alert(data);
-                    console.log(data);
-                 console.log(document.cookie);
-             });
+            // const {token} = document.cookie;
+            // const token = sessionStorage.getItem("token");
+            const token = localStorage.getItem("token");
+            console.log(token);
+            $.ajax({
+                url: ENV.apiEndpoint + '/api/questions/vote',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                method: 'GET',
+                dataType: 'json',
+                data: {id:idQuestion},
+                success: function(data){
+                    console.log('success: '+data);
+                    console.log("------");
+                    console.log(token);
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                }
+            });
 
         });
 

@@ -15,7 +15,6 @@
                 <a id="signup" type="button" class="btn btn-primary ml-2" href="/register" >Sign up</a>
                 <a id="logout" type="button" class="btn btn-primary ml-2" href="/logout" >Log out</a>
             </hgroup>
-            <div id="second"></div>
         </div>
     </nav>
 </header>
