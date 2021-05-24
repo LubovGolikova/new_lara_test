@@ -2032,7 +2032,6 @@ __webpack_require__.r(__webpack_exports__);
     $('body').on('click', '#register-form-submit', function (e) {
       e.preventDefault();
       var data = new FormData(document.querySelector('#register-form'));
-      data.append('files[]', $('#avatar-path').get(0).files[0]);
       $.ajax({
         url: _config__WEBPACK_IMPORTED_MODULE_0__.default.apiEndpoint + '/api/auth/register',
         method: 'POST',

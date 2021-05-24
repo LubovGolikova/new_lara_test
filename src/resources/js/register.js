@@ -7,7 +7,6 @@ import ENV from "./config";
         $('body').on('click', '#register-form-submit', function(e) {
             e.preventDefault();
             let data = new FormData(document.querySelector('#register-form'));
-            data.append('files[]', $('#avatar-path').get(0).files[0]);
             $.ajax({
                 url: ENV.apiEndpoint + '/api/auth/register',
                 method: 'POST',

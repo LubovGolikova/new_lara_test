@@ -25,7 +25,6 @@
                         <textarea id="body"  class="form-control" name="body" value=""></textarea>
                     </div>
                 </div>
-
                 <div class="form-group row mb-0">
                     <div class="col">
                         <button id="new-question-form-submit" type="submit" class="btn btn-primary ">
