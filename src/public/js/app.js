@@ -2069,12 +2069,29 @@ __webpack_require__.r(__webpack_exports__);
     $('body').on('click', '#filter-form-submit', function (e) {
       e.preventDefault();
       var checkedHasAnswer = $("#hasAnswer").is(":checked");
-      var checkedOrderDirection = $("#orderDirection").is(":checked");
       var checkedHasVotedAnswer = $("#hasVotedAnswer").is(":checked");
       var checkedOrderByVotes = $("#orderByVotes").is(":checked");
       var orderBy = $('#orderBy').val();
-      console.log(orderBy);
-      console.log(checkedHasAnswer);
+      var orderDirection = $('#orderDirection').val();
+      $.ajax({
+        url: _config__WEBPACK_IMPORTED_MODULE_0__.default.apiEndpoint + '/api/questions',
+        method: 'GET',
+        dataType: 'json',
+        processData: false,
+        data: {
+          order_by: orderBy,
+          has_answer: checkedHasAnswer,
+          has_voted_answer: checkedHasVotedAnswer,
+          order_by_votes: checkedOrderByVotes,
+          order_direction: orderDirection
+        },
+        success: function success(data) {
+          console.log('success: ' + data);
+        },
+        error: function error(xhr, ajaxOptions, thrownError) {
+          alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+      });
     });
   });
 })(jQuery);

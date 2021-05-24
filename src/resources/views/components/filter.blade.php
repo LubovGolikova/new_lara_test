@@ -6,12 +6,16 @@
                     <fieldset>
                         <legend>Filter by</legend>
                         <div class="filter-position">
-                            <input id="hasAnswer" class="filter-by-checkbox" type="checkbox" name="filterId" value=""/>
+                            <input id="hasAnswer" class="filter-by-checkbox"   type="checkbox" name="filterId" value=""/>
                             <label>Has answer</label>
                         </div>
                         <div class="filter-position">
-                            <input id="hasVotedAnswer" class="filter-by-checkbox" type="checkbox" name="filterId" value=""/>
+                            <input id="hasVotedAnswer" class="filter-by-checkbox"  type="checkbox"  name="filterId" value=""/>
                             <label>Has voted answer</label>
+                        </div>
+                        <div class="filter-position">
+                            <input id="orderByVotes" class="filter-by-checkbox" type="checkbox"  name="filterId" value="order_by_votes"/>
+                            <label>Order by votes</label>
                         </div>
                     </fieldset>
                 </div>
@@ -25,14 +29,15 @@
                                 <option value="created_at">created at</option>
                             </select>
                         </div>
+
                         <div class="filter-position">
-                            <input id="orderByVotes" class="filter-by-radio" type="radio" name="sortId" value=""/>
-                            <label>Order by votes</label>
+                            <label>Order direction: </label>
+                            <select id="orderDirection">
+                                <option value="desc">DESC</option>
+                                <option value="asc">ASC</option>
+                            </select>
                         </div>
-                        <div class="filter-position">
-                            <input id="orderDirection" class="filter-by-radio" type="radio" name="sortId" value=""/>
-                            <label>Order direction</label>
-                        </div>
+
                     </fieldset>
                 </div>
             </div>
