@@ -1953,17 +1953,16 @@ __webpack_require__.r(__webpack_exports__);
       }).fail(function (jqxhr, settings, ex) {
         alert('failed:' + ex);
         loginErrorMsg.style.opacity = 1;
-      });
-      var tokenPhp = window.localStorage.getItem("token");
-      $.ajax({
-        url: 'header.blade.php',
-        data: {
-          tokenPhp: tokenPhp
-        },
-        type: 'POST'
-      }).done(function (resp) {
-        alert(resp);
-      });
+      }); //to send data to server
+      // let tokenPhp = window.localStorage.getItem("token");
+      //
+      // $.ajax({
+      //     url: 'header.blade.php',
+      //     data: {tokenPhp: tokenPhp},
+      //     type: 'POST'
+      // }).done(function(resp) {
+      //     alert(resp);
+      // });
     });
   });
 })(jQuery);
@@ -2111,6 +2110,14 @@ __webpack_require__.r(__webpack_exports__);
           alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }
       });
+    });
+    $('body').on('click', '#filter-form-cancel', function (e) {
+      e.preventDefault();
+      var checkedHasAnswer = $("#hasAnswer").prop('checked', false);
+      var checkedHasVotedAnswer = $("#hasVotedAnswer").prop('checked', false);
+      var checkedOrderByVotes = $("#orderByVotes").prop('checked', false);
+      var orderBy = $('#orderBy').val('updated_at');
+      var orderDirection = $('#orderDirection').val('desc');
     });
   });
 })(jQuery);

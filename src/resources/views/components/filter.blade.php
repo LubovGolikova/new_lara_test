@@ -43,7 +43,7 @@
             </div>
             <div class="row justify-content-between ml-1 mr-5">
                 <a href="#"  type="submit" id="filter-form-submit" class="btn btn-primary">Apply filter</a>
-                <a href="#" class="card-link">Cancel</a>
+                <a href="#" id="filter-form-cancel" class="card-link">Cancel</a>
             </div>
         </form>
     </div>

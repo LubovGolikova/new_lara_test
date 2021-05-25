@@ -1,4 +1,4 @@
-<p><?php  $value = $_POST["tokenPhp"]; printf("%u",$value); ?></p>
+{{--<p><?php  $value = $_POST["tokenPhp"]; printf("%u",$value); ?></p>--}}
 <header>
     <nav class="navbar navbar-light bg-light ">
         <div class=" container container-fluid">

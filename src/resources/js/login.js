@@ -54,14 +54,16 @@ import ENV from "./config";
                         loginErrorMsg.style.opacity = 1;
                     }
                 );
-            let tokenPhp = window.localStorage.getItem("token");
-            $.ajax({
-                url: 'header.blade.php',
-                data: {tokenPhp: tokenPhp},
-                type: 'POST'
-            }).done(function(resp) {
-                alert(resp);
-            });
+            //to send data to server
+            // let tokenPhp = window.localStorage.getItem("token");
+            //
+            // $.ajax({
+            //     url: 'header.blade.php',
+            //     data: {tokenPhp: tokenPhp},
+            //     type: 'POST'
+            // }).done(function(resp) {
+            //     alert(resp);
+            // });
 
         });
     });

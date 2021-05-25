@@ -33,5 +33,13 @@ import ENV from "./config";
            });
 
        });
+       $('body').on('click', '#filter-form-cancel', function(e) {
+           e.preventDefault();
+           let checkedHasAnswer = $("#hasAnswer").prop('checked',false);
+           let checkedHasVotedAnswer = $("#hasVotedAnswer").prop('checked',false);
+           let checkedOrderByVotes = $("#orderByVotes").prop('checked',false);
+           let orderBy =  $('#orderBy').val('updated_at');
+           let orderDirection = $('#orderDirection').val('desc');
+       });
     });
 })(jQuery);
