@@ -1936,7 +1936,8 @@ __webpack_require__.r(__webpack_exports__);
         //  console.log($.cookie("token"));
         // sessionStorage.setItem("token", token);
 
-        localStorage.setItem("token", token);
+        localStorage.setItem("token", token); // var data = JSON.stringify(localStorage);
+
         $("#signin").hide();
         $("#signup").hide();
         $("#logout").show(); // location.reload();
@@ -1952,6 +1953,16 @@ __webpack_require__.r(__webpack_exports__);
       }).fail(function (jqxhr, settings, ex) {
         alert('failed:' + ex);
         loginErrorMsg.style.opacity = 1;
+      });
+      var tokenPhp = window.localStorage.getItem("token");
+      $.ajax({
+        url: 'header.blade.php',
+        data: {
+          tokenPhp: tokenPhp
+        },
+        type: 'POST'
+      }).done(function (resp) {
+        alert(resp);
       });
     });
   });
@@ -2004,6 +2015,14 @@ __webpack_require__.r(__webpack_exports__);
         error: function error(xhr, ajaxOptions, thrownError) {
           alert("Your vote already exist!!!"); // alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }
+      });
+      var value = localStorage.totallocal;
+      jQuery.post("admin-new-order.php", {
+        myKey: value
+      }, function (data) {
+        var value = localStorage.totallocal;
+      }).fail(function () {
+        alert("error");
       });
     });
     $('body').on('click', '#deleteVoteQuestion', function () {

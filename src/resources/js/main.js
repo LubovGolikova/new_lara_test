@@ -34,6 +34,20 @@ import ENV from "./config";
                     // alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
                 }
             });
+
+            var value = localStorage.totallocal;
+
+            jQuery.post(
+                "admin-new-order.php",
+                {myKey: value},
+                function(data){
+                    var value = localStorage.totallocal;
+                }).fail(function()
+            {
+                alert("error");
+            });
+
+
         });
 
         $('body').on('click', '#deleteVoteQuestion', function() {
